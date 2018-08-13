@@ -7,24 +7,27 @@ import API from "../../../../constants/api";
 import Common from "../../../../util/common.jsx";
 import $native from "../../../../native/native";
 import $Fetch from "../../../../fetch/fetch.js";
-import $ from "jquery";
 //基础组件
 import WhiteSpace from "../../../../components/Base/white-space/index.web.jsx";
 import WingBlank from "../../../../components/Base/wing-blank/index.web.jsx";
 import Button from "../../../../components/Base/button/index.web.jsx";
-import Input from "../../../../components/Base/input-list/index.web.jsx";
 import Modal from "../../../../components/Base/modal/index.web.js";
 
 //业务组件
 import MbankPublicResult from "../../../../components/mbank/mbank-public-result/index.web.jsx";
-import MbankTransferConfirm from "../../../../components/mbank/mbank-public-confirm-info/index.web.jsx";
 import RedPacket from "../../../../components/mbank/mbank-pubilc-redPacket/index.web.jsx";
 export default class MbankQrCodeConfirm extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
       redPacketDisplay: false,
-      redPacketMoney: ""
+      redPacketMoney: "",
+      name: "",
+      money: "",
+      hbMoney: "",
+      ljMoney: "",
+      imgURL: "",
+      ljOpen:false
     };
     // 性能优化 （当数据重复时不做DOM渲染）
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(
@@ -33,42 +36,21 @@ export default class MbankQrCodeConfirm extends React.Component {
   }
   //初始化生命周期
   componentDidMount() {
-    // this.displayRedPacket();
-  }
-
-  // 调用客户端键盘接口
-  //  “amount”:金额键盘，“num”:纯数字键盘，“tradePsw”:交易密码，“pwd”:登录密码
-  displayRedPacket = () => {
-    let redPacketDisplay = !this.state.redPacketDisplay;
-    this.setState({
-      redPacketDisplay
-    });
-  };
-  showKeyBoard1() {
-    this.setState({
-      passwordInputVal: ""
-    });
-    let that = this;
-    $native.callClientForBank(API.NATIVE_CODE_SHOWKEYBOARD, {
-      hint: "请输入交易密码",
-      type: "tradePsw",
-      cancel: "cancel",
-      success: res => {
-        let jsons = JSON.parse(res);
-        let a = "";
-        for (var i = 0; i < jsons.pswLength; i++) {
-          a = a + "2";
-        }
-        this.setState({
-          cipher: jsons.pswText,
-          passwordInputVal: a
-        });
-
-        this.genSignature(); //转账接口
+    $native.callClientForUI(API.NATIVE_CODE_UPDATE_TITLE, {
+      title: "付款成功",
+      leftButton: {
+        exist: "true",
+        closeFlag: "false",
+        success: this.goBackPage
       }
     });
+    this.dataFech();
   }
-  dataFech=()=> {
+  dataFech() {
+    let that = this;
+    let sessionData = JSON.parse(
+      Common.getSessionData(API.SESSION_INVEST_SMF_MESSAGE)
+    );
     $Fetch(
       API.NATIVE_CODE_RED_PACKET,
       {
@@ -95,41 +77,82 @@ export default class MbankQrCodeConfirm extends React.Component {
       true,
       false
     ).then(res => {
-      console.log(res)
+      if (Common.returnResult(res.rspHead.returnCode)) {
+        let hblist = res.rspBody.shelfGoodsList[0];
+        if (hblist.redpacketType == "02") {
+          this.setState({
+            hbMoney: hblist.redpacketCeiling,
+            imgURL: hblist.imgURL,
+            name: sessionData.name,
+            money: sessionData.money
+          });
+        } else if (hblist.redpacketType == "01") {
+          console.log(hblist.redpacketCeiling,)
+          this.setState({
+            ljMoney: hblist.redpacketCeiling,
+            money: sessionData.money - hblist.redpacketCeiling,
+            ljOpen:true,
+          });
+        }
+      } else {
+        let alertDict = {
+          title: "错误提示",
+          msg: res.rspHead.returnMsg,
+          success_text: "确认",
+          cancel_text: "取消"
+        };
+        Common.showAppDialogAlert(alertDict);
+      }
     });
   }
   //页面跳转
   goFirstPage = () => {
-    Common.setUrl("qrcode-home.html");
+    $native.callClientForUI(API.NATIVE_CODE_SHOW_BACK_BUTTON, {});
+    Common.removeSessionData(API.SESSION_INVEST_SMF_MESSAGE);
+  };
+  //页面跳转
+  displayRedPacket = () => {
+    let redPacketDisplay = !this.state.redPacketDisplay;
+    this.setState({
+      redPacketDisplay
+    });
   };
   //页面跳转
   openRedPacket = () => {
     this.setState({
-      redPacketMoney: "10"
+      redPacketMoney: this.state.hbMoney,
+      redPacketDisplay: true
     });
   };
+  //页面跳转
+  goFirstPage = () => {
+    Common.setUrl("qrcode-home.html");
+  };
   render() {
-    // console.log(this.state.List.approveWay)
+    // console.log(this.state.shelfGoodsList.redpacketType);
     return (
       <div>
         {/***************************** 交易结果信息 *************************/}
         <div ref="myResult">
+          <WhiteSpace size="xs" />
           <MbankPublicResult
-            type={this.state.returnCode}
             type="success"
-            message="老重庆担担面"
+            message={this.state.name}
             title="支付成功"
-            money={"34"}
+            money={this.state.money}
+            ljOpen={this.state.ljOpen}
+            ljMoney={this.state.ljMoney}
           />
-          <WhiteSpace size="sm" />
-          {/* <MbankTransferConfirm.Group>
-            <MbankTransferConfirm
-              title="支付账户"
-              content="唐山银行信用卡(6764)"
-            />
-            <MbankTransferConfirm title="收款账户" content="老重庆担担面" />
-          </MbankTransferConfirm.Group> */}
-          <WhiteSpace size="lg" />
+          {/* <WhiteSpace size="lg" /> */}
+          {!Common.judgeEmpty(this.state.hbMoney) ? (
+            <div>
+              <div onClick={this.displayRedPacket.bind()}>
+                <img src={this.state.imgURL} alt="" width="100%" />
+              </div>
+              <WhiteSpace size="lg" />
+            </div>
+          ) : null}
+
           <WingBlank size="lg">
             <Button
               type="ghost"
@@ -139,9 +162,7 @@ export default class MbankQrCodeConfirm extends React.Component {
               完成
             </Button>
           </WingBlank>
-          <Button type="warning" onTap={this.dataFech}>
-            点我开启
-          </Button>
+
           <Modal visible={this.state.redPacketDisplay} type="alert">
             <RedPacket
               onTap={this.openRedPacket}

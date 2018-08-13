@@ -4,24 +4,15 @@ import PureRenderMixin from "react-addons-pure-render-mixin";
 import API from "../../../../constants/api";
 //公共方法
 import Common from "../../../../util/common.jsx";
-import $Fetch from "../../../../fetch/fetch.js";
 import $native from "../../../../native/native";
 //基础组件
-import Prompt from "../../../../components/Base/ocr-prompt/index.web.jsx";
 import WhiteSpace from "../../../../components/Base/white-space/index.web.jsx";
 import WingBlank from "../../../../components/Base/wing-blank/index.web.jsx";
 import Button from "../../../../components/Base/button/index.web.jsx";
-import ModalBase from "../../../../components/Base/modal/index.web.js";
 import Input from "../../../../components/Base/input-list/index.web.jsx";
 import $ from "jquery";
 
 //业务组件
-import MbankTransferPeople from "../../../../components/mbank/mbank-public-list/mbank-pubilc-list-transfer-people/index.web.jsx";
-import Modal from "../../../../components/mbank/mbank-public-select/mbank-public-select-modal/index.web.js";
-import MbankTransferOutItem from "../../../../components/mbank/mbank-public-account-select/index.web.jsx";
-import MbankPublicInputMoney from "../../../../components/mbank/mbank-public-input-money/index.web.jsx";
-import MbankTransferBank from "../../../../components/mbank/mbank-public-select/mbank-transfer-bank/index.web.jsx";
-
 import "../style/index.web.js";
 
 export default class MbankQrCodeInput extends React.Component {
@@ -32,10 +23,10 @@ export default class MbankQrCodeInput extends React.Component {
       money: "",
       card: "",
       password: "",
-      loginPasswordmlength2:"",
-      loginPassword:"",
-      loginPasswordm:"",
-      keyKbHide:""
+      loginPasswordmlength2: "",
+      loginPassword: "",
+      loginPasswordm: "",
+      keyKbHide: ""
     };
     // 性能优化 （当数据重复时不做DOM渲染）
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(
@@ -65,18 +56,15 @@ export default class MbankQrCodeInput extends React.Component {
   // 调用客户端键盘接口
   //  “amount”:金额键盘，“num”:纯数字键盘，“numAndChar”:数字字母组合键盘，“pwd”:密码键盘
   showKeyBoard2 = newId => {
-    alert(newId)
     this.cancelKbGb(newId);
     this.setState({
       loginPasswordm: "",
       loginPassword: "",
       loginPasswordmlength2: ""
     });
-    alert("222")
     let that = this;
     //展示光标
     $("#" + newId).show();
-    alert("333")
     $native.callClientForBank(API.NATIVE_CODE_SHOWKEYBOARD, {
       type: "pwd",
       //关闭键盘回调函数，并传入关闭的光标的Id
@@ -95,16 +83,16 @@ export default class MbankQrCodeInput extends React.Component {
     $("#" + newId).show();
   };
   cancelKbGb = val => {
-    let kbId=this.state.keyKbHide
-    if(kbId){
+    let kbId = this.state.keyKbHide;
+    if (kbId) {
       $("#" + kbId).hide();
       this.setState({
-        keyKbHide:val
-     })
-    }else{
+        keyKbHide: val
+      });
+    } else {
       this.setState({
-        keyKbHide:val
-     })
+        keyKbHide: val
+      });
     }
   };
 
@@ -121,13 +109,15 @@ export default class MbankQrCodeInput extends React.Component {
     });
   }
   goBackPage() {
-    Common.setUrl("qrcode-home.html");
+    Common.setUrl("qrcode-home/index.html");
+    $native.callClientForBank(API.NATIVE_CODE_HIDEKEYBOARD, {});
     //清除Session
     Common.removeSessionData(API.SESSION_INVEST_SMF_MESSAGE);
   }
   //页面跳转
   goFirstPage = () => {
-    Common.setUrl("qrcode-confirm.html");
+    Common.setUrl("qrcode-confirm/index.html");
+    $native.callClientForBank(API.NATIVE_CODE_HIDEKEYBOARD, {});
   };
   render() {
     let CurrentAccount2 = this.state.currentAccount2;
@@ -154,8 +144,19 @@ export default class MbankQrCodeInput extends React.Component {
                 </div>
               </div>
               <Input.Group>
-              <Input placeholder="请输入交易密码" type="password" inputType="name" editable={false} onClick={this.showKeyBoard2.bind(this,"keyboardPassword1")} value={this.state.loginPassword} labelNumber={6}
-                               id="keyboardPassword1" cursorSize={this.state.loginPasswordmlength2}>交易密码</Input>
+                <Input
+                  placeholder="请输入交易密码"
+                  type="password"
+                  inputType="name"
+                  editable={false}
+                  onClick={this.showKeyBoard2.bind(this, "keyboardPassword1")}
+                  value={this.state.loginPassword}
+                  labelNumber={6}
+                  id="keyboardPassword1"
+                  cursorSize={this.state.loginPasswordmlength2}
+                >
+                  交易密码
+                </Input>
               </Input.Group>
             </div>
           </div>
@@ -166,6 +167,7 @@ export default class MbankQrCodeInput extends React.Component {
               type="primary"
               size="default"
               onTap={this.goFirstPage.bind(this)}
+              disabled={!this.state.loginPassword}
             >
               确认付款
             </Button>
