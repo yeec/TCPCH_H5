@@ -17,7 +17,7 @@ const mock = false;
 // remote远程直连数据使用标志位，true代表使用直连地址（当直连时，请先保证mock标志位为false）,false反之
 // 优先级为 1、mock  2、remote 3、连接客户端 （mock与remote均为false时，为连接客户端）
 
-const remote = true;
+const remote = false;
 const forward = "http://198.1.241.200:18802/mbank/"; //开发测试
 // const forward = 'http://111.198.98.66:36962/mbank/'; //公司外网
 // const forward = 'http://172.26.2.242:8901/mbank/'; //远程直连后台地址可编辑
