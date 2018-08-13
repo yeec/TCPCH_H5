@@ -1,8 +1,5 @@
 import React, { Component, PropTypes } from "react";
-import classNames from "classnames";
-import Tappable from "react-tappable";
 //业务组件
-import MbankAccountIcon from "../../../../../../app/components/mbank/mbank-public-icon/index.web.jsx";
 //API数据接口
 import API from "./../../../../../constants/api";
 //公共方法

@@ -13,8 +13,10 @@ class MbankPublicResult extends React.Component {
       titleGrey: this.props.titleGrey,
       message: this.props.message,
       tMessage: this.props.tMessage,
+      ljOpen: this.props.ljOpen,
       Small: this.props.Small,
       money: Common.setMoneyFormat(this.props.money),
+      ljMoney: Common.setMoneyFormat(this.props.ljMoney),
       moneyBox: this.props.money ? { display: "block" } : { display: "none" },
       skName: this.props.skName,
       skNum: this.props.skNum,
@@ -30,7 +32,9 @@ class MbankPublicResult extends React.Component {
       titleGrey: nextProps.titleGrey,
       message: nextProps.message,
       tMessage: nextProps.tMessage,
+      ljOpen: nextProps.ljOpen,
       money: Common.setMoneyFormat(nextProps.money),
+      ljMoney: Common.setMoneyFormat(nextProps.ljMoney),
       moneyBox: nextProps.money ? { display: "block" } : { display: "none" },
       skName: nextProps.skName,
       skNum: nextProps.skNum,
@@ -44,8 +48,10 @@ class MbankPublicResult extends React.Component {
     let titleGrey = this.state.titleGrey;
     let message = this.state.message;
     let tMessage = this.state.tMessage;
+    let ljOpen = this.state.ljOpen;
     let Small = this.state.Small;
     let money = this.state.money;
+    let ljMoney = this.state.ljMoney;
     let type = this.state.type;
     let skName = this.state.skName;
     let skNum = this.state.skNum;
@@ -105,6 +111,14 @@ class MbankPublicResult extends React.Component {
             </div>
             {message ? (
               <div className="mbank-public-result-message">{message}</div>
+            ) : null}
+            {ljOpen ? (
+              <div className="mbank-public-result-message2">
+                <div>
+                  恭喜您,随机支付立减活动,为您减掉了以下金额！
+                </div>
+                <b>- <span>{ljMoney}</span>元</b>
+              </div>
             ) : null}
           </div>
         )}

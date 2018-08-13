@@ -32,30 +32,29 @@ export default class MbankQrCodeHome extends React.Component {
       }
     });
   }
-  goBackPage(){
+  goBackPage() {
+    $native.callClientForUI(API.NATIVE_CODE_SHOW_BACK_BUTTON, {});
     Common.removeSessionData(API.SESSION_INVEST_SMF_MESSAGE);
   }
   // 扫二维码
-  shaoEwm() {
-    alert("扫二维码");
-    // $native.callClientForUI(API.NATIVE_CODE_SCAN_QRCODE, {
-    //   success: this.successCallBack(res)
-    // });
-    let test={
-      name:"重庆老火锅西二旗店",
-      money:"7000",
-      card:"唐山银行信用卡(6764)"
-    }
-    Common.addSessionData(
-      API.SESSION_INVEST_SMF_MESSAGE,
-      JSON.stringify(test)
-    );
-    Common.setUrl("qrcode-input.html");
-  }
+  shaoEwm = () => {
+    $native.callClientForUI(API.NATIVE_CODE_SCAN_QRCODE, {
+      success: this.successCallBack
+    });
+    let info = {
+      name: "重庆老火锅西二旗店",
+      money: "98.88",
+      card: "唐山银行信用卡(6764)"
+    };
+    Common.addSessionData(API.SESSION_INVEST_SMF_MESSAGE, JSON.stringify(info));
+    // Common.setUrl("qrcode-input.html");
+  };
   //扫描结果回调函数
-  successCallBack(res) {
-    console.log(JSON.stringify(res));
-  }
+  successCallBack = res => {
+    Common.setUrl("qrcode-input/index.html");
+    // console.log(JSON.stringify(res));
+    // alert(JSON.stringify(res));
+  };
   render() {
     let CurrentAccount2 = this.state.currentAccount2;
     return (
@@ -84,7 +83,7 @@ export default class MbankQrCodeHome extends React.Component {
               <i className="fkm" />
               <p>付款码</p>
             </div>
-            <div onClick={this.shaoEwm.bind()}>
+            <div onClick={this.shaoEwm}>
               <i className="smf" />
               <p>扫码付</p>
             </div>
