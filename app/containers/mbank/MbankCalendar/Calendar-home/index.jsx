@@ -8,7 +8,6 @@ import $Fetch from "../../../../fetch/fetch.js";
 import Common from "../../../../util/common.jsx";
 //基础组件
 import WhiteSpace from "../../../../components/Base/white-space/index.web.jsx";
-import WingBlank from "../../../../components/Base/wing-blank/index.web.jsx";
 //业务组件
 
 import Schedule from "../../../../components/mbank/mbank-finance-schedule/index.jsx";

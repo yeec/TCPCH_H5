@@ -1,5 +1,4 @@
 import React, { PropTypes } from "react";
-import classNames from "classnames";
 
 const Group = props => {
   const { date, children, className, ...others } = props;
