@@ -374,125 +374,127 @@ export default class MbankTransferBusinessConfirm extends React.Component {
     //机构签名
 
     // 安全工具为1003时
-    if (safeTool == "1003") {
-      //1、获取转出账户列表
-      $Fetch(API.API_GET_GENSIGNATURE, {
-        //默认固定上送报文
-        reqHead: {
-          //场景编码
-          sceneCode: "TF02",
-          //步骤编码(根据相应步骤填写字段（1,2,3,4）)
-          stepCode: "1",
-          //交易类型 1：查询类交易 2：账务类交易 3：管理类交易 4: 授权类交易 原生需映射，HTML异步请求需赋值
-          tradeType: "1",
-          //交易标识 1-主，2-副
-          flag: "2",
-          //服务接口版本号 1.0.0
-          serviceVersion: "1.0.0"
-        },
-        data: {
-          signContent: signContent
-        }
-      }).then(res => {
-        // {
-        //     "businessRunningNo": "20160405171342795O0HYPOQ0",
-        //     "createDate": "2016-07-04 14:45:23",
-        //     "service": " mobile.HKESDK.sign",
-        //     "attach": "testtest",
-        //     "certSN": "2000065625",
-        // "businessText": "fromAccount=1234567890123456&payeeName=吴凡& receivingBank=2 & payeeAccount=6543 ******** 3210 & payeePhoneNo=6543 ******** 3210 & amount=999.9 & remark=OK"}
-        // jsonObject.put("businessRunningNo", businessRunningNo);//交易流水号
-        // jsonObject.put("createDate", createDate);//创建日期
-        // jsonObject.put("service", service);//接口名称
-        // jsonObject.put("hashAlg", hashAlg);//签名原文hash类型
-        // jsonObject.put("signWithoutHash", signWithoutHash);//签名原文hash类型
-        // jsonObject.put("certSN", certSN);//服务器证书序列号
-        // jsonObject.put("businessText", signContent);//交易原文
-        if (Common.returnResult(res.rspHead.returnCode)) {
-          let businessRunningNo = res.rspBody.businessRunningNo;
-          let createDate = res.rspBody.createDate;
-          let service = res.rspBody.service;
-          let hashAlg = res.rspBody.hashAlg;
-          let signWithoutHash = res.rspBody.signWithoutHash;
-          let certSN = res.rspBody.certSN;
-          let businessText = res.rspBody.businessText;
-          let decodeBase64 = res.rspBody.decodeBase64;
-          let signatureText = res.rspBody.signatureText;
-          let sourceOrgSignature = res.rspBody.signature;
+    // if (safeTool == "1003") {
+    //   //1、获取转出账户列表
+    //   $Fetch(API.API_GET_GENSIGNATURE, {
+    //     //默认固定上送报文
+    //     reqHead: {
+    //       //场景编码
+    //       sceneCode: "TF02",
+    //       //步骤编码(根据相应步骤填写字段（1,2,3,4）)
+    //       stepCode: "1",
+    //       //交易类型 1：查询类交易 2：账务类交易 3：管理类交易 4: 授权类交易 原生需映射，HTML异步请求需赋值
+    //       tradeType: "1",
+    //       //交易标识 1-主，2-副
+    //       flag: "2",
+    //       //服务接口版本号 1.0.0
+    //       serviceVersion: "1.0.0"
+    //     },
+    //     data: {
+    //       signContent: signContent
+    //     }
+    //   }).then(res => {
+    //     // {
+    //     //     "businessRunningNo": "20160405171342795O0HYPOQ0",
+    //     //     "createDate": "2016-07-04 14:45:23",
+    //     //     "service": " mobile.HKESDK.sign",
+    //     //     "attach": "testtest",
+    //     //     "certSN": "2000065625",
+    //     // "businessText": "fromAccount=1234567890123456&payeeName=吴凡& receivingBank=2 & payeeAccount=6543 ******** 3210 & payeePhoneNo=6543 ******** 3210 & amount=999.9 & remark=OK"}
+    //     // jsonObject.put("businessRunningNo", businessRunningNo);//交易流水号
+    //     // jsonObject.put("createDate", createDate);//创建日期
+    //     // jsonObject.put("service", service);//接口名称
+    //     // jsonObject.put("hashAlg", hashAlg);//签名原文hash类型
+    //     // jsonObject.put("signWithoutHash", signWithoutHash);//签名原文hash类型
+    //     // jsonObject.put("certSN", certSN);//服务器证书序列号
+    //     // jsonObject.put("businessText", signContent);//交易原文
+    //     if (Common.returnResult(res.rspHead.returnCode)) {
+    //       let businessRunningNo = res.rspBody.businessRunningNo;
+    //       let createDate = res.rspBody.createDate;
+    //       let service = res.rspBody.service;
+    //       let hashAlg = res.rspBody.hashAlg;
+    //       let signWithoutHash = res.rspBody.signWithoutHash;
+    //       let certSN = res.rspBody.certSN;
+    //       let businessText = res.rspBody.businessText;
+    //       let decodeBase64 = res.rspBody.decodeBase64;
+    //       let signatureText = res.rspBody.signatureText;
+    //       let sourceOrgSignature = res.rspBody.signature;
 
-          let params = {
-            businessRunningNo: businessRunningNo,
-            createDate: createDate,
-            service: service,
-            // hashAlg: hashAlg,
-            // signWithoutHash: signWithoutHash,
-            certSN: certSN,
-            signatureText: signatureText,
-            // decodeBase64: decodeBase64,
-            businessText: businessText
-          };
+    //       let params = {
+    //         businessRunningNo: businessRunningNo,
+    //         createDate: createDate,
+    //         service: service,
+    //         // hashAlg: hashAlg,
+    //         // signWithoutHash: signWithoutHash,
+    //         certSN: certSN,
+    //         signatureText: signatureText,
+    //         // decodeBase64: decodeBase64,
+    //         businessText: businessText
+    //       };
 
-          // {"businessRunningNo":"05000201712210100048971010004897","createDate":"2017-12-21 17:22:03","service":"mobile.HKESDK.sign","certSN":"4002864805","businessText":"payAccNo=6231990000002368030&payAccName=郭苏伟&transAmt=123&isPosthaste=1&resiveAccNo=6231990000002368170&resiveAccName=杨明&resiveBankName=凉山州商业银行&resiveBankNo=313684093748&safeTool=1003&remitterTel=&postscript=手机转账&resiveMoblie=13910160980"}
+    //       // {"businessRunningNo":"05000201712210100048971010004897","createDate":"2017-12-21 17:22:03","service":"mobile.HKESDK.sign","certSN":"4002864805","businessText":"payAccNo=6231990000002368030&payAccName=郭苏伟&transAmt=123&isPosthaste=1&resiveAccNo=6231990000002368170&resiveAccName=杨明&resiveBankName=凉山州商业银行&resiveBankNo=313684093748&safeTool=1003&remitterTel=&postscript=手机转账&resiveMoblie=13910160980"}
 
-          let signatureTextping =
-            '{"businessRunningNo":"' +
-            businessRunningNo +
-            '","createDate":"' +
-            createDate +
-            '","service":"' +
-            service +
-            '","certSN":"' +
-            certSN +
-            '","businessText":"' +
-            businessText +
-            '"}';
+    //       let signatureTextping =
+    //         '{"businessRunningNo":"' +
+    //         businessRunningNo +
+    //         '","createDate":"' +
+    //         createDate +
+    //         '","service":"' +
+    //         service +
+    //         '","certSN":"' +
+    //         certSN +
+    //         '","businessText":"' +
+    //         businessText +
+    //         '"}';
 
-          this.setState({
-            businessRunningNo: businessRunningNo,
-            sourceString1: signatureText,
-            sourceOrgSignature1: sourceOrgSignature
-          });
+    //       this.setState({
+    //         businessRunningNo: businessRunningNo,
+    //         sourceString1: signatureText,
+    //         sourceOrgSignature1: sourceOrgSignature
+    //       });
 
-          //
-          //客户端签名 sourceString 签名后字段 JSON.stringify(params)
-          // 云证通签名接口：yztMessageSign   入参：（成功回调、签名原文、服务器签名） 出参：
-          $native.callClientForBank(API.NATIVE_CODE_YZTMESSAGESIGN, {
-            sourceString: signatureTextping, //this.state.sourceString1,
-            sourceOrgSignature: this.state.sourceOrgSignature1,
-            success: res => {
-              if (res == 0) {
-                //下载失败
-                let alertDict = {
-                  title: "信息提示",
-                  msg: "云证通签名客户端失败，请重新进行交易",
-                  success_text: "确认",
-                  success: () => {
-                    Common.setUrl("transfer-businessInput/index.html");
-                  }
-                };
-                Common.showAppDialogAlert(alertDict);
-              } else if (res == 1) {
-                //下载成功进行转账
-                this.showResultPage();
-              }
-            }
-          });
-        } else {
-          let alertDict = {
-            title: "信息提示",
-            msg: "云证通签名失败，请重新进行交易",
-            success_text: "确认",
-            success: () => {
-              Common.setUrl("transfer-businessInput/index.html");
-            }
-          };
-          Common.showAppDialogAlert(alertDict);
-        }
-      });
-    } else {
-      //其他类型安全认证方式 直接进行转账
-      this.showResultPage();
-    }
+    //       //
+    //       //客户端签名 sourceString 签名后字段 JSON.stringify(params)
+    //       // 云证通签名接口：yztMessageSign   入参：（成功回调、签名原文、服务器签名） 出参：
+    //       $native.callClientForBank(API.NATIVE_CODE_YZTMESSAGESIGN, {
+    //         sourceString: signatureTextping, //this.state.sourceString1,
+    //         sourceOrgSignature: this.state.sourceOrgSignature1,
+    //         success: res => {
+    //           if (res == 0) {
+    //             //下载失败
+    //             let alertDict = {
+    //               title: "信息提示",
+    //               msg: "云证通签名客户端失败，请重新进行交易",
+    //               success_text: "确认",
+    //               success: () => {
+    //                 Common.setUrl("transfer-businessInput/index.html");
+    //               }
+    //             };
+    //             Common.showAppDialogAlert(alertDict);
+    //           } else if (res == 1) {
+    //             //下载成功进行转账
+    //             this.showResultPage();
+    //           }
+    //         }
+    //       });
+    //     } else {
+    //       let alertDict = {
+    //         title: "信息提示",
+    //         msg: "云证通签名失败，请重新进行交易",
+    //         success_text: "确认",
+    //         success: () => {
+    //           Common.setUrl("transfer-businessInput/index.html");
+    //         }
+    //       };
+    //       Common.showAppDialogAlert(alertDict);
+    //     }
+    //   });
+    // } else {
+    //   //其他类型安全认证方式 直接进行转账
+    //   this.showResultPage();
+    // }
+
+    this.showResultPage();
   }
 
   //************333333********** 转账确认提交*****************
