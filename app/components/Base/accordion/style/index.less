@@ -1,0 +1,65 @@
+@import '../../../../style/index';
+
+@accordionprefixCls: ryt-accordion;
+
+.@{accordionprefixCls} {
+  .setOnePxBySide(top);
+  &-header {
+    .setOnePxBySide(bottom);
+    height: @accordion-header-height;
+    line-height: @accordion-header-height;
+    padding: @accordion-header-padding;
+    box-sizing: content-box;
+    font-size: @accordion-font-size;
+    color: @accordion-header-font-color;
+    background-color: @accordion-header-bg-color;
+    vertical-align: middle;
+    .ellipsis();
+    .arrow {
+      position: absolute;
+      overflow: hidden;
+      display: block;
+      top: @v-spacing-lg;
+      right: @h-spacing-lg;
+      width: @accordion-header-arrow-size;
+      height: @icon-size-xs;
+      &:after {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        border: solid 1px @accordion-header-arrow-color;
+        border-top: 0;
+        border-left: 0;
+        margin: 4px 0 0 4px;
+        transform: rotate(225deg);
+        transition: all 0.2s ease;
+      }
+    }
+
+    &[aria-expanded="true"] {
+      .arrow:after {
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  &-content {
+    background-color: @accordion-content-bg-color;
+    overflow: hidden;
+    .setOnePxBySide(bottom);
+    &-box {
+      font-size: @accordion-font-size;
+      color: @accordion-content-font-color;
+    }
+
+    &&-inactive {
+      display: none;
+    }
+  }
+
+  &-anim-active {
+    transition: all 0.2s ease-out;
+    transform-origin: top;
+  }
+}

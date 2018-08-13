@@ -1,0 +1,146 @@
+@import '../../../../style/index';
+@iconPrefixCls: ryt-icon;
+.@{iconPrefixCls} {
+  fill: currentColor;
+  background-size: contain;
+  width: @icon-size-md;
+  height: @icon-size-md;
+
+  &-xxs {
+    width: @icon-size-xxs;
+    height: @icon-size-xxs;
+  }
+
+  &-xs {
+    width: @icon-size-xs;
+    height: @icon-size-xs;
+  }
+
+  &-sm {
+    width: @icon-size-sm;
+    height: @icon-size-sm;
+  }
+
+  &-md {
+    width: @icon-size-md;
+    height: @icon-size-md;
+  }
+
+  &-lg {
+    width: @icon-size-lg;
+    height: @icon-size-lg;
+  }
+
+  &-l {
+    width: @icon-size-l;
+    height: @icon-size-l;
+  }
+
+  &-xl {
+    width: @icon-size-xl;
+    height: @icon-size-xl;
+  }
+
+  &-loading {
+    animation: cirle-anim 1s linear infinite;
+  }
+
+  @keyframes cirle-anim {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  /* ------------------------------- 引入Mixins SVG 默认图标 ------------------------------------ */
+  .svgIconSet() {
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  } // 清除 深灰
+  &-svg-clear-dark {
+    .svgIconSet();
+    .encoded-svg-background('svg-clear-dark');
+  } // 删除
+  &-svg-delete {
+    .svgIconSet();
+    .encoded-svg-background('svg-delete');
+  } // 退格
+  &-svg-backspace {
+    .svgIconSet();
+    .encoded-svg-background('svg-backspace');
+  } // 键盘
+  &-svg-keyboard-hide {
+    .svgIconSet();
+    .encoded-svg-background('svg-keyboard-hide');
+  } // 关闭
+  &-svg-close {
+    .svgIconSet();
+    .encoded-svg-background('svg-close');
+  } // 箭头 灰色
+  &-svg-arrow-right {
+    .svgIconSet();
+    .encoded-svg-background('svg-arrow-right');
+  }
+  &-svg-arrow-left {
+    .svgIconSet();
+    .encoded-svg-background('svg-arrow-right');
+    transform: rotate(180deg);
+  } // 箭头 品牌色
+  &-svg-arrow-brand-left {
+    .svgIconSet();
+    .encoded-svg-background('svg-arrow-brand');
+    transform: rotate(180deg);
+  }
+  &-svg-arrow-brand-right {
+    .svgIconSet();
+    .encoded-svg-background('svg-arrow-brand');
+  } // 箭头 反色
+  &-svg-arrow-inverse-left {
+    .svgIconSet();
+    .encoded-svg-background('svg-arrow-inverse');
+    transform: rotate(180deg);
+  }
+  &-svg-arrow-inverse-right {
+    .svgIconSet();
+    .encoded-svg-background('svg-arrow-inverse');
+  } // 错误
+  &-svg-error {
+    .svgIconSet();
+    .encoded-svg-background('svg-error');
+  } // 等待
+  &-svg-loading {
+    .svgIconSet();
+    .encoded-svg-background('svg-loading');
+  } // 搜索
+  &-svg-search {
+    .svgIconSet();
+    .encoded-svg-background('svg-search');
+  } // 清除 浅灰
+  &-svg-clear {
+    .svgIconSet();
+    .encoded-svg-background('svg-clear');
+  } // 清除 选中
+  &-svg-clear-active {
+    .svgIconSet();
+    .encoded-svg-background('svg-clear-active');
+  }
+
+  /* ------------------------------- 图标定义 ------------------------------------ */
+  // 操作结果 - 成功 
+  &-success {
+    .svgIconSet();
+    background-image: url("../image/result-success@3x.png");
+  } // 操作结果 - 失败 
+  &-error {
+    .svgIconSet();
+    background-image: url("../image/result-error@3x.png");
+  } // 操作结果 - 警告
+  &-warning {
+    .svgIconSet();
+    background-image: url("../image/result-warning@3x.png");
+  } // 操作结果 - 等待
+  &-wait {
+    .svgIconSet();
+    background-image: url("../image/result-wait@3x.png");
+  }
+}

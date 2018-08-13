@@ -1,0 +1,107 @@
+@import '../../../../style/index';
+
+@carouselprefixCls: ryt-carousel;
+
+.@{carouselprefixCls} {
+  &.slick-slider {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    touch-action: pan-y;
+    .slick-list {
+      position: relative;
+      overflow: hidden;
+    }
+    .slick-track {
+      display: block;
+      position: relative;
+      left: 0;
+      top: 0;
+      &:before,
+      &:after {
+        content: "";
+        display: table;
+      }
+      &:after {
+        clear: both;
+      }
+    }
+
+    .slick-track,
+    .slick-list {
+      transform: translate3d(0, 0, 0);
+      height: 100%;
+    }
+
+    .slick-slide {
+      float: left;
+      height: 100%;
+      min-height: @carousel-min-height;
+      [dir="rtl"] & {
+        float: right;
+      }
+      &.slick-loading img {
+        display: none;
+      }
+
+      &.dragging img {
+        pointer-events: none;
+      }
+    }
+
+    .slick-loading .slick-slide {
+      visibility: hidden;
+    }
+
+    .slick-dots {
+      position: absolute;
+      bottom: @carousel-dots-bottom;
+      list-style: none;
+      display: block;
+      text-align: center;
+      width: 100%;
+      li {
+        position: relative;
+        display: inline-block;
+        height: @carousel-dots-size;
+        width: @carousel-dots-size;
+        margin: @carousel-dots-margin;
+        padding: 0;
+        button {
+          border: 0;
+          background: transparent;
+          display: block;
+          height: @carousel-dots-size;
+          width: @carousel-dots-size;
+          outline: none;
+          line-height: 0;
+          font-size: 0;
+          color: transparent;
+          padding: @carousel-dots-size/4;
+          cursor: pointer;
+          &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: "•";
+            width: @carousel-dots-size;
+            height: @carousel-dots-size;
+            font-size: 60px;
+            font-family: arial, sans-serif;
+            text-align: center;
+            color: @carousel-dots-color;
+            transition: all .3s;
+            opacity: @carousel-dots-opacity;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+        }
+
+        &.slick-active button:before {
+          color: @brand-primary;
+          opacity: @carousel-dots-active-opacity;
+        }
+      }
+    }
+  }
+}

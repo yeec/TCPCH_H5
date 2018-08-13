@@ -1,0 +1,55 @@
+@import '../../../../style/index';
+@radioPrefixCls: ryt-radio;
+// 图片地址 生产请将@basicsIconUrl值更改为 "../image"
+@basicsIconUrl: "../image";
+.@{radioPrefixCls} {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block; // background-color: transparent;
+  width: 38px;
+  height: 40px;
+  outline: 0;
+  appearance: none;
+  transition: background .3s;
+  margin: @radio-margin; // border: 2px solid @radio-checked-bg-color;
+  // border-radius: @radius-circle;
+  background: url("@{basicsIconUrl}/bg-radio@3x.png") top center no-repeat;
+  background-size: 38px 38px;
+  border: 0;
+  &:after {
+    position: absolute;
+    display: none;
+    top: 0px;
+    right: 0px;
+    width: 38px;
+    height: 40px; // border-style: solid;
+    // border-width: 0 @border-width-md @border-width-md 0;
+    content: ' '; // transform: rotate(45deg);
+    // font-weight: 800;
+    // background: url("@{basicsIconUrl}/bg-radio@3x.png");
+    // background-size: 38px 38px;
+  }
+
+  &:checked {
+    background: url("@{basicsIconUrl}/bg-radio-on@3x.png") top center no-repeat;
+    background-size: 38px 38px; // background-color: @radio-checked-bg-color;
+  }
+
+
+  &:checked:after {
+    display: block;
+    border-color: #fff;
+  }
+
+  &&-disabled,
+  &&-readonly {
+    //background-color: darken(@radio-unchecked-bg-color,10%);
+    //&:checked {
+    //  background-color: lighten(@radio-checked-bg-color,30%);
+    //  &:after {
+    //    border-color: @radio-disabled-font-color;
+    //  }
+    //}
+    opacity: 0.5;
+  }
+}

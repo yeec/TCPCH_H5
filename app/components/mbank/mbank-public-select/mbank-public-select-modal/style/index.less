@@ -1,0 +1,177 @@
+@import '../../../../../style/index';
+
+@modalPrefixCls: mbank-modal;
+
+.@{modalPrefixCls} {
+  position: relative;
+  &-tip {
+    text-align: left;
+    color: @primary-button-fill;
+    font-size: @modal-font-size;
+  }
+  &-phone-tip {
+    text-align: left;
+    color: @primary-button-fill;
+    font-size: @modal-font-size;
+    background-color: #ffffff;
+    padding: @h-spacing-md;
+  }
+// 
+  &-mask {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: @modal-mask-z-index;
+    background-color: @modal-mask-bg-color;
+    &-hidden {
+      display: none
+    }
+  }
+
+  &-wrap {
+    position: fixed; //height: 100%;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: @modal-mask-z-index;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+    &.mbank-modal-action-sheet-wrap {
+      align-items: flex-end;
+    }
+    &&.mbank-modal-full-screen {
+      height: 100%;
+    }
+  }
+
+  &&-page {
+    width: 100%;
+    height: 100%;
+  }
+
+  &&-alert {
+    min-width: @modal-alert-width;
+    height: auto;
+
+    & .mbank-modal-content {
+      border-radius: @modal-alert-radius;
+      height: auto;
+      padding-top: @modal-alert-padding;
+
+      & .mbank-modal-body {
+        color: @modal-font-color;
+        font-size: @modal-alert-font-size;
+        padding: 0 @modal-alert-padding @modal-alert-padding;
+      }
+    }
+  }
+
+  &&-action-sheet {
+    width: 100%;
+    height: auto;
+    .mbank-modal-content {
+      background-color: #f9f9f9;
+    }
+    .mbank-modal-btn {
+      color: @modal-font-color!important;
+    }
+  }
+
+  &-content {
+    position: relative;
+    background-color: @modal-bg-color;
+    border: 0;
+    background-clip: padding-box;
+    text-align: center;
+    height: 100%;
+  }
+
+  &-body {
+    font-size: @modal-font-size;
+    color: @modal-font-color;
+  }
+
+  .modal-btn() {
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: @brand-primary;
+    font-size: @modal-font-size;
+    // padding: @modal-alert-padding / 2;
+    background-color: @modal-bg-color;
+    border: 0;
+    border-bottom-left-radius: @modal-alert-radius;
+    position: relative;
+    .ellipsis();
+    &.Tappable-active {
+      background-color: darken(@modal-bg-color, 20%);
+    }
+  }
+
+  .mbank-modal-btn-group-horizon {
+    position: relative;
+    .setOnePxBySide(top);
+    display: flex;
+
+    .mbank-modal-btn {
+      flex: 1;
+      -webkit-flex: 1;
+      .modal-btn();
+      +.mbank-modal-btn {
+        .setOnePxBySide(left);
+        border-bottom-left-radius: 0;
+      }
+      &:last-child {
+        border-bottom-right-radius: @modal-alert-radius;
+      }
+    }
+  }
+
+  .mbank-modal-btn-group-vertical {
+    display: flex;
+    flex-direction: column;
+    .mbank-modal-btn-box {
+      max-height: 464px;
+      overflow-y: auto;
+    }
+    .mbank-modal-btn {
+      flex: 1;
+    }
+  }
+
+  &-titlebox {
+    position: relative;
+    height: 88px;
+    width: 100%;
+    background-color: @modal-bg-color;
+    text-align: center;
+    line-height: 88px;
+    font-size: @modal-font-size;
+    border-bottom: @border-width-sm solid @border-color-base;
+    .mbank-modal-title-arrow {
+      height: 100%;
+      position: absolute;
+      left: 30px;
+      display: flex;
+      align-items: center;
+    }
+    .mbank-modal-title-checkbox {
+      height: auto;
+      position: absolute;
+      right: 20px;
+      top: 0;
+      color: @color-link;
+    }
+    .mbank-modal-title-text {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

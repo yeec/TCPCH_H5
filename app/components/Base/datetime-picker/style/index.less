@@ -1,0 +1,22 @@
+@import './../../styles/constants/constants';
+@import "./../../styles/mixin/mixin";
+
+@pickerPrefixCls: apollo-picker;
+@pickerColPrefixCls: apollo-picker-col;
+@pickerPopupPrefixCls: apollo-picker-popup;
+
+@import './picker';
+@import './picker-popup';
+
+@picker-item-height: 40px;
+
+.@{pickerPrefixCls} {
+  display: flex;
+  align-items: center;
+  padding: @v-spacing-sm 0;
+
+  &-item {
+    flex: 1;
+    text-align: center;
+  }
+}

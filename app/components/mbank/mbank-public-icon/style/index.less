@@ -1,0 +1,354 @@
+@import '../../../../style/index';
+// 图片地址 生产请将@mbankIconUrl值更改为 "../image"
+@mbankIconUrl: "../image";
+@iconSizePrefixCls: ryt-icon;
+@iconPrefixCls: ryt-icon;
+.@{iconSizePrefixCls} {
+  fill: currentColor;
+  background-size: contain;
+  width: @icon-size-md;
+  height: @icon-size-md;
+
+  &-xxs {
+    width: @icon-size-xxs;
+    height: @icon-size-xxs;
+  }
+
+  &-xs {
+    width: @icon-size-xs;
+    height: @icon-size-xs;
+  }
+
+  &-sm {
+    width: @icon-size-sm;
+    height: @icon-size-sm;
+  }
+
+  &-md {
+    width: @icon-size-md;
+    height: @icon-size-md;
+  }
+
+  &-lg {
+    width: @icon-size-lg;
+    height: @icon-size-lg;
+  }
+
+  &-l {
+    width: @icon-size-l;
+    height: @icon-size-l;
+  }
+
+  &-xl {
+    width: @icon-size-xl;
+    height: @icon-size-xl;
+  }
+  &-xl-result {
+    width: 360px;
+    height: 360px;
+  }
+  &-loading {
+    animation: cirle-anim 1s linear infinite;
+  }
+
+  @keyframes cirle-anim {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+.@{iconPrefixCls} {
+  /* ------------------------------- 图标定义 ------------------------------------ */
+  .imgIconSet() {
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  /** 
+   *常用图标 
+  */
+  // 增加  
+  &-circle-add {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/circle-add@3x.png");
+  } // 提示
+  &-tips {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/tips@3x.png");
+  } // 无数据
+  &-nodata {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/nodata@3x.png");
+  } // 选择
+  &-xuanzhe {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/xuanzhe@3x.png");
+  } // 箭头 -上
+  &-arrow-up {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/arrow-up@3x.png");
+  } // 箭头 -下
+  &-arrow-dn {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/arrow-up@3x.png");
+    transform: rotate(180deg);
+  } // 箭头 -右
+  &-arrow-right {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/arrow-right@3x.png");
+  } // 关闭
+  &-close {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/close@3x.png");
+  }// 清除
+  &-clear {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/clear@3x.png");
+  }
+  /** 
+   *理财产品 
+  */
+  // 我的理财
+  &-wodelicai {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/wodelicai@3x.png");
+  } // 风险评估
+  &-fengxianpinggu {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/fengxianpinggu@3x.png");
+  } // 理财明细
+  &-licaimingxi {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/licaimingxi@3x.png");
+  }
+  /** 
+   * 银证 
+  */
+  // 证券
+  &-zhengquan {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/zhengquan@3x.png");
+  } // 互转
+  &-huzhuan {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/huzhuan@3x.png");
+  }
+  /** 
+   * 转账 
+  */
+  // 转账
+  &-zhuanzhang {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/zhuanzhang@3x.png");
+  } // 手机号转账
+  &-phonezhuanzhang {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/phonezhuanzhang@3x.png");
+  } // 手机号转账
+  &-shoukuanrenguanli {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/shoukuanrenguanli@3x.png");
+  } // 转账查询
+  &-zhuanzhangchaxun {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/zhuanzhangchaxun@3x.png");
+  }//转账撤销
+  &-zhuanzhangchexiao{
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/zhuanzhangchexiao@3x.png");
+  }
+   // 本人
+  &-benren {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/benren@3x.png");
+  } // 银行
+  &-bank {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/bank@3x.png");
+  } // 收款人
+  &-shoukuanren {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/shoukuanren@3x.png");
+  } // OCR
+  &-ocr {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/ocr@3x.png");
+  }
+  // 收款人-转账
+  &-shoukuanren-zhuanzhang {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/shoukuanren-zhuanzhang@3x.png");
+  }
+  // 收款人-编辑
+  &-shoukuanren-edit {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/shoukuanren-edit@3x.png");
+  }
+  // 收款人-删除
+  &-shoukuanren-delete {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/shoukuanren-delete@3x.png");
+  }
+  /***
+   *账户图标
+   */
+  // 交易明细
+  &-jiaoyimingxi {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/jiaoyimingxi@3x.png");
+  } // 账户设置
+  &-zhanghushezhi {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/zhanghushezhi@3x.png");
+  } // 储蓄卡
+  &-chuxuka {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/chuxuka@3x.png");
+  } // 存折
+  &-cunzhe {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/cunzhe@3x.png");
+  } // 主账户
+  &-zhuzhanghu {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/zhuzhanghu@3x.png");
+  }
+
+
+  /***
+   *结果图标
+   */
+  /* 成功图标 */
+  &-success {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/result-success@3x.png");
+  }
+  /* 失败图标 */
+  &-error {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/result-error@3x.png");
+  }
+  /* 等待图标 */
+  &-wait {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/result-wait@3x.png");
+  }
+  /* 交易待查图标 */
+  &-waiting {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/result-warning@3x.png");
+  }
+  /*** 
+   *银行logo 
+  */
+  //盛京
+  &-logo-313684093748 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/logo@3x.png");
+  } //中国工商银行
+  &-logo-102 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/102.png");
+  } //中国农业银行股份有限公司
+  &-logo-103 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/103.png");
+  } //中国银行总行
+  &-logo-104 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/104.png");
+  } //中国建设银行股份有限公司总行
+  &-logo-105 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/105.png");
+  } //交通银行
+  &-logo-301 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/301.png");
+  } //中信银行股份有限公司
+  &-logo-302 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/302.png");
+  } //中国光大银行
+  &-logo-303 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/303.png");
+  } //华夏银行股份有限公司总行
+  &-logo-304 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/304.png");
+  } //中国民生银行
+  &-logo-305 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/305.png");
+  } //广东发展银行股份有限公司运营作业部
+  &-logo-306 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/306.png");
+  } //深圳发展银行
+  &-logo-307 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/307.png");
+  } //招商银行股份有限公司
+  &-logo-308 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/308.png");
+  } //兴业银行总行
+  &-logo-309 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/309.png");
+  } //上海浦东发展银行
+  &-logo-310 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/310.png");
+  } //恒丰银行
+  &-logo-315 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/315.png");
+  } //浙商银行
+  &-logo-316 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/316.png");
+  } //天津农村合作银行
+  &-logo-317 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/317.png");
+  } //渤海银行股份有限公司
+  &-logo-318 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/318.png");
+  } //徽商银行股份有限公司
+  &-logo-319 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/319.png");
+  } //上海农村商业银行
+  &-logo-322 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/322.png");
+  } //中国邮政储蓄银行有限责任公司
+  &-logo-403 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/403.png");
+  } //东亚银行（中国）有限公司
+  &-logo-502 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/502.png");
+  } //友利银行(中国)有限公司
+  &-logo-593 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/593.png");
+  } //新韩银行（中国）有限公司
+  &-logo-595 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/595.png");
+  } //企业银行（中国）有限公司
+  &-logo-596 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/596.png");
+  } //韩亚银行（中国）有限公司
+  &-logo-597 {
+    .imgIconSet();
+    background-image: url("@{mbankIconUrl}/logo/597.png");
+  }
+}

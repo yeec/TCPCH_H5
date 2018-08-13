@@ -1,0 +1,162 @@
+@import "../../../../style/index";
+@QrCode: mbank-QrCode;
+
+.@{QrCode} {
+  &-title {
+    display: flex;
+    justify-content: center;
+    padding-top: 64px;
+    height: 352px;
+    background: url(../image/qrCode-bg@2x.png) no-repeat;
+    fill: currentColor;
+    background-size: contain;
+
+    > div:first-child {
+      width: 80px;
+      margin-right: 40px;
+      > i {
+        display: block;
+        width: 80px;
+        height: 80px;
+        background: url(../image/qrCode-sh@2x.png) no-repeat;
+        fill: currentColor;
+        background-size: contain;
+      }
+    }
+    > div:last-child {
+      
+      > p {
+        font-size: 40px;
+        color: #fff;
+        line-height: 1;
+        padding: 10px 0;
+      }
+      // > span {
+      //   font-size: 28px;
+      //   color: #fff;
+      // }
+    }
+  }
+  &-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > div {
+      padding: 0 100px;
+      text-align: center;
+      > div {
+        text-align: center;
+      }
+      > i {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        background: #34383d;
+      }
+      .smf {
+        background: url(../image/smf.png);
+        fill: currentColor;
+        background-size: contain;
+      }
+      .fkm {
+        background: url(../image/fkm.png);
+        fill: currentColor;
+        background-size: contain;
+      }
+      > p {
+        padding: 10px 0;
+      }
+    }
+  }
+  &-input {
+    margin-top: -220px;
+    padding: 0 30px;
+    &-box {
+      padding: 0 30px;
+      padding-top: 44px;
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 24px;
+      .info {
+        border-bottom: #e5e5e5 1px solid;
+        > p {
+          text-align: center;
+          font-size: 28px;
+          color: #8e8e8e;
+        }
+        > span {
+          display: block;
+          text-align: center;
+          font-size: 68px;
+          color: #34383d;
+        }
+        > div {
+          padding-top: 20px;
+          padding-bottom: 40px;
+          display: block;
+          text-align: center;
+          > span {
+            padding: 0 10px;
+          }
+          > span:first-child {
+            color: #34383d;
+            font-size: 24px;
+          }
+          > span:last-child {
+            color: #8e8e8e;
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
+  &-shao {
+    margin-top: -350px;
+    padding: 0 30px;
+    &-box {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 24px;
+      overflow: hidden;
+      > .txm {
+        padding: 60px 48px 0 48px;
+        > div {
+          width: 100%;
+          height: 160px;
+          background: url(../image/txm.png);
+          fill: currentColor;
+          background-size: contain;
+        }
+        > p {
+          padding: 16px;
+          text-align: center;
+        }
+      }
+      > .ewm {
+        padding: 60px 0;
+        > div {
+          margin: 0 auto;
+          width: 322px;
+          height: 322px;
+          background: url(../image/ewm.png);
+          fill: currentColor;
+          background-size: contain;
+        }
+      }
+      > .card {
+        padding: 20px 0;
+        background: #f9f9f9;
+        font-size: 28px;
+        color: #34383d;
+        text-align: center;
+      }
+    }
+  }
+  &-tips {
+    padding: 20px;
+    text-align: center;
+    font-size: 28px;
+    color: #8e8e8e;
+    text-align: center;
+  }
+}

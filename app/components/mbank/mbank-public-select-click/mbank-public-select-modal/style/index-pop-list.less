@@ -1,0 +1,29 @@
+@import '../../../../../style/index';
+@mbankPublicPopListClick: mbank-public-pop-list-click;
+.@{mbankPublicPopListClick} {
+    &-list {
+        background: #fff;
+        >div {
+            padding: 25px;
+            text-align: center;
+            font-size: 32px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        >div.selected{
+            color: @brand-primary;
+        }
+    }
+}
+
+.@{mbankPublicPopListClick}-close {
+    border-top: 8px solid #e5e5e5;
+    background: #fff;
+    text-align: center;
+    font-size: 32px;
+    >span {
+      display: block;
+      width: 100%;
+      padding: 25px 0;
+        font-size: 32px;
+    }
+}

@@ -1,0 +1,109 @@
+@import '../../../../style/index';
+@mbankPublicSelectListPrefixCls: mbank-public-select-list;
+.@{mbankPublicSelectListPrefixCls} {
+  &-header {
+    padding: @v-spacing-md @h-spacing-lg @v-spacing-md @h-spacing-lg;
+    font-size: @list-header-font-size;
+    color: @list-header-color;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  &-body {
+    position: relative;
+    background-color: @fill-base;
+    .hairline-top(@border-color-base); // 注意：如果元素的 overflow 有 scroll 出现，其伪元素 绝对定位 显示将出错，例如 bottom: 0
+    &:after {
+      display: block;
+      position: absolute;
+      content: '';
+      width: 100%;
+      border-bottom: @border-width-sm solid @border-color-base;
+    }
+    div:not(:last-child) {
+      .@{mbankPublicSelectListPrefixCls}-line {
+        .hairline-bottom(@border-color-base);
+      }
+    }
+  }
+}
+.@{mbankPublicSelectListPrefixCls}-item {
+  position: relative;
+  display: flex;
+  padding-left: @h-spacing-lg;
+  min-height: @list-item-height;
+  background-color: @list-item-bg-color;
+  vertical-align: middle;
+  overflow: hidden;
+  transition: background-color 200ms;
+  align-items: center;
+
+  /* list左图片显示*/
+  .@{mbankPublicSelectListPrefixCls}-line {
+    position: relative;
+    display: flex;
+    flex: 1;
+    align-self: stretch;
+    padding-right: @list-right-spacing;
+    min-height: @list-item-height;
+    overflow: hidden;
+    /* list左侧主内容 */
+    .@{mbankPublicSelectListPrefixCls}-content {
+      flex: 1;
+      color: @list-title-color;
+      font-size: @list-title-font-size;
+      line-height: @list-title-line-height;
+      text-align: left;
+      padding-top: @v-spacing-md;
+      padding-bottom: @v-spacing-md;
+      & em {
+        margin: 0 @v-spacing-sm;
+        font-style: normal;
+        color: @list-subtitle-color;
+        font-size: @font-size-base;
+      }
+      & span {
+        margin-right: @v-spacing-xs;
+      }
+    }
+
+    /* list 右侧补充内容文字*/
+    .@{mbankPublicSelectListPrefixCls}-extra {
+      flex-basis: 20%;
+      color: @list-rightTitle-color;
+      font-size: @list-rightTitle-font-size;
+      line-height: @list-rightTitle-line-height;
+      text-align: right;
+      .ellipsis();
+    }
+    /* list 右侧补充内容文字*/
+    .@{mbankPublicSelectListPrefixCls}-checkbox {
+      flex-basis: 30%;
+      font-size: @list-rightTitle-font-size;
+      line-height: @list-rightTitle-line-height;
+      text-align: right;
+      .ellipsis();
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      & span {
+        padding-left: @h-spacing-sm;
+        font-size: @font-size-caption-sm;
+      }
+    }
+    /* list 左侧子标题文字样式 */
+    .@{mbankPublicSelectListPrefixCls}-brief {
+      color: @list-subtitle-color;
+      font-size: @font-size-base;
+      line-height: @list-subtitle-line-height;
+    }
+  }
+  &.@{mbankPublicSelectListPrefixCls}-item-middle {
+    .@{mbankPublicSelectListPrefixCls}-line {
+      align-items: center;
+    }
+  }
+  &-icon {
+    margin-right: @h-spacing-md;
+  }
+}

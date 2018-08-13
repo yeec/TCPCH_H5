@@ -1,0 +1,92 @@
+@import "../../../../../../style/index";
+
+@mbank-transfer-way-cls: mbank-transfer-top;
+
+.@{mbank-transfer-way-cls} {
+  min-height: 168px;
+  &-link {
+    padding: 60px @v-spacing-lg;
+    // padding-top: 20px;
+    background: #6f2c8e;
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    & div {
+      flex: 1;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      text-align: center;
+      > i {
+        display: inline-block;
+        width: 70px;
+        height: 70px;
+      }
+      > p {
+        padding-top: 10px;
+        color: #fff;
+      }
+    }
+    .zz1 {
+      background: url(../image/zz1.png) no-repeat;
+      fill: currentColor;
+      background-size: contain;
+    }
+    .zz2 {
+      background: url(../image/zz2.png) no-repeat;
+      fill: currentColor;
+      background-size: contain;
+    }
+    .zz3 {
+      background: url(../image/zz3.png) no-repeat;
+      fill: currentColor;
+      background-size: contain;
+    }
+  }
+  &-link2 {
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    padding: 30px 0;
+    align-items: center;
+    background: #fff;
+    > div:first-child {
+      border-right: @border-color-base 1px solid;
+    }
+    > div {
+      display: flex;
+      flex: 1;
+      display: -webkit-box;
+      display: -webkit-flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      > i {
+        margin-right: 10px;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background: #6f2c8e;
+      }
+      .zz1 {
+        background: url(../image/zz2-1.png) no-repeat;
+        fill: currentColor;
+        background-size: contain;
+      }
+      .zz2 {
+        background: url(../image/zz2-2.png) no-repeat;
+        fill: currentColor;
+        background-size: contain;
+      }
+      > p {
+        line-height: 40px;
+      }
+    }
+  }
+  &-button {
+    padding-top: @v-spacing-md;
+    text-align: center;
+    > .ryt-icon {
+      transform: rotate(90deg);
+    }
+  }
+}

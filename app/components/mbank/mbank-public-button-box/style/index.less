@@ -1,0 +1,263 @@
+@import '../../../../style/index';
+
+@mbankButtonPrefixCls: mbank-public-button;
+@mbankButtonBoxPrefixCls: mbank-public-button-box;
+@mbankButtonBoxWhitePrefixCls: mbank-public-button-box-white;
+@mbankButtonLinkPrefixCls: mbank-public-link-button;
+@mbankButtonListPrefixCls: mbank-public-list-button;
+@mbankButtonListHeight: 104px;
+@mbankButtonLineHeight: 100px;
+// 按钮合模型
+.@{mbankButtonBoxPrefixCls} {
+  .ryt-flex {
+    vertical-align: middle;
+    align-items: center;
+  }
+  .ryt-flex .ryt-flex-item {
+    margin: 0;
+    flex: 1;
+    &:first-child{
+      margin-right: 30px;
+    }
+  }
+  &&-white {
+    background: @fill-base;
+  }
+  &-line {
+    height: 46px;
+    width: 1PX;
+    font-size: 0;
+    background-color: #E5E5E5;
+  }
+  &-spacing {
+    font-size: 0;
+    width: @v-spacing-lg;
+  }
+}
+
+// 手机银行按钮
+.@{mbankButtonPrefixCls} {
+  display: block;
+  outline: 0 none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  padding: 0;
+  text-align: center;
+  font-size: @mbank-button-font-size;
+  height: @mbank-button-height;
+  line-height: @mbank-button-height;
+  border-radius: @mbank-button-radius;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  white-space: nowrap; // default
+  color: @mbank-button-color;
+  background-color: @mbank-button-fill;
+  border: @border-width-sm solid @mbank-button-border-color; // &:active, // uc browser not work normal
+  &&-active {
+    background-color: @fill-tap;
+  }
+  &&-disabled {
+    color: fade(@color-text-base, 30%);
+    opacity: 0.6;
+  }
+
+  &-gray {
+    height: @mbank-button-height;
+    line-height: @mbank-button-height;
+    color: @mbank-gray-button-color;
+    background-color: @mbank-gray-button-fill;
+    border: @border-width-sm dashed @mbank-gray-button-border-color; // &:active, // uc browser not work normal
+    &.@{mbankButtonPrefixCls}-active {
+      color: fade(@color-text-base-inverse, 30%);
+      background-color: @primary-button-fill-tap;
+    }
+    &.@{mbankButtonPrefixCls}-disabled {
+      color: fade(@color-text-base, 30%);
+      background: @primary-button-fill-disabled; // opacity: 0.4;
+      border: 0;
+    }
+  }
+
+  &-gray-solid {
+    height: @mbank-button-height;
+    line-height: @mbank-button-height;
+    color: @mbank-gray-button-color;
+    background-color: @mbank-gray-button-fill;
+    border: @border-width-sm solid @mbank-gray-button-fill; // &:active, // uc browser not work normal
+    &.@{mbankButtonPrefixCls}-active {
+      color: fade(@color-text-base-inverse, 30%);
+      background-color: @primary-button-fill-tap;
+    }
+    &.@{mbankButtonPrefixCls}-disabled {
+      color: fade(@color-text-base, 30%);
+      background: @primary-button-fill-disabled; // opacity: 0.4;
+      border: 0;
+    }
+  }
+  &,
+  &-gray,
+  &-gray-solid {
+    &.@{mbankButtonPrefixCls}-across {
+      border-radius: 0;
+      border-left: 0;
+      border-right: 0;
+    }
+  }
+
+  &-inline {
+    display: inline-block;
+    padding: 0 @h-spacing-lg;
+  }
+
+
+
+  &-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  >.ryt-icon,
+  .mbank-public-button,
+  .mbank-public-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.5em;
+    margin-bottom: 5px;
+  }
+}
+.@{mbankButtonPrefixCls}-small {
+  font-size: @button-font-size-sm;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 @h-spacing-md;
+  border-radius: @button-radius;
+}
+// 手机银行链接按钮
+.@{mbankButtonLinkPrefixCls} {
+  height: @mbankButtonLineHeight;
+  color: @color-link;
+  line-height: @mbankButtonLineHeight;
+  font-size: @font-size-base;
+  text-align: center;
+}
+// 手机银行按钮-列表-更多服务
+.@{mbankButtonListPrefixCls} {
+  &-header {
+    padding: @v-spacing-lg 0;
+    font-size: @font-size-base;
+    color: @color-text-paragraph;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  &-body {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: @fill-base; // margin: 0 @h-spacing-lg;
+    .@{mbankButtonListPrefixCls}-list {
+      display: flex;
+      box-sizing: border-box;
+      width: 50%;
+      height: @mbankButtonListHeight;
+      align-items: center;
+      font-size: @font-size-subhead;
+      color: @color-text-caption;
+      &:nth-child(2n+1) {
+        border-right: 2px solid @border-color-base;
+        border-bottom: 2px solid @border-color-base;
+      }
+      &:nth-last-child(-n+2) {
+        border-bottom: 0;
+      }
+      &:nth-child(2n) {
+        border-bottom: 2px solid @border-color-base;
+      }
+      &:last-child {
+        border-bottom: 0;
+      }
+      .ryt-icon {
+        margin: 0 32px 0 54px;
+      }
+    }
+  }
+}
+@flexprefixCls: ryt-flex;
+.@{flexprefixCls}{
+  display: flex;
+  box-sizing: content-box;
+  overflow-y: hidden;
+
+  &&-row {
+    flex-direction: row;
+  }
+
+  &&-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  &&-column {
+    flex-direction: column;
+  }
+
+  &&-column-reverse {
+    flex-direction: column-reverse;
+  }
+
+  &&-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  &&-wrap {
+    flex-wrap: wrap;
+  }
+
+  &&-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+
+  &&-justify-start {
+    justify-content: flex-start;
+  }
+
+  &&-justify-end {
+    justify-content: flex-end;
+  }
+
+  &&-justify-center {
+    justify-content: center;
+  }
+
+  &&-justify-between {
+    justify-content: space-between;
+  }
+
+  &&-justify-around {
+    justify-content: space-around;
+  }
+
+  &&-align-start {
+    align-items: flex-start;
+  }
+
+  &&-align-end {
+    align-items: flex-end;
+  }
+
+  &&-align-center {
+    align-items: center;
+  }
+
+  &&-align-baseline {
+    align-items: baseline;
+  }
+
+  &&-align-stretch {
+    align-items: stretch;
+  }
+
+  & &-item {
+    box-sizing: border-box;
+  }
+}

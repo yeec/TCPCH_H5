@@ -1,0 +1,45 @@
+@import '../../../../../../style/index';
+
+@mbankTransferListFukuan: mbank-transfer-list-fukuan;
+
+.@{mbankTransferListFukuan} {
+  &-item {
+    display: flex;
+    background-color: @fill-base;
+    padding: @v-spacing-lg @h-spacing-lg;
+    vertical-align: middle;
+    align-items: center; // border: @border-width-sm solid @border-color-base;
+    // border-radius: @radius-xs;
+    &-icon {
+      margin-right: @h-spacing-lg;
+    }
+    &-name {
+      flex: 1;
+      & div {
+        font-size: @font-size-subhead;
+      }
+      & p {
+        color: @color-text-caption;
+        font-size: @font-size-base;
+      }
+    }
+    &-Choice {
+      flex-basis: 10%;
+      text-align: right;
+      width: auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      vertical-align: middle;
+      font-size: @font-size-base;
+      color: @color-text-paragraph;
+    }
+  }
+  &-active {
+    // border: @border-width-sm solid @border-color-base;
+  }
+  >div:not(:last-child) {
+    // margin-bottom: @v-spacing-sm;
+    border-bottom: @border-width-sm solid @border-color-base;
+  }
+}

@@ -1,0 +1,77 @@
+@import '../../../../style/index';
+
+@ritAsslist: rit-asslist;
+
+.@{ritAsslist} {
+    border-bottom: 2px solid #e5e5e5;
+    &-box{
+        position: relative;
+        display: flex;
+        padding-left: @h-spacing-lg;
+        min-height: @list-item-height;
+        background-color: @list-item-bg-color;
+        vertical-align: middle;
+        overflow: hidden;
+        transition: background-color 200ms;
+        align-items: center;
+      //   padding-right: 10px;
+        &-left{
+            flex: 1;
+            font-size: 28px;
+            color: #969696;
+        }
+        &-right{
+            
+        color: #666;
+        font-size: .373333rem;
+        line-height: 1.5;
+        text-align: right;
+        width: auto;
+        white-space: nowrap;
+        
+        }
+        &-icon{
+            margin: 0 23px;
+        }
+      
+    }
+   &-xq{
+       display: flex;
+       text-align: center;
+       
+       &-left{
+           flex: 1;
+           height: 80px;
+           margin-bottom: 20px;
+           border-right:2px solid #e5e5e5; 
+           &-text{
+            font-size: 24px;
+            color: #4A4A4A;
+            
+           }
+           &-zhi{
+            font-size: 28px;
+            color: #4A4A4A;
+            padding: 12px 0;
+            
+           }
+       }
+       &-zhong{
+            flex: 1;
+            height: 80px;
+            margin-bottom: 20px;
+           border-right:2px solid #e5e5e5;
+       }
+       &-right{
+           flex: 1;
+           height: 80px;
+       }
+       
+   }
+  
+    
+    
+  
+
+}
+  

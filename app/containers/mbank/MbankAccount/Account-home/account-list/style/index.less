@@ -1,0 +1,142 @@
+@import '../../../../../../style/index';
+@mbankAccountlistPrefixCls: mbank-account-list;
+@mbank-account-list-item-height: 104px;
+.@{mbankAccountlistPrefixCls} {
+  overflow: hidden; // border-radius: @radius-md;
+  background-color: @fill-base;
+  &-header {
+    position: relative;
+    min-height: 150px;
+    padding: @v-spacing-lg @h-spacing-lg @v-spacing-sm @h-spacing-lg;
+    &-icon {
+      position: absolute;
+      left: 28px;
+      top: 40px;
+      width: 48px;
+      height: 48px;
+      & i {
+        width: 48px;
+        height: 48px;
+      }
+    }
+    &-info {
+      display: flex;     display: -webkit-box;      display: -webkit-flex; 
+      // flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+      margin-left: 76px;
+      padding-bottom: @v-spacing-sm;
+      color: @color-text-base;
+      & .text {
+        display: flex;     display: -webkit-box;      display: -webkit-flex; 
+        vertical-align: middle;
+        align-items: center; -webkit-box-align: center; -webkit-align-items: center;
+        & span {
+          color: @color-text-caption;
+          font-size: @font-size-base;
+        }
+      }
+      & .tagSmall {
+        display: flex;     display: -webkit-box;      display: -webkit-flex; 
+        margin-right: 50px;
+        & div {
+          margin-left: 20px;
+          text-align: center;
+          & p {
+            text-align: center;
+            font-size: @font-size-icontext;
+          }
+        }
+      }
+      & .name {
+        // flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+        & span {
+          font-size: @font-size-subhead;
+        }
+        & p {
+          color: @color-text-caption;
+          padding-top: @v-spacing-sm;
+          font-size: @font-size-caption-sm;
+        }
+      }
+      & .preName {
+        // flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+        & span {
+          font-size: @font-size-subhead;
+        }
+        & p {
+          color: @color-text-caption;
+          padding-top: @v-spacing-xs;
+          font-size: @font-size-caption-sm;
+        }
+      }
+      & .preNameRight {
+        flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+        & span {
+          font-size: @font-size-subhead;
+        }
+        & p {
+          color: @color-text-caption;
+          padding-top: @v-spacing-xs;
+          font-size: @font-size-caption-sm;
+        }
+      }
+      & .number {
+        flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+        & span {
+          color: @color-text-caption;
+          padding-top: @v-spacing-md;
+          font-size: @font-size-base;
+        }
+      }
+      & .money {
+        flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+        text-align: right;
+        padding-right: 50px;
+        & b {
+          padding: 0 @h-spacing-sm;
+          font-size: 40px;
+        }
+        & span {
+          color: @color-text-caption;
+          font-size: @font-size-base;
+        }
+      }
+      &-icon {
+        // position: absolute;
+        // left: 242px;
+        // top: 29px;
+        // flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+        width: 14px;
+        height: 14px;
+        // z-index: 999;
+      }
+    }
+  }
+  &-bar {
+    display: flex;     display: -webkit-box;      display: -webkit-flex; 
+    background-color: @fill-base;
+    padding: @v-spacing-md 0;
+    border-top: @border-width-sm solid @border-color-base;
+    & div {
+      padding:0;
+      flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+      text-align: center;
+      border-right: @border-width-sm solid @border-color-base; // color: @color-link;
+      font-size: @font-size-caption-sm;
+      & p {
+        font-size: @font-size-icontext;
+        line-height: @line-height-base;
+        color: #146cc7;
+      }
+    }
+    & div:last-child {
+      border: 0;
+    }
+  }
+}
+.@{mbankAccountlistPrefixCls}-box {
+  // padding: @h-spacing-lg;
+  // box-shadow:1px 2px 6px #d9d9d9, 2px 2px 5px #d9d9d9;
+  >div:not(:last-child) {
+    margin-bottom: @h-spacing-md;
+  }
+}

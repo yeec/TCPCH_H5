@@ -1,0 +1,27 @@
+diff a/.babelrc b/.babelrc	(rejected hunks)
+@@ -1,24 +0,0 @@
+-{
+-  "presets": ["react", "es2015", "stage-0"],
+-
+-  "plugins": ["transform-decorators-legacy"],
+-
+-  "env":
+-  {
+-    "dev":
+-    {
+-      "plugins": [
+-        ["transform-decorators-legacy"],
+-        ["react-transform",
+-        {
+-          "transforms": [
+-          {
+-            "transform": "react-transform-hmr",
+-            "imports": ["react"],
+-            "locals": ["module"]
+-          }]
+-        }]
+-      ]
+-    }
+-  }
+-}
+\ No newline at end of file

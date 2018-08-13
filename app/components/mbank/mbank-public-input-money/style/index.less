@@ -1,0 +1,101 @@
+@import '../../../../style/index';
+
+@publicInputMoney: mbank-public-input-money;
+@moneyFontSize:40px;
+.@{publicInputMoney} {
+  color: @color-text-caption;
+  &>div {
+    &:first-child {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: @font-size-caption;
+      height: 88px;
+      div {
+        display: flex;
+        margin: 0;
+        font-size: 24px;
+        color: @color-text-caption;
+        & span{
+          padding-right: 10px;
+        }
+      }
+    }
+    &:last-child {
+      height: 100px;
+      // padding: 0 @h-spacing-lg;
+      box-sizing: border-box;
+      background: @fill-base;
+      // border: @border-width-sm solid @border-color-base;
+      border-radius: @radius-xs;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      span {
+        display: inline-block;
+        width: 40px;
+        margin-right: @h-spacing-md;
+        font-size: @font-size-base;
+      }
+      input {
+        flex: 1;
+        font-size: @moneyFontSize;
+        border: 0;
+         
+      }
+      input::-webkit-input-placeholder {
+        line-height: @line-height-base;
+        color:#b3b3b3;
+      }
+    }
+  }
+  &-delete {
+    display: inline-block;
+    width: auto;
+    padding-right: 5px;
+  }
+  &-title {
+    color:#222;
+    font-size:@font-size-base;
+  }
+  &-link {
+    font-size:@cell-title-font-size;
+    padding-right: 5px;
+  }
+}
+
+@publicInputMoneyBox: mbank-public-input-money-box;
+
+.@{publicInputMoneyBox} {
+  padding-left: @h-spacing-md;
+  padding-right: @h-spacing-md;
+  background-color: #fff;
+  padding-bottom: @h-spacing-lg;
+  &&-sm {
+    padding-left: @h-spacing-sm;
+    padding-right: @h-spacing-sm;
+  }
+
+  &&-md {
+    padding-left: @h-spacing-md;
+    padding-right: @h-spacing-md;
+  }
+
+  &&-lg {
+    padding-left: @h-spacing-lg;
+    padding-right: @h-spacing-lg;
+  }
+}
+
+@publicInputMoneyAll: mbank-public-box-all;
+
+.@{publicInputMoneyAll} {
+  margin-right: 10px;
+  padding: 20px;
+  color: #4f8be8;
+  background: rgba(208, 202, 203, 0.23);
+  border: 1px solid #f7f2f2;
+  border-radius:10px;
+  text-align:center;
+  border-radius: 10px;
+}

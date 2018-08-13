@@ -1,0 +1,96 @@
+@import '../../../../../../style/index';
+@mbankAccountlistPrefixCls: mbank-yinzheng-account-list;
+@mbank-account-list-item-height: 104px;
+.@{mbankAccountlistPrefixCls} {
+  overflow: hidden;
+  background-color: @fill-base;
+  &-header {
+    position: relative;
+    min-height: 150px;
+    padding: @v-spacing-lg @h-spacing-lg @v-spacing-sm @h-spacing-lg;
+    &-icon {
+      display: flex;     display: -webkit-box;      display: -webkit-flex; 
+      flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+      margin-top: -@v-spacing-sm;
+      color: @color-text-base;
+      align-items: center; -webkit-box-align: center; -webkit-align-items: center;
+      & .icon-huzhuan{
+        padding-left: 80px;
+      }
+      & .icon-right {
+        flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+        text-align: right;
+      }
+    }
+    &-info {
+      display: flex;     display: -webkit-box;      display: -webkit-flex; 
+      flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+      padding-bottom: @v-spacing-md;
+      color: @color-text-base;
+      align-items: center; -webkit-box-align: center; -webkit-align-items: center;
+      & span {
+        font-size: @font-size-subhead;
+        line-height: @line-height-paragraph;
+      }
+      & .icon{
+        margin-right: 30px;
+      }
+     
+      & .type-name{
+        color: @color-text-caption;
+        font-size: @font-size-caption-sm;
+      }
+      & .name {
+        flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+        & span {
+          font-size: @font-size-subhead;
+          line-height: @line-height-paragraph;
+        }
+        & p {
+          color: @color-text-caption;
+          font-size: @font-size-base;
+          line-height: @line-height-paragraph;
+        }
+      }
+      & .number {
+        flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+        & span {
+          font-size: @font-size-caption-sm;
+        }
+        & p {
+          padding-top: @v-spacing-xs;
+          font-size: @font-size-base;
+        }
+      }
+      & .capitalName {
+        flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+        text-align: right;
+        & b {
+          padding: 0 @h-spacing-sm;
+          font-size: 36px;
+        }
+      }
+    }
+  }
+  &-bar {
+    display: flex;     display: -webkit-box;      display: -webkit-flex; 
+    background-color: @fill-base;
+    padding: @v-spacing-sm 0;
+    & div {
+      padding: @v-spacing-sm 0;
+      flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+      text-align: center;
+      border-right: @border-width-sm solid @border-color-base;
+      // color: @color-link;
+      font-size: @font-size-base;
+    }
+    & div:last-child {
+      border: 0;
+    }
+  }
+}
+.@{mbankAccountlistPrefixCls}-box {
+  >div:not(:last-child) {
+    margin-bottom: @h-spacing-md;
+  }
+}

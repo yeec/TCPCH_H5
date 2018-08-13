@@ -1,0 +1,56 @@
+//清除浮动
+//@import "./../../constant/styles/global";
+
+.clearFloat() {
+  zoom: 1;
+  &:after {
+    content: '';
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+  }
+}
+
+
+.ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.setArrowRight(@size:8px;@width:1px;@color:#999) {
+  width: 16px;
+  height: 16px;
+  >i:after {
+    content: ' ';
+    display: block;
+    height: @size; /*no*/
+    width: @size; /*no*/
+    border-width: @width @width 0 0; /*no*/
+    border-color: @color;
+    border-style: solid;
+    position: relative;
+    transform: rotate(45deg);
+    margin: 3px 0 0 2px; /*no*/
+  }
+}
+
+
+.setArrowBottom(@size:8px;@width:1px;@color:#999) {
+  width: 16px;
+  height: 16px;
+  >i:after {
+    content: ' ';
+    display: block;
+    height: @size; /*no*/
+    width: @size; /*no*/
+    //border-width: @width @width 0 0; /*no*/
+    border-width: 1Px 1Px 0 0; /*no*/
+    border-color: @color;
+    border-style: solid;
+    position: relative;
+    transform: rotate(135deg);
+    margin: 2px 0 0 10px; /*no*/
+  }
+}

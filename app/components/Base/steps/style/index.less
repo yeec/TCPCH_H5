@@ -1,0 +1,543 @@
+@import '../../../../style/index'; 
+// 图片地址 生产请将@basicsIconUrl值更改为 "../image"
+//@basicsIconUrl: "../../static/img/basics/steps";
+@basicsIconUrl: "../image";
+
+@stepsPrefixCls: ryt-steps;
+@errorTailCls: error-tail;
+@ellipsisItem: ellipsis-item;
+@defaultIconSize: 50px;
+@smallIconSize: 50px;
+@stepsColor: #4F8BE8;
+// 背景图标样式设置
+.stepsIconSet() {
+  width: @defaultIconSize;
+  height: @defaultIconSize;
+  display: block;
+  font-size: @defaultIconSize;
+  width: @defaultIconSize;
+  height: @defaultIconSize;
+  background-color: @fill-base; // border: 1px solid;
+  border-radius: @radius-circle;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.stepsTail(@paddingRight1, @paddingRight2, @paddingRight3, @left1, @left2, @left3) {
+  &:first-child {
+    padding-right: @paddingRight1;
+    left: @left1;
+  }
+  &:nth-child(2) {
+    padding-right: @paddingRight2;
+    left: @left2;
+  }
+  &:last-child {
+    padding-right: @paddingRight3;
+    left: @left3;
+  }
+}
+.stepsExrytple {
+  div.ryt-steps-horizontal:nth-child(3) {
+    div.ryt-steps-tail {
+      .stepsTail(77px, 77px, 0, 75px, 88px, 75px)
+    }
+  }
+  div.ryt-steps-horizontal:nth-child(6) {
+    div.ryt-steps-tail {
+      .stepsTail(77px, 77px, 0, 75px, 88px, 75px)
+    }
+  }
+  div.ryt-steps-horizontal:nth-child(9) {
+    div.ryt-steps-tail {
+      .stepsTail(50px, 50px, 0, 48px, 48px, 48px)
+    }
+  }
+  div.ryt-steps-horizontal:nth-child(12) {
+    div.ryt-steps-tail {
+      .stepsTail(66px, 66px, 0, 34px, 67.5px, 64px)
+    }
+  }
+
+  div.ryt-steps {
+    div.ryt-steps-item:first-child {
+      margin-right: -78px;
+      width: 50%;
+    }
+    div.ryt-steps-item:nth-child(2) {
+      margin-right: -50px;
+      width: 50%;
+    }
+  }
+  div.ryt-steps.timeline {
+    div.ryt-steps-item:first-child {
+      margin-right: -89px;
+      width: 50%;
+    }
+  }
+}
+
+.@{stepsPrefixCls} {
+  font-size: 0;
+  padding: @v-spacing-lg @v-spacing-lg @v-spacing-sm @v-spacing-lg;
+  line-height: @line-height-paragraph;
+  background-color: @fill-base;
+  &-item {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    padding-bottom: @v-spacing-md; // 等待处理样式
+    &.@{stepsPrefixCls}-status-wait {
+      .@{stepsPrefixCls}-head-inner {
+        border-color: @color-text-placeholder;
+        background-color: @fill-base;
+        border: 0;
+
+        >.@{stepsPrefixCls}-icon {
+          background: url("@{basicsIconUrl}/steps-wait@3x.png");
+          .stepsIconSet();
+        }
+      }
+
+      .@{stepsPrefixCls}-title {
+        color: @brand-primary;
+        font-size: @font-size-caption;
+      }
+
+      .@{stepsPrefixCls}-description {
+        color: @color-text-placeholder;
+        font-size: @font-size-base;
+      }
+
+      .@{stepsPrefixCls}-tail>i {
+        background-color: @stepsColor;
+      }
+    } // 当前处理样式
+    &.@{stepsPrefixCls}-status-process {
+      .@{stepsPrefixCls}-head-inner {
+        // border-color: @brand-primary;
+        background-color: @fill-base;
+        width: @defaultIconSize;
+        height: @defaultIconSize;
+        border-radius: @radius-circle;
+        border: 0;
+
+        >.@{stepsPrefixCls}-icon {
+
+          background: url("@{basicsIconUrl}/steps-finish@3x.png");
+          .stepsIconSet();
+        }
+      }
+
+      .@{stepsPrefixCls}-title {
+        color: @stepsColor;
+        font-size: @font-size-caption;
+      }
+
+      .@{stepsPrefixCls}-description {
+        color: @color-text-placeholder;
+        font-size: @font-size-base;
+      }
+
+      .@{stepsPrefixCls}-tail>i {
+        background-color: @stepsColor;
+        width: 50%;
+      }
+    } // 已完成样式
+    &.@{stepsPrefixCls}-status-finish {
+      .@{stepsPrefixCls}-head-inner {
+        border-color: @brand-primary;
+        background-color: @fill-base;
+        border: 0;
+        >.@{stepsPrefixCls}-icon {
+
+          background: url("@{basicsIconUrl}/steps-finish@3x.png");
+          .stepsIconSet();
+        }
+      }
+
+      .@{stepsPrefixCls}-tail>i {
+        background-color: @stepsColor;
+      }
+
+      .@{stepsPrefixCls}-title {
+        color: @stepsColor;
+        font-size: @font-size-caption;
+      }
+
+      .@{stepsPrefixCls}-description {
+        color: @color-text-placeholder;
+        font-size: @font-size-base;
+      }
+    }
+
+    &.@{stepsPrefixCls}-status-error {
+      .@{stepsPrefixCls}-head-inner {
+        border-color: @brand-error;
+        background-color: @fill-base;
+
+        >.@{stepsPrefixCls}-icon {
+          color: @brand-error;
+        }
+      }
+
+      .@{stepsPrefixCls}-title {
+        color: @color-text-base;
+      }
+
+      .@{stepsPrefixCls}-description {
+        color: @color-text-placeholder;
+      }
+
+      .@{stepsPrefixCls}-tail>i {
+        background-color: @border-color-base;
+      }
+    }
+
+    &.@{stepsPrefixCls}-next-error {
+      .@{stepsPrefixCls}-tail>i,
+      .@{stepsPrefixCls}-tail>i:after {
+        background-color: @brand-error;
+      }
+    }
+
+    &.@{stepsPrefixCls}-custom {
+      .@{stepsPrefixCls}-head-inner {
+        background: none;
+        border: 0;
+        width: auto;
+        height: auto;
+
+        >.@{stepsPrefixCls}-icon {
+          display: block;
+          font-size: @defaultIconSize;
+          width: @defaultIconSize;
+          height: @defaultIconSize;
+          background-color: @fill-base; // border: 1px solid;
+          border-radius: @radius-circle;
+        }
+      }
+
+      &.@{stepsPrefixCls}-status-process {
+        .@{stepsPrefixCls}-head-inner>.@{stepsPrefixCls}-icon {
+          color: @brand-primary;
+        }
+      }
+    }
+
+    .@{ellipsisItem}.@{stepsPrefixCls}-status-wait&.@{stepsPrefixCls}-custom {
+      .@{stepsPrefixCls}-head-inner {
+        >.@{stepsPrefixCls}-icon {
+          font-size: @font-size-subhead;
+          line-height: 20px;
+          width: @defaultIconSize;
+          height: @defaultIconSize; // border: 2px solid @color-text-placeholder;
+          border-radius: @radius-circle;
+
+          .ryt-icon {
+            width: @defaultIconSize;
+            height: @defaultIconSize;
+          }
+        }
+      }
+    }
+
+    &.@{errorTailCls} .@{stepsPrefixCls}-tail {
+      background-color: @brand-error;
+    }
+  }
+
+  &-head,
+  &-main {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  &-head-inner {
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid @color-text-placeholder;
+    width: 50px;
+    height: 50px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 24px;
+    font-size: 14px;
+    margin-right: 8px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+
+    >.@{stepsPrefixCls}-icon {
+      line-height: @line-height-base;
+      top: 2px;
+      color: @brand-primary;
+      position: relative;
+    }
+  }
+
+  &-title {
+    font-size: @font-size-caption;
+    margin-bottom: 2px; // font-weight: bold;
+    display: inline-block;
+    padding-right: 5px;
+  }
+
+  &-item:last-child {
+    .@{stepsPrefixCls}-title {
+      padding-right: 0;
+    }
+
+    .@{stepsPrefixCls}-tail {
+      display: none;
+    }
+  }
+
+  &-description {
+    font-size: @font-size-subhead;
+  }
+
+  &-tail {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 25px;
+
+    >i {
+      display: inline-block;
+      vertical-align: top;
+      background: @border-color-base;
+      height: 2px;
+      width: 100%;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        content: '';
+        top: 0;
+        width: 0;
+        background: @border-color-base;
+        height: 100%;
+        opacity: 0;
+      }
+    }
+  }
+
+  &&-small {
+    .@{stepsPrefixCls}-main {
+      margin-top: 0;
+    }
+
+    .@{stepsPrefixCls}-title {
+      font-size: @font-size-caption;
+      color: @color-text-base;
+    }
+
+    .@{stepsPrefixCls}-description {
+      font-size: @font-size-caption-sm;
+      color: @color-text-placeholder;
+    }
+
+    .@{stepsPrefixCls}-tail {
+      padding: 0 4px;
+
+      >i {
+        height: 1PX;
+        border-radius: 1PX;
+        width: 100%;
+      }
+    }
+  }
+
+  &&-small &-item&-custom &-head-inner,
+  &-item&-status-error &-head-inner,
+  &-item&-custom &-head-inner {
+    width: inherit;
+    height: inherit;
+    line-height: inherit;
+    border-radius: 0;
+    border: 0;
+    background: none;
+  }
+
+  &&-small &-item&-custom &-head-inner {
+    >.@{stepsPrefixCls}-icon {
+      font-size: @smallIconSize;
+      width: @smallIconSize;
+      height: @smallIconSize;
+      background-color: @fill-base;
+
+      .ryt-icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  &&-small .@{ellipsisItem}&-item&-status-wait&-custom &-head-inner {
+    >.@{stepsPrefixCls}-icon {
+      .ryt-icon {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  &&-small &-item&-status-wait&-custom &-head-inner {
+    >.@{stepsPrefixCls}-icon {
+      font-size: 10px;
+      width: 50px;
+      height: 50px;
+      line-height: 20px;
+    }
+  }
+
+  &&-small &-item&-status-process &-head-inner {
+    box-sizing: border-box;
+    width: @smallIconSize;
+    height: @smallIconSize;
+    line-height: @smallIconSize;
+    border-radius: @radius-circle;
+  }
+}
+
+.@{stepsPrefixCls}-vertical {
+  .@{stepsPrefixCls}-item {
+    display: block;
+  }
+
+  .@{stepsPrefixCls}-tail {
+    position: absolute;
+    left: 25px;
+    height: 100%;
+    width: 2px;
+    padding: 0;
+    background-color: @border-color-base;
+
+    >i {
+      height: 100%;
+      width: 2px;
+
+      &:after {
+        height: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  .@{stepsPrefixCls}-status-finish {
+    .@{stepsPrefixCls}-tail>i:after {
+      height: 100%;
+    }
+  }
+
+  .@{stepsPrefixCls}-head {
+    float: left;
+
+    &-inner {
+      margin-right: @h-spacing-lg;
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+
+  .@{stepsPrefixCls}-main {
+    min-height: 70px;
+    overflow: hidden;
+    display: block;
+
+    .@{stepsPrefixCls}-description {
+
+      padding: 0;
+    }
+  }
+
+  .@{stepsPrefixCls}-item.@{stepsPrefixCls}-status-process .@{stepsPrefixCls}-tail>i {
+    width: 2px;
+    height: 55%;
+  }
+}
+
+.@{stepsPrefixCls}-vertical.@{stepsPrefixCls}-small {
+  .@{stepsPrefixCls}-tail {
+    position: absolute;
+    left: 25px;
+    padding: 0;
+    width: 2px;
+
+    >i {
+      height: 100%;
+    }
+  }
+
+  .@{stepsPrefixCls}-item.@{stepsPrefixCls}-status-process .@{stepsPrefixCls}-tail>i {
+    height: 50%;
+    width: 2px;
+  }
+
+  .@{stepsPrefixCls}-item .@{stepsPrefixCls}-head-inner {
+    margin-right: @h-spacing-md;
+  }
+}
+
+.@{stepsPrefixCls}-horizontal {
+  &.@{stepsPrefixCls}-hidden {
+    visibility: hidden;
+  }
+
+  .@{stepsPrefixCls}-description {
+    max-width: 75px;
+  }
+
+  &.@{stepsPrefixCls}-small .@{stepsPrefixCls}-tail {
+    top: 25px;
+  }
+}
+
+.@{stepsPrefixCls}-label-vertical {
+  .@{stepsPrefixCls}-tail {
+    left: 50px;
+    right: 0;
+    width: auto;
+    background-color: @border-color-base;
+  }
+
+  .@{stepsPrefixCls}-item {
+    .@{stepsPrefixCls}-step {
+      display: inline-block;
+      text-align: center;
+    }
+  }
+
+  .@{stepsPrefixCls}-item:not(:first-child) .@{stepsPrefixCls}-head {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .@{stepsPrefixCls}-head {
+    display: inline-block;
+
+    &-inner {
+      margin: 0 auto;
+    }
+  }
+
+  .@{stepsPrefixCls}-main {
+    display: block;
+    margin-top: @v-spacing-sm;
+
+    .@{stepsPrefixCls}-title {
+      padding-right: 0;
+    }
+
+    .@{stepsPrefixCls}-description {
+      text-align: left;
+    }
+  }
+}
+img {
+  width: 50px;
+  height: 50px;
+}

@@ -1,0 +1,34 @@
+@import '../../../../../style/index';
+@mbankSxcExplain: mbank-jhs-explain;
+//理财我的持有详情 *******************************
+.@{mbankSxcExplain} {
+  width: 100%;
+  height: 1450px;
+  background:url(../image/jhs@2x.jpg);  
+  background-size: 100% 100%;
+  position: relative;
+  z-index: 1;
+}
+.@{mbankSxcExplain}-btnbox{
+  background-color: #fff;
+  position: fixed !important;
+  width: 100%;
+  bottom: 0;
+  display: flex;     display: -webkit-box;      display: -webkit-flex; 
+  z-index: 9999;
+  transform: translate3d(0, 0, 0);
+  
+
+  > div{
+    // border-top:1PX @border-color-base solid;
+    flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+    height: 98px;
+    background: #d62721;
+    align-items: center; -webkit-box-align: center; -webkit-align-items: center;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 98px;
+    font-size:@font-size-caption;
+    color: #fff;
+  }
+}

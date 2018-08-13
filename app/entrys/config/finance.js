@@ -1,0 +1,23 @@
+module.exports = {
+    'finance': ['./app/containers/mbank/MbankFinance/Finance-home/index.tmpl.jsx'],	//理财产品首页
+	'finance-businessDetail': ['./app/containers/mbank/MbankFinance/Finance-businessDetail/index.tmpl.jsx'],  //理财交易查询
+	'finance-detail': ['./app/containers/mbank/MbankFinance/Finance-detail/index.tmpl.jsx'],  //理财产品详情
+	'finance-detailText': ['./app/containers/mbank/MbankFinance/Finance-detailText/index.tmpl.jsx'],  //理财协议
+	'finance-holdDetail': ['./app/containers/mbank/MbankFinance/Finance-my/Finance-holdDetail/index.tmpl.jsx'],  //持有产品详情
+	'finance-hold': ['./app/containers/mbank/MbankFinance/Finance-my/Finance-hold/index.tmpl.jsx'], //持有理财产品
+	'finance-entrust': ['./app/containers/mbank/MbankFinance/Finance-my/Finance-entrust/index.tmpl.jsx'],  //当前委托产品
+	'finance-entrustDetail': ['./app/containers/mbank/MbankFinance/Finance-my/Finance-entrustDetail/index.tmpl.jsx'],  //委托产品详情
+	'finance-add': ['./app/containers/mbank/MbankFinance/Finance-my/Finance-add/index.tmpl.jsx'],  //理财产品追加
+	'finance-addResult': ['./app/containers/mbank/MbankFinance/Finance-my/Finance-addResult/index.tmpl.jsx'],  //理财产品追加操作结果
+	'finance-cancel': ['./app/containers/mbank/MbankFinance/Finance-my/Finance-cancel/index.tmpl.jsx'], //理财产品撤单
+	'finance-cancelResult': ['./app/containers/mbank/MbankFinance/Finance-my/Finance-cancelResult/index.tmpl.jsx'], //理财产品撤单操作结果
+	'finance-redemption': ['./app/containers/mbank/MbankFinance/Finance-my/Finance-redemption/index.tmpl.jsx'],  //理财产品赎回
+	'finance-redemptionResult': ['./app/containers/mbank/MbankFinance/Finance-my/Finance-redemptionResult/index.tmpl.jsx'], //理财产品赎回操作结果
+	'finance-result': ['./app/containers/mbank/MbankFinance/Finance-purchase/Finance-result/index.tmpl.jsx'],  //理财购买操作结果
+	'finance-confirm': ['./app/containers/mbank/MbankFinance/Finance-purchase/Finance-confirm/index.tmpl.jsx'],  //理财购买确认
+	'finance-input': ['./app/containers/mbank/MbankFinance/Finance-purchase/Finance-input/index.tmpl.jsx'],  //理财购买确认信息
+	'finance-riskLevel': ['./app/containers/mbank/MbankFinance/Finance-riskLevel/Finance-riskLevelInput/index.tmpl.jsx'], //行内风险评估
+	'finance-riskLevelResult': ['./app/containers/mbank/MbankFinance/Finance-riskLevel/Finance-riskLevelResult/index.tmpl.jsx'], //行内风险评估结果
+	'finance-riskLevelOut': ['./app/containers/mbank/MbankFinance/Finance-riskLevel/Finance-riskLevelInput-out/index.tmpl.jsx'], //行外风险评估
+	'finance-riskLevelResultOut': ['./app/containers/mbank/MbankFinance/Finance-riskLevel/Finance-riskLevelResult-out/index.tmpl.jsx'] //行外风险评估结果
+}

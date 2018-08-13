@@ -1,0 +1,182 @@
+@import '../../../../../../style/index';
+@evaluatEradioPrefixCls: evaluate-evaluate-ryt-radio;
+@financingEvaluateBox: financing-evaluate-box;
+@rytCellContentTitleBgcolor: ryt-cell-content-title-bgcolor;
+@evaluatEcellprefixCls: evaluate-ryt-cell;
+@evaluatEcellsprefixCls: evaluate-ryt-cells;
+@evaluateRytCellBackcolo: evaluate-ryt-cell-backcolo;
+@evaluateMbankPublicResultTips: evaluate-mbank-public-result-tips;
+@evaluateqQyzh: evaluate-qyzh;
+.@{evaluateqQyzh} {
+  background-color: @fill-base;
+  display: flex;     display: -webkit-box;      display: -webkit-flex; 
+  padding-left: 40px;
+  line-height: 88px;
+  font-size: @font-size-caption;
+  color: @color-text-base;
+  &-lef {
+    flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+  }
+  &-rhgh {
+    flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+    text-align: right;
+    padding-right: @h-spacing-md;
+  }
+}
+.@{evaluateMbankPublicResultTips} {
+  color: @color-text-placeholder;
+}
+.@{evaluateRytCellBackcolo} {
+  background-color: @fill-base;
+}
+.@{financingEvaluateBox} {
+  background-color: #FDF5D6;
+  &-prompt {
+    font-size: @font-size-caption-sm;
+    color: #FB8C28;
+    padding: 35px;
+  }
+}
+.@{rytCellContentTitleBgcolor} {
+  font-size: @font-size-base;
+  color: @color-text-base;
+}
+
+
+.@{evaluatEcellsprefixCls} {
+
+  background-color: transparent;
+  & &-header {
+    padding: @cell-group-header-padding;
+    font-size: @cell-group-header-font-size;
+    color: @cell-group-header-font-color;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  & &-content {
+    position: relative;
+    .setOnePxBySide(top);
+  }
+}
+.@{evaluatEcellprefixCls} {
+  display: flex;     display: -webkit-box;      display: -webkit-flex; 
+  position: relative;
+  align-items: center; -webkit-box-align: center; -webkit-align-items: center;
+  overflow: hidden;
+  min-height: @cell-min-height;
+  padding: @cell-padding;
+  line-height: 48px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  -webkit-box-align: center;
+  .setOnePxBySide(bottom);
+  & &-thumb {
+    margin-right: @cell-wings/2;
+    img {
+      width: 64px;
+      height: 64px;
+      vertical-align: middle;
+    }
+  }
+
+  & &-content {
+    flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+    position: relative;
+    overflow: hidden;
+    display: flex;     display: -webkit-box;      display: -webkit-flex; 
+    align-items: center; -webkit-box-align: center; -webkit-align-items: center;
+    pointer-events: none;
+    &-title-area {
+      flex: 4;   -webkit-box-flex: 4;  -webkit-flex: 4; 
+
+      font-size: @font-size-caption;
+      color: @cell-title-font-color;
+    }
+    &-title {
+      width: auto;
+      font-size:@font-size-base;
+      &-sub {
+
+        font-size: @cell-title-sub-font-size;
+        color: @cell-title-sub-font-color;
+      }
+    }
+    &-description-area {
+      
+      flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+      text-align: right;
+      .ellipsis();
+      align-items: center; -webkit-box-align: center; -webkit-align-items: center;
+      font-size: @cell-description-font-size;
+      color: @cell-description-font-color; //line-height: @cell-description-font-size;
+    }
+    &-description {
+      display: flex;     display: -webkit-box;      display: -webkit-flex; 
+      width: auto;
+      align-items: center; -webkit-box-align: center; -webkit-align-items: center;
+      vertical-align:middle;
+      justify-content:flex-end;  -webkit-justify-content: flex-end;
+      .ellipsis();
+      &-sub {
+        .ellipsis();
+        font-size: @cell-description-sub-font-size;
+        color: @cell-description-sub-font-color;
+      }
+    }
+  }
+
+  & &-arrow {
+    width: @cell-arrow-size;
+    margin-left: @cell-arrow-margin-left;
+
+    &-block {
+      display: block;
+      width: @cell-arrow-size;
+      height: @cell-arrow-size;
+      overflow: hidden;
+      text-align: right;
+      &:after {
+        content: ' ';
+        display: block;
+        height: 20px;
+        width: 20px;
+        border-width: 1PX 1PX 0 0;
+        border-color: @cell-arrow-color;
+        border-style: solid;
+        position: relative;
+      }
+      &.ryt-cell-arrow-block-right {
+        &:after {
+          transform: rotate(45deg);
+          margin: 10px 0 0 10px;
+        }
+      }
+      &.ryt-cell-arrow-block-up {
+        &:after {
+          transform: rotate(-45deg);
+          margin: 10px 0 0 10px;
+        }
+      }
+      &.ryt-cell-arrow-block-down {
+        &:after {
+          transform: rotate(135deg);
+          margin: 6px 0 0 10px;
+        }
+      }
+      &.ryt-cell-arrow-block-empty {
+        &:after {
+          border: none
+        }
+      }
+    }
+  }
+  &:after {
+    left: @cell-wings;
+  }
+  &:last-child {
+    &:after {
+      left: 0;
+    }
+  }
+}

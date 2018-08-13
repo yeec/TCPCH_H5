@@ -1,0 +1,105 @@
+@import "../../../../style/index";
+@mbankPublicResult: mbank-public-result;
+.@{mbankPublicResult} {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  padding: 60px 0 @v-spacing-xl 0;
+  background: #fff;
+  &-pic {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    line-height: 120px;
+    background-size: 120px 120px;
+  }
+  .ryt-icon {
+    padding: 30px 0;
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    margin-top: -@v-spacing-xl;
+  }
+  &-title {
+    font-size: 36px;
+    color: @color-text-base;
+    padding: 0 @h-spacing-lg;
+    padding-bottom: @v-spacing-sm;
+  }
+  &-titleSmall {
+    font-size: @font-size-caption;
+    color: @color-text-base;
+    font-weight: bold;
+    padding: 0 @h-spacing-lg;
+    padding-bottom: @v-spacing-sm;
+  }
+  &-money {
+    padding: 0 @h-spacing-lg;
+    font-size: 48px;
+    color: @color-text-base;
+    & sapn {
+      font-size: 52px;
+      color: @color-text-base;
+      padding: 0 20px;
+    }
+  }
+  &-message {
+    margin-top: @v-spacing-md;
+    line-height: @line-height-paragraph;
+    font-size: @font-size-base;
+    text-align: center;
+    color: @color-text-caption;
+    padding: 0 80px;
+    & b {
+      color: @number-color-red;
+      font-weight: bold;
+      padding: 0 5px;
+    }
+    & span {
+      color: @number-color-red;
+      padding: 0 5px;
+    }
+  }
+}
+.@{mbankPublicResult}-small {
+  padding: 20px 0;
+  min-height: 150px;
+  .@{mbankPublicResult}-title {
+    font-size: @font-size-base;
+    text-align: center;
+    color: @color-text-base;
+  }
+  .@{mbankPublicResult}-money {
+    padding: 15px 0;
+  }
+  .@{mbankPublicResult}-message {
+    font-size: 28px;
+    margin-top: 0px;
+  }
+  .@{mbankPublicResult}-tMessage {
+    margin: 0 40px;
+    padding-top: 40px;
+    font-size: 28px;
+    margin-top: 0px;
+    color: @color-text-caption;
+    > div {
+      padding-top: 30px;
+      padding-bottom: 20px;
+      border-top: 1px @border-color-base solid;
+      > span {
+        font-size: 40px;
+        color: #222;
+      }
+    }
+    > b {
+      display: block;
+      padding-bottom: 20px;
+      font-size: 40px;
+      color: #222;
+      font-weight: 400;
+    }
+    >p{
+      padding-bottom: 20px;
+    }
+  }
+}

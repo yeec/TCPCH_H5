@@ -1,0 +1,26 @@
+@import '../../../../style/index';
+
+
+@ritassets: rit-assets;
+
+.@{ritassets} {
+  background-color: @fill-base;
+  border-top: @border-width-sm solid #ccc;
+  
+  &-box{
+    
+      text-align: center;
+      &-txt{
+        font-size: @font-size-base;
+        color: #9B9B9B;
+        padding: 40px 0 12px 0;
+        span{
+          padding-left: 10px;
+        }
+      }
+      &-money{
+        font-size: @font-size-special;
+        padding-bottom: 40px;
+      }
+  }
+}

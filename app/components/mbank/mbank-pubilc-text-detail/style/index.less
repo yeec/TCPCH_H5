@@ -1,0 +1,58 @@
+@import '../../../../style/index';
+
+@mbankPublicTextDetailPrefixCls: mbank-public-text-detail;
+
+.@{mbankPublicTextDetailPrefixCls} {
+  color: @card-news-font-color;
+  background-color: @card-news-bg-color;
+  &-header {
+    // .setOnePxBySide(bottom);
+    padding: @card-news-padding-lg @card-news-padding-lg 0 @card-news-padding-lg;
+    display: flex;
+    align-items: center;
+    font-size: @font-size-subhead;
+    text-align: center;
+    border-bottom: @border-color-base solid @border-width-sm;
+    padding-bottom: 30px;
+    &-content {
+      flex: 1;
+      text-align: center;
+      line-height: 1.2;
+    }
+  }
+
+  &-footer {
+    // .setOnePxBySide(top);
+    padding: @card-news-padding-md @card-news-padding-lg;
+    display: flex;
+    align-items: center;
+    font-size: @font-size-base;
+    color: @color-text-base;
+    &-content {
+      flex: 1;
+      text-align: left;
+      .ellipsis();
+    }
+
+    &-description {
+      flex: 1;
+      text-align: right;
+      .ellipsis();
+    }
+  }
+
+  &-body {
+    min-height: @card-news-body-min-height;
+    padding:@v-spacing-lg @h-spacing-lg;
+    font-size:@font-size-base;
+    color: @color-text-base;
+    >p {
+      font-size: @font-size-base;
+      color: @color-text-base;
+    }
+    >img {
+      width: 100%;
+      min-height: 300px;
+    }
+  }
+}

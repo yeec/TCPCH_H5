@@ -1,0 +1,409 @@
+// 公共变量 ----------------------------------------------------- 开始 //
+// 文字色
+@color-text-base: #333333; // 基本
+@color-text-base-inverse: #fff; // 基本 - 反色
+@color-text-secondary: #a4a9b0; // 辅助色
+@color-text-placeholder: #bbb; // 文本框提示
+@color-text-disabled: #bbb; // 失效
+@color-text-caption: #969696; // 辅助描述
+@color-text-paragraph: #666; // 段落
+@color-link: #4f8be8; // 链接
+// 背景色
+@fill-base: #fff; // 组件默认背景
+@fill-body: #fff; // 页面背景
+@fill-tap: #ddd; // 组件默认背景 - 按下
+@fill-disabled: #D8D8D8; // 通用失效背景
+@fill-mask: rgba(0, 0, 0, 0.4); // 遮罩背景
+@color-icon-base: #ccc; // 许多小图标的背景，比如一些小圆点，加减号
+@fill-grey: #f7f7f7;
+
+// 透明度
+@opacity-disabled: 0.3; // switch checkbox radio 等组件禁用的透明度
+// 全局/品牌色
+@brand-primary: #6F2C8E;
+@brand-primary-tap: #591A78;
+@brand-success: #6abf47;
+@brand-warning: #ffc600;
+@brand-error: #f4333c;
+@brand-important: #ff0000; // 用于小红点
+@brand-gray: #ddd; // 基本 - 灰色
+@brand-inverse: #fff; // 基本 - 反色
+@brand-wait: #108ee9;
+
+// 边框色 [TabBar标签栏 ]
+@border-color-base: #e5e5e5;
+
+// 字体尺寸
+// ---
+@font-size-base: 28px; // 常用文字
+@font-size-icontext: 20px; // 图标字号
+@font-size-caption-sm: 24px; // 辅助说明
+@font-size-caption: 30px; // 重要主体文字（输入标题、内容字号）
+@font-size-subhead: 32px; // 子标题字号
+@font-size-heading: 34px; // 大标题字号（导航栏、按钮）
+@font-size-special: 50px; // 特殊字号
+@font-size-special-lg: 76px; // 特殊字号(大)
+// 圆角
+//---
+@radius-xs: 4px;
+@radius-sm: 6px;
+@radius-md: 10px;
+@radius-lg: 14px;
+@radius-circle: 50%;
+
+// 边框尺寸
+//---
+@border-width-sm: 1PX;
+@border-width-md: 2px;
+@border-width-lg: 4px;
+
+// 间距
+// ---
+// 水平间距 [wing-blank]
+@h-spacing-sm: 10px;
+@h-spacing-md: 20px;
+@h-spacing-lg: 30px;
+
+// 垂直间距 [white-space]
+@v-spacing-xs: 5px;
+@v-spacing-sm: 10px;
+@v-spacing-md: 20px;
+@v-spacing-lg: 30px;
+@v-spacing-xl: 40px;
+@v-spacing-xxl: 60px;
+
+// 高度
+// ---
+@line-height-base: 1; // 单行行高
+@line-height-paragraph: 1.5; // 多行行高
+// 图标尺寸
+// ---
+@icon-size-xxs: 30px;
+@icon-size-xs: 36px;
+@icon-size-sm: 42px;
+@icon-size-md: 44px; // 导航条上的图标、grid的图标大小
+@icon-size-l: 50px;
+@icon-size-xl: 60px;
+@icon-size-lg: 72px;
+
+
+// 动画缓动
+// --- 
+@ease-in-out-quint: cubic-bezier(.86, 0, .07, 1);
+
+// 公共变量 ----------------------------------------------------- 结束 //
+// 组件变量 -----------------------------------------------------
+// // ActionSheet 面板
+@actionsheet-bg-color: @fill-base; // 面板-背景颜色
+@actionsheet-title-font-size: @font-size-heading; // 标题字号
+@actionsheet-message-color: @color-text-caption; // 描述信息--字体颜色
+@actionsheet-message-font-size: @font-size-base; // 描述信息--字号
+@actionsheet-border-color: @border-color-base;
+@actionsheet-item-height: 100px; //列表按钮--高度
+@actionsheet-item-font-size: @font-size-heading; //列表按钮--字号
+@actionsheet-item-text-color: @color-text-base; //列表按钮--字色
+@actionsheet-item-active-bg-color: @fill-tap; //列表按钮--点击背景色
+@actionsheet-item-icon-width: 120px; //列表图标 外框尺寸
+@actionsheet-item-icon-height: 120px; //列表图标 外框尺寸
+@actionsheet-item-icon-bg-color: @actionsheet-bg-color; //列表图标 外框背景色
+@actionsheet-item-icon-size: @icon-size-lg; //列表图标 图片尺寸
+@actionsheet-item-icon-text-color: @color-text-caption; //列表图标 字色
+@actionsheet-item-icon-font-size: @font-size-icontext; //列表图标 字号
+@actionsheet-cancel-button-text-color: @color-text-base; //取消按钮--字色
+@actionsheet-cancel-button-font-size: @font-size-base; //取消按钮--字号
+@actionsheet-cancel-button-bg-color: @fill-base; //取消按钮--背景色
+@actionsheet-cancel-button-bg-color-active: @fill-tap; //取消按钮--点击背景色
+//accordion 手风琴
+@accordion-header-height: 64px;
+@accordion-header-padding: @v-spacing-sm @v-spacing-lg;
+@accordion-header-font-color: @color-text-base;
+@accordion-header-bg-color: @fill-base;
+@accordion-font-size: @font-size-subhead;
+@accordion-header-arrow-size: @icon-size-xs;
+@accordion-header-arrow-color: @color-text-caption;
+@accordion-content-bg-color: transparent;
+@accordion-content-font-color: @color-text-paragraph;
+
+//badge
+@badge-bg-color: @brand-important;
+@badge-dot-size: 16px;
+@badge-size: 32px;
+@badge-text-size: @font-size-icontext;
+@badge-text-small-size: @font-size-icontext;
+@badge-text-small-font-size: @font-size-icontext;
+@badge-text-color: @fill-base;
+
+//button 按钮
+@button-height: 86px;
+@button-font-size: @font-size-subhead;
+@button-height-sm: 60px;
+@button-font-size-sm: @font-size-caption-sm;
+@button-radius: 6px; // 按钮圆角
+@primary-button-fill: @brand-primary;
+@primary-button-fill-tap: fade(@primary-button-fill, 60%);
+@primary-button-fill-disabled: @fill-disabled;
+@ghost-button-color: #146CC7; // 同时应用于背景、文字颜色、边框色
+@ghost-button-border-color:#eeeeee;
+@ghost-button-fill-tap: fade(#146CC7, 60%);
+@warning-button-fill: @brand-warning;
+@warning-button-fill-tap: fade(@brand-warning, 60%);
+@link-button-fill-tap: @fill-tap;
+@link-button-font-size: @font-size-subhead;
+@across-button-height: 100px; // 通栏按钮高度
+
+//card-news 卡片式新闻
+@card-news-bg-color: @fill-base;
+@card-news-font-color: @color-text-base;
+@card-news-padding-lg: @h-spacing-lg;
+@card-news-padding-md: @h-spacing-md;
+@card-news-header-description-font-color: @color-text-paragraph;
+@card-news-header-thumb-size: @icon-size-l;
+@card-news-body-min-height: 64px;
+@card-news-body-font-color: @color-text-paragraph;
+@card-news-body-font-size: @font-size-base;
+@card-news-border-radius: @radius-md;
+@card-news-footer-font-size: @font-size-base;
+@card-news-footer-font-color: @color-text-base;
+
+//carousel 轮播图
+@carousel-min-height: 160px;
+@carousel-dots-bottom: 0;
+@carousel-dots-size: 10px;
+@carousel-dots-margin: 0 @v-spacing-sm;
+@carousel-dots-color: @brand-gray;
+@carousel-dots-opacity: 0.25;
+@carousel-dots-active-opacity: 0.75;
+
+//checkbox 单选框
+@checkbox-height: 36px;
+@checkbox-width: 36px;
+@checkbox-radius: @radius-sm;
+@checkbox-margin: 0;
+@checkbox-unchecked-bg-color: @fill-base;
+@checkbox-checked-bg-color: @brand-primary;
+@checkbox-disabled-bg: @color-text-disabled;
+@checkbox-disabled-font-color: @color-text-disabled;
+@ryt-checkbox-agree-label-left: @icon-size-md+@v-spacing-md;
+@ryt-checkbox-agree-label-font-size: @font-size-base;
+
+//cell 列表
+@cell-min-height: 88px;
+@cell-wings: @h-spacing-lg;
+@cell-group-padding: @h-spacing-md 0;
+@cell-group-header-padding: @h-spacing-md;
+@cell-group-header-font-size: @font-size-base;
+@cell-group-header-font-color: @color-text-caption;
+@cell-padding: @v-spacing-xs @cell-wings;
+@cell-background-color: @fill-base;
+@cell-title-font-size: @font-size-subhead;
+@cell-title-font-color: @color-text-base;
+@cell-title-sub-font-size: @font-size-base;
+@cell-title-sub-font-color: @color-text-caption;
+@cell-description-font-size: @font-size-base;
+@cell-description-font-color: @color-text-paragraph;
+@cell-description-sub-font-size: @font-size-caption-sm;
+@cell-description-sub-font-color: @color-text-caption;
+@cell-arrow-size: @icon-size-md;
+@cell-arrow-margin-left: @h-spacing-sm;
+@cell-arrow-color: @color-text-caption;
+
+
+//modal 对话框
+@modal-mask-z-index: 1100;
+@modal-mask-bg-color: rgba(0, 0, 0, .6);
+@modal-bg-color: @fill-base;
+@modal-font-size: @font-size-subhead;
+@modal-font-color: @color-text-paragraph;
+@modal-alert-width: 540px;
+@modal-alert-radius: @radius-md;
+@modal-alert-padding: @v-spacing-lg;
+@modal-alert-font-size: @font-size-base;
+@modal-alert-radius: @radius-md;
+
+//n-grids 宫格
+@n-grids-background: @fill-base;
+@n-grids-item-height: 48px;
+@n-grids-item-width: 48px;
+@n-grids-item-text-color: @color-text-paragraph;
+@n-grids-item-text-size: @font-size-base;
+@n-grids-item-text-icon-dis: @h-spacing-sm;
+
+//navigator 头部导航
+@navigator-height: 88px;
+@navigator-padding: 0 @h-spacing-lg;
+@navigator-light-bg-color: @fill-base;
+@navigator-dark-bg-color: @brand-gray;
+@navigator-default-bg-color: @brand-primary;
+@navigator-default-color: @color-text-base-inverse;
+@navigator-light-color: @brand-primary;
+@navigator-dark-color: @color-text-base;
+@navigator-font-size: @font-size-heading;
+@navigator-side-font-size: @font-size-heading;
+@navigator-icon-text-margin: @h-spacing-md;
+
+
+//popup 弹出层
+@popup-bg-color: @fill-base; // 背景色
+@popup-font-button-size: @font-size-heading; //关闭按钮字号
+//list 列表
+@list-title-height: 60px;
+@list-item-height-sm: 70px;
+@list-item-height: 88px;
+@list-item-bg-color: @fill-base;
+@list-item-bg-color-active: @fill-tap;
+@list-header-color: @color-text-paragraph; // list header、footer标题文字样式
+@list-header-font-size: @font-size-base;
+@list-title-color: @color-text-base; // list 标题文字样式
+@list-title-font-size:@font-size-base;
+@list-title-line-height: @line-height-paragraph;
+@list-subtitle-color: @color-text-caption; // list 左侧子标题文字样式 
+@list-subtitle-font-size: @font-size-base;
+@list-subtitle-line-height: @line-height-paragraph;
+@list-rightTitle-color:@color-text-paragraph; // list 右侧标题文字样式 
+@list-rightTitle-font-size: @font-size-base;
+@list-rightTitle-line-height: @line-height-paragraph;
+@list-extra-color: @color-text-paragraph; // list 辅助描述文字样式 
+@list-extra-font-size: @font-size-base;
+@list-extra-line-height: @line-height-paragraph;
+@list-right-link-color: @brand-primary; // list 右侧连接文字样式 
+@list-right-font-size: @font-size-subhead;
+@list-right-text-left-spacing: @h-spacing-lg; // list 右侧文字与图标、按钮距离样式定义 
+@list-right-text-right-spacing: @h-spacing-lg;
+@list-left-thumb-spacing: @h-spacing-md; // list 左/右侧icon距离内容的距离定义 
+@list-right-thumb-spacing: @h-spacing-lg;
+@list-right-spacing: @h-spacing-lg; // list 右侧留白的距离（同用于右侧button的padding）
+@list-content-fixed-width: 280px; // list-左侧内容固定宽度
+
+// InputItem输入列表
+@input-label-font-color: #333; //InputItem左侧标题-字色
+@input-label-font-size: @font-size-base; //InputItem左侧标题-字号
+@input-right-font-color: @color-text-caption; //InputItem右侧标题-字色
+@input-right-font-size: @font-size-subhead; //InputItem右侧标题-字号
+@input-label-width: 34px; // InputItem、TextareaItem 文字长度基础值
+@input-font-size: @font-size-base; // InputItem框内字号
+@input-color-icon: @color-icon-base; // input clear icon 的背景色
+@input-color-icon-tap: @brand-primary; //input clear icon 的点击色
+// input输入
+@input-label-width: @font-size-caption;
+@input-color-icon-tap: @brand-primary;
+@input-color-icon-inverse: rgba(255, 255, 255, .6);
+@input-color-icon-tap-inverse: rgba(255, 255, 255, .4);
+
+
+//tabs 标签页
+@tabs-height: 87px; // 高度设置
+@tabs-color: @brand-primary; // 当前字体颜色、选中后下线颜色
+@tabs-color-base: @color-text-base; // 默认字体颜色
+@tabs-bg-color: @fill-base; // 默认背景颜色
+@tabs-font-size-heading: @font-size-caption; // 默认标题字号
+@tabs-ink-bar-height: @border-width-lg; //当前选中下线高度
+@tabs-border-width: @border-width-sm;
+@tabs-border-color: @border-color-base;
+@tabs-pagination-zindex: 999; //层级
+
+//ink-tabs 标签栏
+@ink-tab-ink-bar-color: @brand-primary;
+@ink-tab-ink-bar-height: @border-width-lg;
+@ink-tab-ink-bg-color: @fill-base;
+@ink-tab-height: 87px;
+@ink-tab-font-size: @font-size-subhead;
+@ink-tab-font-color: @color-text-paragraph;
+@ink-tab-pane-bg-color: transparent;
+
+//tab-bar 标签栏
+@tab-bar-fill: #ebeeef;
+@tab-bar-border-color: #ddd;
+@tab-bar-border-width: 1PX;
+@tab-bar-height: 100px;
+@tab-bar-bgColor: @fill-base;
+@tab-bar-icon-size: 44px;
+@tab-bar-font-size: 20px;
+@tab-bar-line-height: @line-height-base;
+@tab-bar-titile-spacing: @v-spacing-xs;
+
+//toast 轻提示
+@toast-mask-z-index: 1200;
+@toast-mask-margin-top: -60px;
+@toast-padding: @v-spacing-lg @h-spacing-lg;
+@toast-border-radius: @radius-md;
+@toast-color: @color-text-base-inverse;
+@toast-bg-color: rgba(0, 0, 0, 0.5);
+@toast-font-size: @font-size-base;
+@toast-line-height: @font-size-base;
+@toast-icon-size: @icon-size-xl;
+@toast-icon-margin-bottom: @h-spacing-sm;
+
+//search-bar 搜索栏
+@search-bar-fill: #efeff4;
+@search-bar-height: 88px;
+@search-bar-input-height: 56px;
+@search-bar-font-size: 30px;
+@font-size-search: @font-size-base;
+@search-color-icon: #bbb; // input search icon 的背景色
+//notice-bar
+@notice-bar-fill: #fefcec;
+@notice-bar-height: 72px;
+@notice-bar-color: #f76a24;
+@notice-bar-marquee1-right: 219px;
+@notice-bar-marquee2-right: 367px;
+
+//picker 选择器
+@pickerZIndex: 1101;
+@picker-item-height: 90px;
+@picker-header-title-link-color: @color-link;
+@picker-col-item-selected-font-size: @font-size-heading;
+
+
+
+
+
+//radio 单选框
+@radio-height: 36px;
+@radio-width: 36px;
+@radio-radius: @radius-circle;
+@radio-margin: 0px;
+@radio-unchecked-bg-color: @fill-base;
+@radio-checked-bg-color: @brand-primary;
+@radio-disabled-bg: @color-text-disabled;
+@radio-disabled-font-color: @color-text-disabled;
+
+//segment-tabs 分段器
+@segment-tab-bg-color: @fill-base;
+@segment-tab-active-color: @brand-primary;
+@segment-tab-ink-bar-height: 100%;
+@segment-tab-height: 78px;
+@segment-tab-font-size: @font-size-caption;
+@segment-tab-font-color: @brand-primary;
+@segment-tab-pane-bg-color: transparent;
+@segment-tab-radius: @radius-sm;
+@segment-tab-content-margin-top: 0px;
+
+//switch 滑动开关
+@switch-height: 64px;
+@switch-width: 104px;
+@switch-radius: 64px;
+@switch-circle-color: @fill-base;
+@switch-border-color: @border-color-base;
+@switch-unchecked-bg-color: @color-text-disabled;
+@switch-checked-bg-color: #4dd865;
+
+//tag 标签
+@tag-height: 50px;
+@tag-height-sm: 30px;
+@tag-color: @brand-primary;
+
+//tab-bar 底部标签栏
+@tab-bar-font-size: @font-size-icontext;
+@tab-bar-font-color: @color-text-caption;
+@tab-bar-active-font-color: @brand-primary;
+@tab-bar-pane-bg-color: transparent;
+@tab-bar-bg-color: @fill-base;
+
+//z-index
+@progress-zindex: 2000;
+@popover-zindex: 1999;
+@toast-zindex: 1999;
+@action-sheet-zindex: 1000; // actonsheet 会放到 popup / modal 中
+@picker-zindex: 1999;
+@popup-zindex: 999;
+@modal-zindex: 999;

@@ -1,0 +1,152 @@
+@import '../../../../style/index';
+@mbankAccountDetailPrefixCls: mbank-account-number;
+@mbank-account-detail-height: 104px;
+//账户列表 *******************************
+.@{mbankAccountDetailPrefixCls} {
+  &-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    background-color: @brand-primary;
+    border-top: 0;
+    align-items: center;
+    &-content {
+      flex: 2;
+      padding-top: @v-spacing-md;
+      padding-bottom: @v-spacing-md;
+      div:not(:last-child) {
+        .@{mbankAccountDetailPrefixCls}-line {
+          .hairline-bottom(fade(@border-color-base, 0));
+        }
+      }
+      .@{mbankAccountDetailPrefixCls}-item {
+        position: relative;
+        display: flex;
+        padding-right: @h-spacing-lg; // min-height: @list-item-height; // background-color: @list-item-bg-color;
+        vertical-align: middle;
+        overflow: hidden;
+        transition: background-color 200ms;
+        align-items: center;
+        .@{mbankAccountDetailPrefixCls}-line {
+          position: relative;
+          display: flex;
+          flex: 1;
+          align-self: stretch;
+          padding-left: @list-right-spacing; 
+          overflow: hidden;
+          align-items: center;
+          .@{mbankAccountDetailPrefixCls}-content {
+            display: flex;
+            flex: 1;
+            color: @color-text-base-inverse;
+            font-size: @font-size-subhead;
+            line-height: @list-title-line-height;
+            text-align: left;
+            .ellipsis(); // padding-top: 5px;
+            // padding-bottom: 5px;
+            >.column-one {
+              flex: 1;
+            }
+            >.column-two {
+              flex: 2;
+            }
+            >.column-three {
+              flex: 3;
+            }
+            >.text-right {
+              text-align: right;
+            }
+            * em {
+              margin-left: @v-spacing-sm;
+            }
+          }
+        }
+      }
+    }
+  }
+  &-foot {
+    display: flex;
+    padding: @v-spacing-md 0;
+    background-color: @fill-base;
+    & div {
+      flex: 1;
+      align-items: center;
+      text-align: center;
+      color: @brand-primary;
+      & p {
+        color: @brand-gray;
+        font-size: @font-size-caption-sm ;
+      }
+      & span {
+        font-size: @font-size-heading;
+      }
+    }
+    & div:nth-child(2) {
+      flex: inherit;
+      width: 2px;
+      background-color: @border-color-base;
+    }
+    & div:last-child {
+      color: @mbank-blue;
+    }
+  }
+}
+
+.@{mbankAccountDetailPrefixCls}-more {
+  .@{mbankAccountDetailPrefixCls}-body {
+    background-color: @brand-primary;
+    &-content {
+      flex: 2;
+      padding-top: 0;
+      padding-bottom: 0;
+      div:not(:last-child) {
+        .@{mbankAccountDetailPrefixCls}-line {
+          .hairline-bottom(fade(@border-color-base, 20));
+        }
+      }
+      .@{mbankAccountDetailPrefixCls}-item {
+        padding-right: @h-spacing-lg;
+        min-height: @list-item-height; // background-color: @list-item-bg-color;
+        .@{mbankAccountDetailPrefixCls}-line {
+          padding-left: 0;
+          min-height: @mbank-account-detail-height;
+        }
+      }
+    }
+    &-other {
+      flex: 1;
+      align-items: center;
+      text-align: center;
+      align-items: center;
+      & i,
+      span {
+        align-items: center;
+        vertical-align: middle;
+      }
+      & span {
+        padding-right: @h-spacing-sm;
+        color: @color-text-base-inverse;
+        font-size: @font-size-base;
+      }
+    }
+  }
+}
+// 绿色背景（有财卡）
+.@{mbankAccountDetailPrefixCls}-green {
+  .@{mbankAccountDetailPrefixCls}-body {
+    background-color: @mbank-green;
+  }
+}
+// 蓝色头部（信用卡）
+.@{mbankAccountDetailPrefixCls}-blue {
+  .@{mbankAccountDetailPrefixCls}-body {
+    background-color: @mbank-blue;
+  }
+}
+// 橙色头部（E+账户）
+.@{mbankAccountDetailPrefixCls}-orange {
+  .@{mbankAccountDetailPrefixCls}-body {
+    background-color: @mbank-orange;
+  }
+}

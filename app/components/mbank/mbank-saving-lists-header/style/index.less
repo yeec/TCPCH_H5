@@ -1,0 +1,29 @@
+@import '../../../../style/index';
+// 图片地址 生产请将@mbankIconUrl值更改为 "../image"
+@moneyBgIconUrl: "../img";
+@mbankSavingsList: mbank-savings-list;
+.@{mbankSavingsList} {
+  &-header {
+    display: flex;
+    vertical-align: middle;
+    overflow: hidden;
+    transition: background-color 200ms;
+    align-items: center;
+    &-line {
+      display: none;
+      flex: 1;
+      height: 1PX;
+      background-color: @border-color-base;
+    }
+    &-title {
+      // padding: @v-spacing-lg 0;
+      min-height: 80px;
+      line-height: 80px;
+      font-size: @font-size-base;
+      & span {
+        padding: 0 @v-spacing-xs;
+        color: @number-color-red;
+      }
+    }
+  }
+}

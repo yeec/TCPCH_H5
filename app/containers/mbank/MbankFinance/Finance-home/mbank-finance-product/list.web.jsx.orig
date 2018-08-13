@@ -1,0 +1,58 @@
+import React, {Component, PropTypes} from 'react';
+import {hashHistory} from 'react-router';
+import formatMoney from './../../../../../util/common/accounting-js/formatMoney.js';
+import Common from "../../../../../util/common.jsx";
+import API from '../../../../../constants/api';
+import Icon from '../../../../../components/mbank/mbank-public-icon/index.web.jsx';
+
+const prefixCls = 'mbank-account-list';
+
+export default class MbankAccountList extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    jumpProductDetail = (item) => {
+        let that = this;
+        // 获取当前账号信息传入session
+        Common.addSessionData(API.SESSION_FINANCE_PRODUCT_INFO, JSON.stringify(item));
+        hashHistory.push('/MbankFinanceDetail')
+    };
+
+    render() {
+        const {props} = this;
+
+        let {
+            className,
+            prdId,
+            prdNo,
+            propRateMax,
+            prdName,
+            term,
+            ssubStartAmt,
+            item,
+            onClick
+        } = props;
+
+
+        return (
+            <div className="mbank-financing-product-list-item" onClick={this.jumpProductDetail.bind(this, item)}>
+                <div className="title">
+                    <p>{propRateMax}<span>%</span></p>
+                    <span>最高年化收益</span>
+                </div>
+                <div className="title2">
+                    <div>{prdName} </div>
+                    <p>{prdId}</p>
+                    <span>{term}天</span><span>|</span><span>{` ${formatMoney(ssubStartAmt, {symbol: '￥'})}`}起售</span>
+                </div>
+                <div><Icon name="arrow-right" size="xs" /></div>
+            </div>
+
+
+        );
+    }
+}
+
+

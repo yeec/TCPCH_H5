@@ -1,0 +1,75 @@
+@import '../../../../style/index';
+@inkTabsprefixCls: ryt-ink-tabs;
+.@{inkTabsprefixCls}{
+  overflow: hidden;
+  &-bar {
+    position: relative;
+    display: flex;
+    text-align: center;
+    height: @ink-tab-height;
+    line-height: @ink-tab-height;
+    background-color: @ink-tab-ink-bg-color;
+    .ryt-ink-tabs-tab {
+      color: @ink-tab-font-color;
+      font-size: @ink-tab-font-size;
+      flex:1
+    }
+  }
+
+  &-tab-active {
+    &.ryt-ink-tabs-tab {
+      color: @ink-tab-ink-bar-color;
+    }
+  }
+
+  &-tab-disabled {
+    &.ryt-ink-tabs-tab {
+      color:lighten(@ink-tab-font-color,35%)
+    }
+  }
+
+  &-ink-bar {
+    position: absolute;
+    bottom: 0;
+    height: @ink-tab-ink-bar-height;
+    background-color: @ink-tab-ink-bar-color;
+  }
+
+  &&-top {
+    .ryt-ink-tabs-tab {
+      .setOnePxBySide(bottom);
+    }
+  }
+
+  &&-bottom {
+    .ryt-ink-tabs-ink-bar {
+      top:0;
+      bottom: auto;
+    }
+    .ryt-ink-tabs-tab {
+      .setOnePxBySide(top);
+    }
+  }
+
+  &-content {
+    position: relative;
+    .ryt-ink-tabs-tabpane {
+      background-color: @ink-tab-pane-bg-color;
+      &-hidden {
+        display: none;
+      }
+    }
+  }
+  &-ink-bar-transition-forward,
+  &-ink-bar-transition-backward {
+    transition: transform .3s ease;
+  }
+
+  &&-no-animation {
+    .ryt-ink-tabs-ink-bar-transition-forward,
+    .ryt-ink-tabs-ink-bar-transition-backward {
+      transition-duration: 0s;
+    }
+  }
+
+}

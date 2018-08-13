@@ -1,0 +1,31 @@
+@import '../../../../style/index';
+// 图片地址 生产请将@noDataIconUrl值更改为 "../image"
+//@noDataIconUrl: "../../static/img/basics/no-data";
+@noDataIconUrl: "../image";
+@noDataprefixCls: ryt-no-data;
+
+.@{noDataprefixCls} {
+  position: relative;
+  margin-top: 80px;
+  // background-color: @fill-base;
+  padding-bottom: @h-spacing-md;
+  & div {
+    margin: 0 auto;
+    width: 100%;
+    min-height: 260px;
+    background: url("@{noDataIconUrl}/no-data@3x.png") center center;
+    display: inline-block;
+    background-size: 320px 260px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    // opacity: 1;
+  }
+  & p {
+    position: absolute;
+    top: 152px;
+    left: 50%;
+    font-size: @font-size-caption-sm;
+    color:#adadad;
+    text-align: center;
+  }
+}

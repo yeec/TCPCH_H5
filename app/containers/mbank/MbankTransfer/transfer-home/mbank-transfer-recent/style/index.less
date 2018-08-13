@@ -1,0 +1,170 @@
+@import "../../../../../../style/index";
+@mbankTransferRecentPrefixCls: mbank-transfer-recent;
+@mbankTransferRecentHeight: 130px;
+.@{mbankTransferRecentPrefixCls} {
+  background: #fff;
+  &-header {
+    padding: @v-spacing-md @h-spacing-lg @v-spacing-md @h-spacing-lg;
+    color: @color-text-paragraph;
+    font-size: @font-size-base;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    border-bottom: @border-color-base 1px solid;
+    & div {
+      align-items: flex-start;
+    }
+  }
+  &-list-info {
+    padding-left: @v-spacing-xxl;
+
+    & p {
+      display: flex;
+      display: -webkit-box;
+      display: -webkit-flex;
+      flex: 1;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      align-items: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      padding: @v-spacing-sm 0;
+      color: @color-text-paragraph;
+      font-size: @font-size-base;
+      .hairline-top(@border-color-base);
+      & span {
+        margin-left: @h-spacing-sm;
+      }
+    }
+    & p:first-child {
+      border: 0;
+    }
+  }
+  &-body {
+    position: relative;
+    // background-color: @fill-base;
+    // margin-bottom: 20px;
+    // .hairline-top(@border-color-base); // 注意：如果元素的 overflow 有 scroll 出现，其伪元素 绝对定位 显示将出错，例如 bottom: 0
+    // &:after {
+    //   display: block;
+    //   position: absolute;
+    //   content: '';
+    //   width: 100%;
+    //   border-bottom: @border-width-sm solid @border-color-base;
+    // }
+
+    div:not(:last-child) {
+      .@{mbankTransferRecentPrefixCls}-line {
+        // .hairline-bottom(@border-color-base);
+        border-bottom: @border-color-base 1px solid;
+      }
+    }
+  }
+}
+.@{mbankTransferRecentPrefixCls}-item {
+  position: relative;
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  padding-left: @h-spacing-lg;
+  min-height: 112px;
+  background-color: @list-item-bg-color;
+  vertical-align: middle;
+  overflow: hidden;
+  transition: background-color 200ms;
+  align-items: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+
+  &.@{mbankTransferRecentPrefixCls}-item-middle {
+    .@{mbankTransferRecentPrefixCls}-line {
+      align-items: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+    }
+  }
+
+  /* list左图片显示*/
+  .@{mbankTransferRecentPrefixCls}-thumb {
+    &:first-child {
+      margin-right: @list-left-thumb-spacing;
+    }
+    &:last-child {
+      margin-left: @list-right-thumb-spacing;
+    }
+  }
+
+  .@{mbankTransferRecentPrefixCls}-line {
+    position: relative;
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    flex: 1;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    align-self: stretch;
+    padding-right: @list-right-spacing;
+    min-height: @list-item-height;
+    overflow: hidden; // .hairline-bottom(@border-color-base);
+    /* list左侧主内容 */
+    .@{mbankTransferRecentPrefixCls}-content {
+      flex: 1;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      color: @color-text-base;
+      font-size: @font-size-base;
+      line-height: @list-title-line-height;
+      text-align: left;
+      // .ellipsis();
+    }
+    .@{mbankTransferRecentPrefixCls}-brief {
+      color: @color-text-caption;
+      font-size: @font-size-caption-sm;
+    }
+    /* list 右侧补充内容文字*/
+    .@{mbankTransferRecentPrefixCls}-extra {
+      flex-basis: 60%;
+      color: @list-rightTitle-color;
+      font-size: @list-rightTitle-font-size;
+      line-height: @list-rightTitle-line-height;
+      text-align: right;
+    }
+    /* list右侧箭头*/
+    .@{mbankTransferRecentPrefixCls}-arrow {
+      display: block;
+      width: @icon-size-xxs;
+      height: @icon-size-xxs;
+      margin-left: @h-spacing-md;
+      .encoded-svg-background("svg-arrow-right");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      visibility: hidden;
+
+      &-horizontal {
+        visibility: visible;
+      }
+
+      &-vertical {
+        visibility: visible;
+        transform: rotate(90deg);
+      }
+
+      &-vertical-up {
+        visibility: visible;
+        transform: rotate(270deg);
+      }
+    }
+    &-multiple {
+      padding: 30px @h-spacing-lg 30px 0;
+    }
+  }
+}
+.showDiv {
+  display: none;
+}

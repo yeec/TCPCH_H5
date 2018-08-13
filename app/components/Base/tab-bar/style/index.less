@@ -1,0 +1,72 @@
+@import '../../../../style/index';
+@tabBarPrefixCls: ryt-tab-bar;
+.@{tabBarPrefixCls} {
+  overflow: hidden;
+  &-bar {
+    //position: relative;
+    display: flex;
+    text-align: center;
+    box-sizing: border-box;
+    .setOnePxBySide(top);
+    padding: @v-spacing-sm 0;
+    background-color: @tab-bar-bg-color;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    .ryt-tab-bar-tab {
+      color: @tab-bar-font-color;
+      font-size: @tab-bar-font-size;
+      flex: 1;
+    }
+  }
+
+  &-no-badge {
+    .ryt-badge-area {
+      display: none;
+    }
+  }
+
+  &-item {
+    .ryt-badge {
+      padding: 1px;
+      z-index: 50;
+    }
+    .ryt-icon {
+      color: @tab-bar-font-color;
+    }
+    p {
+      line-height: 1;
+    }
+  }
+
+
+  &-tab-active {
+    &.ryt-tab-bar-tab {
+      color: @tab-bar-active-font-color;
+    }
+    .ryt-icon {
+      color: @tab-bar-active-font-color;
+    }
+  }
+
+  &-tab-disabled {
+    &.ryt-tab-bar-tab {
+      color: lighten(@tab-bar-font-color, 35%)
+    }
+    .ryt-icon {
+      color: lighten(@tab-bar-font-color, 35%);
+    }
+  }
+
+  &-content {
+    position: relative; //height: 100%;
+    overflow: auto;
+    .ryt-tab-bar-tabpane {
+      background-color: @tab-bar-pane-bg-color;
+      height: 100%;
+      &-hidden {
+        display: none;
+      }
+    }
+  }
+}

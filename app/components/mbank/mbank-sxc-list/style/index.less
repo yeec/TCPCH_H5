@@ -1,0 +1,38 @@
+@import '../../../../style/index';
+@mbankSxcList: mbank-sxc-list-new;
+.@{mbankSxcList} {
+  &-item{
+    margin: 0.35rem;
+    box-shadow: 0.032rem 0.032rem 0.04rem #b9b8b8;;
+    padding: 50px 40px;
+    background-color: @fill-base;
+    > h3{
+      padding-bottom: 20px;
+      font-size: 44px;
+      color: #323232;
+      line-height: 1;
+      text-align: center;
+    }
+    > p,span.ll{
+      display: block;
+      padding-bottom: 30px;
+      font-size: 24px;
+      color: #9C9C9C;
+      line-height: 1;
+      text-align: center;
+    }
+    .sum{
+      padding-bottom: 20px;
+      color: #E70000;
+      font-size: 60px;
+      line-height: 1;
+      text-align: center;
+      > span{
+        font-size: 28px;
+      }
+    }
+  }
+  > div:not(:last-child){
+    margin-bottom: 20px;
+  }
+}

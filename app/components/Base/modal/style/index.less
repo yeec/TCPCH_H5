@@ -1,0 +1,185 @@
+@import '../../../../style/index';
+
+@modalPrefixCls: ryt-modal;
+
+.@{modalPrefixCls} {
+  position: relative;
+  &-mask {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: @modal-mask-z-index;
+    background-color: @modal-mask-bg-color;
+    &-hidden {
+      display: none
+    }
+  }
+
+  &-wrap {
+    position: fixed; //height: 100%;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: @modal-mask-z-index;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+    &.ryt-modal-action-sheet-wrap {
+      align-items: flex-end;
+    }
+    &&.ryt-modal-full-screen {
+      height: 100%;
+    }
+  }
+
+  &&-page {
+    width: 100%;
+    height: 100%;
+  }
+
+  &&-alert {
+    width: @modal-alert-width;
+    height: auto;
+    & .ryt-modal-content {
+      border-radius: @modal-alert-radius;
+      height: auto;
+      & .ryt-modal-body {
+        color: @modal-font-color;
+        font-size: @modal-alert-font-size;
+        .ryt-modal-alert-box{
+          overflow: hidden;
+          word-break: break-all;
+          
+          &-title{
+            font-size: @font-size-base;
+            // font-weight: bold;
+            color: @color-text-base;
+            padding: @modal-alert-padding/1.2;
+            border-bottom: 1px solid @border-color-base;
+            // text-align: left;
+          }
+          &-middle{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: @v-spacing-sm 0;
+            padding: 0 @modal-alert-padding;
+            span{
+              margin-left: @h-spacing-md;
+              font-size: @font-size-heading;
+            }
+          }
+          &-content{
+            margin: @h-spacing-md 0;
+            padding: 0 @modal-alert-padding;
+          }
+        }
+      }
+    }
+  }
+
+  &&-action-sheet {
+    width: 100%;
+    height: auto;
+    .ryt-modal-content {
+      background-color: #f9f9f9;
+    }
+    .ryt-modal-btn {
+      color:@color-link!important;
+    }
+    .ryt-modal-btn::last-child{
+      color: @color-link!important;
+    }
+  }
+
+  &-content {
+    position: relative;
+    // background-color: @modal-bg-color;
+    border: 0;
+    background-clip: padding-box;
+    text-align: center;
+    height: 100%;
+  }
+
+  &-body {
+    height:100%;
+    font-size: @modal-font-size;
+    color: @modal-font-color;
+  }
+
+  .modal-btn() {
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: @color-link;
+    font-size: @modal-font-size;
+    padding: @modal-alert-padding /1.2;
+    background-color: @modal-bg-color;
+    border: 0;
+    border-bottom-left-radius: @modal-alert-radius;
+    position: relative;
+    .ellipsis();
+    &.Tappable-active {
+      background-color: darken(@modal-bg-color, 20%);
+    }
+  }
+
+  .ryt-modal-btn-group-horizon {
+    position: relative;
+    .setOnePxBySide(top);
+    display: flex;
+
+    .ryt-modal-btn {
+      flex: 1;
+      -webkit-flex: 1;
+      .modal-btn();
+      +.ryt-modal-btn {
+        .setOnePxBySide(left);
+        border-bottom-left-radius: 0;
+      }
+      &:last-child {
+        border-bottom-right-radius: @modal-alert-radius;
+        border-left: 1px solid;
+      }
+    }
+  }
+
+  .ryt-modal-btn-group-vertical {
+    display: flex;
+    flex-direction: column;
+    .ryt-modal-btn {
+      flex: 1;
+      -webkit-flex: 1;
+      .modal-btn();
+      .setOnePxBySide(top);
+      &:last-child {
+        color: @color-text-base!important;
+        border-bottom-left-radius: @modal-alert-radius;
+        border-bottom-right-radius: @modal-alert-radius;
+      }
+    }
+  }
+  &&-alert {
+    .ryt-modal-btn-group-vertical {
+      display: flex;
+      flex-direction: column;
+      .ryt-modal-btn {
+        flex: 1;
+        -webkit-flex: 1;
+        .modal-btn();
+        .setOnePxBySide(top);
+        &:last-child {
+          color: @color-link !important;
+          border-bottom-left-radius: @modal-alert-radius;
+          border-bottom-right-radius: @modal-alert-radius;
+        }
+      }
+    }
+  }
+}

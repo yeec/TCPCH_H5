@@ -1,0 +1,111 @@
+@import "../../../../../style/index";
+@mbankSxcExplain: mbank-jrrl;
+@hd: 2px;
+//金融日历信息样式 *******************************
+.@{mbankSxcExplain} {
+  &-title {
+    display: flex;
+    align-items: flex-start;
+    height: 96px;
+    line-height: 96px;
+    padding-left: 30px;
+    > span:last-child {
+      font-size: 40px;
+      color: #222;
+      display: inline-block;
+      // width: 100px;
+      text-align: right;
+    }
+    > span:first-child {
+      font-size: 24px;
+      color: #999999;
+    }
+  }
+  &-list {
+    background: #fff;
+    > div.list {
+      padding: 0px 0 20px 40px;
+      > div:first-child {
+        padding: 40px 20px 20px 20px;
+        padding-left: 0;
+        > i {
+          margin-right: 16px;
+          display: inline-block;
+          width: 8px * @hd;
+          height: 8px * @hd;
+          // position: absolute;
+          // bottom: -3px * @hd;
+          // left: 50%;
+          background-color: #ea5454;
+          border-radius: 50%;
+        }
+        > span {
+          font-size: 30px;
+          color: #222222;
+          display: inline-block;
+        }
+      }
+      > div:last-child {
+        padding-bottom: 20px;
+        padding-left: 34px;
+        display: flex;
+        align-items: center;
+        > div:first-child {
+          flex: 1;
+          > p {
+            padding: 4px 0;
+            font-size: 24px;
+            color: #666666;
+            > span:first-child {
+              color: #999;
+              padding-right: 20px;
+            }
+          }
+        }
+        > div:last-child {
+          width: 180px;
+          > span {
+            display: inline-block;
+            color: #6f2c8e;
+            border: 2px solid #6f2c8e;
+            padding: 10px 40px;
+            border-radius: 30px;
+          }
+        }
+      }
+    }
+  }
+  &-list:not(:last-child) {
+    > div {
+      // padding-top: 20px;
+      > div:last-child {
+        border-bottom: 1px #dbdbdb solid;
+        padding-bottom: 40px;
+      }
+    }
+  }
+}
+.no-calendar {
+  background: #ffffff;
+  padding: 50px;
+  text-align: center;
+  > div {
+    margin: 0 auto;
+    width: 250px;
+    height: 250px;
+    background: url(../image/no-data@2x.png) top center no-repeat;
+    fill: currentColor;
+    background-size: contain;
+  }
+  > p {
+    font-size: 24px;
+    color: #bdbdbd;
+    line-height: 16px;
+    text-align: center;
+  }
+  > a {
+    display: block;
+    padding-top: 10px;
+    color: #6f2c8e;
+  }
+}

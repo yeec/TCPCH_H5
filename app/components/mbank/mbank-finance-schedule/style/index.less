@@ -1,0 +1,174 @@
+@hd: 2px;
+.calendar {
+  border-top: 1px #ddd solid;
+  background: #fff;
+  width: 100%;
+}
+.calendar {
+  ul,
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.calendar a {
+  text-decoration: none;
+  color: #000;
+}
+
+.calendar-header {
+  width: 100%;
+  text-align: center;
+  padding: 20px * @hd 0;
+  line-height: 14px;
+  // border-bottom: 1px solid #ddd;
+}
+
+.calendar-header > i {
+  display: inline-block;
+  width: 34px * @hd;
+  height: 14px * @hd;
+  vertical-align: -2px * @hd;
+  position: relative;
+  text-align: center;
+}
+
+.calendar-header > span {
+  margin: 0 5%;
+  display: inline-block;
+  width: 200px * @hd;
+  font-size: 16px * @hd;
+  text-align: center;
+}
+
+.calendar-header > .icon-left:before,
+.calendar-header > .icon-left:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 45%;
+}
+.calendar-header > .icon-right:before,
+.calendar-header > .icon-right:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 45%;
+}
+
+.calendar-header > .icon-left:before {
+  border: 7px * @hd solid red;
+  border-color: transparent #666 transparent transparent;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.calendar-header > .icon-left:after {
+  border: 7px * @hd solid #fff;
+  border-color: transparent #fff transparent transparent;
+  -webkit-transform: translateX(-40%);
+  -moz-transform: translateX(-40%);
+  -ms-transform: translateX(-40%);
+  -o-transform: translateX(-40%);
+  transform: translateX(-40%);
+}
+
+.calendar-header > .icon-right:before {
+  border: 7px * @hd solid red;
+  border-color: transparent transparent transparent #666;
+  -webkit-transform: translateX(50%);
+  -moz-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  -o-transform: translateX(50%);
+  transform: translateX(50%);
+}
+
+.calendar-header > .icon-right:after {
+  border: 7px * @hd solid #fff;
+  border-color: transparent transparent transparent #fff;
+  -webkit-transform: translateX(40%);
+  -moz-transform: translateX(40%);
+  -ms-transform: translateX(40%);
+  -o-transform: translateX(40%);
+  transform: translateX(40%);
+}
+
+.calendar-body > .c-body-head {
+  width: 100%;
+  display: flex;
+}
+
+.calendar-body > .c-body-head > li {
+  flex: 1;
+  text-align: center;
+  padding: 10px * @hd 0;
+}
+
+.calendar-body > .c-body-content {
+  width: 100%;
+}
+
+.calendar-body > .c-body-content > ul {
+  display: flex;
+}
+
+.calendar-body > .c-body-content > ul > li {
+  flex: 1;
+  text-align: center;
+  padding: 5px * @hd 0;
+}
+
+.content-row > .item-gray > a {
+  color: #ccc;
+}
+
+.content-row > .item-tag > a {
+  position: relative;
+}
+
+.content-row > .item-tag > a:after {
+  content: "";
+  width: 8px * @hd;
+  height: 8px * @hd;
+  position: absolute;
+  bottom: -3px * @hd;
+  left: 50%;
+  -webkit-transform: translate3D(-50%, 70%, 0);
+  -moz-transform: translate3D(-50%, 70%, 0);
+  -ms-transform: translate3D(-50%, 70%, 0);
+  -o-transform: translate3D(-50%, 70%, 0);
+  transform: translate3D(-50%, 70%, 0);
+  background-color: #EA5454;
+  border-radius: 50%;
+}
+
+.content-row > li > a {
+  width: 30px * @hd;
+  height: 30px * @hd;
+  line-height: 30px * @hd;
+  text-align: center;
+  display: inline-block;
+}
+
+.content-row > .item-current,
+.content-row > .item-active {
+  text-align: center;
+}
+.content-row > .item-current > a {
+  background: linear-gradient(-135deg, #9bc3fc 2%, #4d88e7 95%);
+  box-shadow: 0 2px 4px 0 rgba(71, 115, 255, 0.3);
+  color: #fff;
+  border-radius: 50%;
+}
+
+.content-row > .item-active > a {
+  background: linear-gradient(-135deg, #e29bfc 2%, #8d5edb 95%);
+  box-shadow: 0 2px 4px 0 rgba(183, 71, 255, 0.3);
+  color: #fff;
+  border-radius: 50%;
+}

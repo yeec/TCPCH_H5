@@ -1,0 +1,191 @@
+@import '../../../../style/index';
+
+@listPrefixCls: ryt-list;
+@inputPrefixCls: ryt-input;
+
+.@{listPrefixCls}-item {
+  &.@{inputPrefixCls}-item {
+    height: @list-item-height;
+    padding-left: @h-spacing-lg;
+    padding-right: @h-spacing-lg;
+    .hairline-bottom(@border-color-base, @h-spacing-lg);
+    .ryt-icon {
+      margin-left: 0px;
+    }
+  }
+
+  .@{inputPrefixCls}-label {
+    color: @input-label-font-color;
+    font-size: @input-label-font-size;
+    margin-left: 0;
+    margin-right: @h-spacing-sm;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 4px 0;
+
+    &.@{inputPrefixCls}-label-2 {
+      width: 2 * @input-label-width;
+    }
+
+    &.@{inputPrefixCls}-label-3 {
+      width: 3 * @input-label-width;
+    }
+
+    &.@{inputPrefixCls}-label-4 {
+      width: 4 * @input-label-width;
+    }
+
+    &.@{inputPrefixCls}-label-5 {
+      width: 5 * @input-label-width;
+    }
+
+    &.@{inputPrefixCls}-label-6 {
+      width: 6 * @input-label-width;
+    }
+
+    &.@{inputPrefixCls}-label-7 {
+      width: 7 * @input-label-width;
+    }
+  }
+
+  .@{inputPrefixCls}-control {
+    font-size: @input-font-size;
+    flex: 1;
+
+    input {
+      color: @color-text-base;
+      font-size: @input-font-size;
+      appearance: none;
+      width: 100%;
+      padding: 4px 0;
+      border: 0;
+      background-color: transparent;
+      line-height: @line-height-base;
+      box-sizing: border-box;
+      &::-webkit-input-placeholder {
+        // color: @color-text-placeholder;
+        color: #b3b3b3;
+        line-height: 1.2;
+      }
+
+      &:disabled {
+        color: @color-text-disabled;
+        background-color: #fff;
+      }
+    }
+  }
+  .@{inputPrefixCls}-control-right {
+    font-size: @input-font-size;
+    flex: 1;
+
+    input {
+      text-align: right;
+    }
+  }
+
+  .@{inputPrefixCls}-clear {
+    display: none;
+    width: @icon-size-sm;
+    height: @icon-size-sm;
+    border-radius: @radius-circle;
+    overflow: hidden;
+    font-style: normal;
+    color: @fill-base;
+    background-color: @input-color-icon;
+    background-repeat: no-repeat;
+    .encoded-svg-background('svg-delete');
+    background-size: @icon-size-sm auto;
+    background-position: 4px 4px;
+    &:active {
+      background-color: @input-color-icon-tap;
+    }
+  }
+  /* list右侧箭头*/
+  .@{inputPrefixCls}-arrow {
+    display: block;
+    width: @icon-size-sm;
+    height: @icon-size-xs; // margin-left: @h-spacing-md;
+    .encoded-svg-background('svg-arrow-right');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    visibility: hidden;
+    /* 向右 */
+    &-horizontal {
+      visibility: visible;
+    }
+    /* 向下 */
+    &-vertical {
+      visibility: visible;
+      transform: rotate(90deg);
+    }
+    /* 向上 */
+    &-vertical-up {
+      visibility: visible;
+      transform: rotate(270deg);
+    }
+  }
+  &.@{inputPrefixCls}-focus {
+    .@{inputPrefixCls}-clear {
+      display: block;
+    }
+  }
+  /* 右侧文字 */
+  .@{inputPrefixCls}-text {
+    flex: initial;
+    min-width: @icon-size-md;
+    max-height: @list-item-height;
+    overflow: hidden;
+    padding: 0 @h-spacing-lg;
+    line-height: @list-item-height;
+    color: @input-right-font-color;
+    font-size: @input-right-font-size;
+    margin-right: -@h-spacing-lg ;
+    text-align: center;
+  }
+  /* 右侧图标 */
+  .@{inputPrefixCls}-extra {
+    display: flex;
+    flex: initial;
+    min-width: @icon-size-md;
+    min-height: @list-item-height;
+    overflow: hidden;
+    padding: 0 @h-spacing-lg;
+    align-items: center;
+    margin-right: -@h-spacing-lg ;
+    line-height: @line-height-base;
+    color: @input-right-font-color;
+    font-size: @input-right-font-size; // margin-left: @h-spacing-sm;
+  }
+  &.@{inputPrefixCls}-error {
+    .@{inputPrefixCls}-control {
+      input {
+        color: #f50;
+      }
+    }
+    .@{inputPrefixCls}-error-extra {
+      height: @icon-size-sm;
+      width: @icon-size-sm; // margin-left: @v-spacing-sm;
+      .encoded-svg-background('svg-error');
+
+      background-size: @icon-size-sm auto;
+    }
+  }
+
+  &.@{inputPrefixCls}-disabled {
+    .@{inputPrefixCls}-label {
+      color: @color-text-disabled;
+    }
+  }
+}
+
+.@{listPrefixCls} {
+  &-body {
+    .@{listPrefixCls}-item {
+      &:last-child {
+        .hairline-remove-right-bottom();
+      }
+    }
+  }
+}

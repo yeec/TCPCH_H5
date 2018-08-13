@@ -1,0 +1,44 @@
+@import '../../../../style/index';
+
+@nGridsPrefixCls: ryt-n-grids;
+
+.@{nGridsPrefixCls} {
+  background-color: @n-grids-background;
+
+  &-flex {
+    .setOnePxBySide(bottom);
+  }
+  &-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .setOnePxBySide(right);
+    &-icon {
+      height: @n-grids-item-height;
+      width: @n-grids-item-width;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      margin: 0 auto;
+    }
+
+    &-text {
+      font-size: @n-grids-item-text-size;
+      color: @n-grids-item-text-color;
+      margin-top: @n-grids-item-text-icon-dis;
+    }
+
+    &:last-child:after {
+      border: none;
+    }
+  }
+
+  &&-no-border {
+    .ryt-n-grids-flex:after {
+      border: none
+    }
+    .ryt-n-grids-item:after {
+      border: none
+    }
+  }
+}

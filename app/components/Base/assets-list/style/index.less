@@ -1,0 +1,194 @@
+@import '../../../../style/index';
+
+
+@ritassetslist: rit-assetslist;
+
+.@{ritassetslist} {
+  margin-top: 20px;
+  
+  &-huoqibg{
+    background-image: url(../image/huoqibg.png)
+  }
+  &-dingqibg{
+    background-image: url(../image/dingqibg.png)
+  }
+  &-jhsbg{
+    background-image: url(../image/jhsbg.png)
+  }
+  &-sxcbg{
+    background-image: url(../image/sxcbg.png)
+  }
+  &-lcbg{
+    background-image: url(../image/lcbg.png)
+  }
+  
+  &-box{
+      margin-left: 28px;
+     &-header{
+        // margin: 40px 0 12px 0;
+        padding-top: 40px;
+        padding-bottom:20px; 
+        
+        &-huoqiico{
+             width: 160px;
+             height: 36px;
+             display:inline-block;
+             background-image: url(../image/huoqi.png);
+             background-repeat: no-repeat;
+             vertical-align: middle;
+         }
+         &-dingqiico{
+          width: 160px;
+          height: 36px;
+          display:inline-block;
+          background-image: url(../image/dingqi.png);
+          background-repeat: no-repeat;
+          vertical-align: middle;
+      }
+      &-sxcico{
+        width: 160px;
+        height: 36px;
+        display:inline-block;
+        background-image: url(../image/sxc.png);
+        background-repeat: no-repeat;
+        vertical-align: middle;
+    }
+    &-jhsico{
+      width: 160px;
+      height: 36px;
+      display:inline-block;
+      background-image: url(../image/jhs.png);
+      background-repeat: no-repeat;
+      vertical-align: middle;
+  }
+  &-lcico{
+    width: 160px;
+    height: 36px;
+    display:inline-block;
+    background-image: url(../image/lc.png);
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+&-fuzhaiico{
+  width: 40px;
+    height: 44px;
+    display:inline-block;
+    background-image: url(../image/fuzhai.png);
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+         &-igm{
+            width: 40px;
+            height: 44px;
+            display:inline-block;
+            border: 1px solid #000;
+            vertical-align: middle;
+         }
+         &-huoqi{
+            font-size: @font-size-caption;
+            color: #F5A623;
+            padding-bottom: 20px;
+            padding-left: 10px;
+            vertical-align: middle;
+          }
+          &-dingqi{
+            font-size: @font-size-caption;
+            color: #417505;
+            padding-bottom: 20px;
+            padding-left: 10px;
+            vertical-align: middle;
+          }
+          &-suixincun{
+            font-size: @font-size-caption;
+            color: #DC7997;
+            padding-bottom: 20px;
+            padding-left: 10px;
+            vertical-align: middle;
+          }
+          &-juhuasuan{
+            font-size: @font-size-caption;
+            color: #4A90E2;
+            padding-bottom: 20px;
+            padding-left: 10px;
+            vertical-align: middle;
+          }
+          &-fuzhai{
+            font-size: @font-size-caption;
+            color: #417505;
+            padding-bottom: 20px;
+            padding-left: 10px;
+            vertical-align: middle;
+          }
+          &-licai{
+            font-size: @font-size-caption;
+            color: #434A94;
+            padding-bottom: 20px;
+            padding-left: 10px;
+            vertical-align: middle;
+          }
+        
+      }
+      &-bottom{
+          display: flex;
+          padding-bottom: 24px;
+        &-left{
+            flex:1;
+            font-size:@font-size-base; 
+            color: #4A4A4A;
+        }
+        &-right{
+            flex:1;
+            text-align: right;
+            font-size:@font-size-base; 
+            color: #4A4A4A;
+            line-height: 40px;
+        }
+        &-icon{
+           margin: 0 23px;
+           &-shang{
+            background-image: url("../../../mbank/mbank-public-icon/image/arrow-up@3x.png");
+           }
+        }
+      }
+      &-boder{
+        border-top: 1px solid #ccc;
+      }
+      &-bu{
+        padding-top: 8px;
+        display: flex;
+        font-size: @font-size-caption-sm;
+        color: #4A4A4A;
+        padding-bottom: 16px;
+        line-height: 23px;
+        &-left{
+          padding-right: 40px;
+        }
+        
+      }
+    &-ap{
+      display: flex;
+      font-size: @font-size-caption-sm;
+        color: #4A4A4A;
+      &-left{
+        display: flex;
+        flex: 2.5;
+        line-height: 52px;
+        &-text{
+          padding-right: 64px;
+        }
+      }
+      &-right{
+        display: flex;
+        
+        
+        flex: 3.2;
+        line-height: 52px;
+        &-text{
+          padding-right: 64px;
+          width: 200px;
+          text-align: right;
+        }
+      }
+    }
+  }
+}

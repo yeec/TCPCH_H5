@@ -1,0 +1,62 @@
+@import "./../../constant/styles/global";
+
+.apollo-modal.apollo-modal-alert {
+  .apollo-modal-content {
+    padding: 0px;
+    width: 280px;
+    .apollo-modal-body {
+      padding: 0px;
+      .modal-body-container {
+        text-align: center;
+        &-title {
+          height: 50px;
+          line-height: 50px;
+          background-color: #e5f2ff;
+          font-size: @global-font-size;
+          border-radius: 4px 4px 0 0;
+          color: @global-font-color;
+        }
+        &-content {
+          font-size: @global-font-size-sm;
+          padding: 20px;
+          overflow: hidden;
+        }
+        .left{
+          text-align: left;
+        }
+      }
+    }
+    .apollo-modal-footer {
+      width: 100px;
+      margin: 0 auto;
+      padding-bottom: 20px;
+      .apollo-modal-btn-group-horizon {
+        border-radius: 2px;
+        border: solid 1px @global-orange;
+        .apollo-modal-btn {
+          font-size: 14px;
+        }
+      }
+      .apollo-modal-btn-group-horizon .apollo-modal-btn.Tappable-active {
+        background-color: @global-white;
+      }
+      .apollo-modal-btn-group-horizon:after {
+        display: none;
+      }
+      .apollo-modal-btn {
+        color: @global-orange;
+        background-color: @global-white;
+        &:not(.apollo-modal-btn):active {
+          background-color: darken(@global-white, 5%);
+        }
+        &.apollo-btn-disabled {
+          background-color: lighten(@global-white, 20%);
+        }
+      }
+    }
+  }
+}
+
+.fee {
+  text-align: left;
+}

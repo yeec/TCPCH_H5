@@ -1,0 +1,21 @@
+.SwipeLeftDel1-container-div{
+    z-index: 2;
+    position: relative;
+    width: 100%;
+}
+.SwipeLeftDel1-item-div{
+    font-size: 0.14rem; /* 16/32 */;
+    background-color: #ff6060;
+    text-align: center;
+    height: 0.58rem;
+    color: #fff;
+    line-height: 0.59rem;
+}
+.SwipeLeftDel1-item-div-outer{
+    position: absolute;
+    right: 0.02rem;
+    width: 0.5rem;
+    height:0.58rem;
+    top: 0.01rem;
+    font-size: 0.14rem; /* 16/32 */;
+}

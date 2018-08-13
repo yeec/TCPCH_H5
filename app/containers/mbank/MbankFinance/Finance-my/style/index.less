@@ -1,0 +1,67 @@
+@import '../../../../../style/index';
+@mbankFinancingProductListMy: mbank-financing-product-list-my;
+.@{mbankFinancingProductListMy} {
+  background-color: @fill-base;
+  &-item {
+    padding-left: @h-spacing-lg;
+    &-header {
+      display: flex;     display: -webkit-box;      display: -webkit-flex; 
+      vertical-align: middle;
+      align-items: center; -webkit-box-align: center; -webkit-align-items: center;
+      // border-bottom: @border-color-base solid @border-width-sm;
+      & div {
+        padding: @v-spacing-md 0;
+        padding-right: @h-spacing-lg;
+        color: @color-text-caption;
+        font-size: @font-size-subhead;
+      }
+      & div:last-child {
+        display: flex;     display: -webkit-box;      display: -webkit-flex; 
+        flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+        align-items: center; -webkit-box-align: center; -webkit-align-items: center;
+        justify-content: flex-end;  -webkit-justify-content: flex-end;
+        & span {
+          color: @color-link;
+          font-size: @font-size-caption;
+          margin-right: @h-spacing-sm;
+        }
+      }
+    }
+    &-content {
+      display: flex;     display: -webkit-box;      display: -webkit-flex; 
+      vertical-align: middle;
+      align-items: center; -webkit-box-align: center; -webkit-align-items: center;
+      padding-bottom: 30px;
+      & div {
+        flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+        text-align: center;
+        & p {
+          color:@color-text-base;
+          font-size: 36px;
+        }
+        & span {
+          color: @color-text-caption;
+          font-size:@font-size-caption-sm;
+        }
+      }
+      & div:last-child {
+        flex: 1;  -webkit-box-flex: 1;  -webkit-flex: 1; 
+        padding-left: @h-spacing-lg;
+        border-left: @border-color-base solid @border-width-sm;
+        & p {
+          color:@color-text-base;
+          font-size: 36px;
+        }
+        & span {
+          color: @color-text-caption;
+          font-size: @font-size-caption-sm;
+        }
+      }
+    }
+  }
+}
+.@{mbankFinancingProductListMy}-box {
+  .@{mbankFinancingProductListMy}:not(:last-child) {
+    margin-bottom: @v-spacing-md;
+  }
+}

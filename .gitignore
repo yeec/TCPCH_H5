@@ -1,0 +1,17 @@
+syntax: glob
+*~
+
+syntax: regexp
+(.*/)?\#[^/]*\#$
+
+syntax: glob
+.DS_Store
+
+syntax: glob
+node_modules
+
+syntax: glob
+package-lock.json
+
+syntax: glob
+build

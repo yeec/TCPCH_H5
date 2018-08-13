@@ -1,0 +1,50 @@
+@import '../../../../style/index';
+
+@accountTextPrefixCls: mbank-public-tag;
+
+.@{accountTextPrefixCls} {
+  font-style: normal;
+  display: inline-block;
+  padding: 0 @v-spacing-xs;
+  min-width: 88px;
+  height: 36px;
+  line-height: 36px;
+  font-size: @font-size-caption-sm;
+  border-radius: @radius-md;
+  text-align: center;
+  overflow: hidden;
+  color: @color-link;
+  border: 1PX solid @color-link;
+  background-color: fade(@color-link, 10%);
+  &-disabled {
+    background-color: fade(@color-text-caption, 10%);
+    color: @color-text-caption;
+    border: 1PX solid @color-text-caption;
+    transform: rotate(20deg);
+    background: @fill-base;
+  }
+  &-orange {
+    background-color: fade(#FFA133, 10%);
+    color: #FFA133;
+    border: 1PX solid #FFA133;
+  }
+  &-white {
+    background-color: fade(@fill-base, 10%);
+    color: fade(@fill-base, 80%);
+    border: 1PX solid fade(@fill-base, 30%);
+  }
+  &-white-no-border {
+    background-color: fade(@fill-base, 10%);
+    color: fade(@fill-base, 80%);
+    border: 0;
+  }
+  &-bg-white {
+    background-color: @fill-base;
+  }
+  &-big {
+    padding: 0 @v-spacing-sm;
+    height: 48px;
+    line-height: 48px;
+    font-size: @font-size-base;
+  }
+}

@@ -1,0 +1,70 @@
+.use-container {
+  position: relative;
+  height: 45px;
+  line-height: 45px;
+  overflow: hidden;
+  width: 228px;
+  &-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 45px;
+    width: 196px;
+    margin-left: 0;
+    text-align: right;
+    span {
+      display: inline-block;
+      height: 45px;
+      width: 206px;
+      vertical-align: top;
+      color: #666666;
+    }
+  }
+  .arrow {
+    width: 16px;
+    top: 50%;
+    right: 0px;
+    margin-top: -8px;
+    position: absolute;
+
+    &-block {
+      display: block;
+      width: 16px; /*no*/
+      height: 16px; /*no*/
+      overflow: hidden;
+      &:after {
+        content: ' ';
+        display: block;
+        height: 8px; /*no*/
+        width: 8px; /*no*/
+        border-width: 1px 1px 0 0; /*no*/
+        border-color: #999999;
+        border-style: solid;
+        position: relative;
+      }
+      &.arrow-block-right {
+        &:after {
+          transform: rotate(45deg);
+          margin: 3px 0 0 2px;
+        }
+      }
+      &.arrow-block-up {
+        &:after {
+          transform: rotate(-45deg);
+          margin: 4px 0 0 2px;
+        }
+      }
+      &.arrow-block-down {
+        &:after {
+          transform: rotate(135deg);
+          margin: 2px 0 0 4px;
+        }
+      }
+      &.arrow-block-empty {
+        &:after {
+          border: none
+        }
+      }
+    }
+  }
+}
