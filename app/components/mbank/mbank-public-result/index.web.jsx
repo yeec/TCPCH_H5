@@ -72,14 +72,14 @@ class MbankPublicResult extends React.Component {
             {message ? (
               <div className="mbank-public-result-message">{message}</div>
             ) : null}
-            {/* {tMessage ? (
+            {tMessage ? (
               <div className="mbank-public-result-tMessage">
                 转账给 <span>{skName}</span>
                 <p>{skNum}</p>
                 <p>{fkcard}</p>
               </div>
-            ) : null} */}
-            {tMessage ? (
+            ) : null}
+            {/* {tMessage ? (
               <div className="mbank-public-result-tMessage">
                 <div>
                   转账给 <span>kkkk</span>
@@ -87,7 +87,7 @@ class MbankPublicResult extends React.Component {
                 <b>12312312312312312</b>
                 <p>asdfasdfasdfasdfkjklasdklf</p>
               </div>
-            ) : null}
+            ) : null} */}
           </div>
         ) : (
           <div className="mbank-public-result">
