@@ -9,7 +9,6 @@ import Common from "../../../../util/common.jsx";
 //基础组件
 import WhiteSpace from "../../../../components/Base/white-space/index.web.jsx";
 //业务组件
-
 import Schedule from "../../../../components/mbank/mbank-finance-schedule/index.jsx";
 import Parameter from "../../../../components/mbank/mbank-finance-schedule/parameter.js";
 import MbankCalendarList from "./Calendar-list/index.web.js";
@@ -154,15 +153,12 @@ export default class MbankSxcAList extends React.Component {
   //当月点击操作
   selectMonth = n => {
     let tags = this.state.tags;
-    // console.log("月份选择");
-    // console.log(tags);
     this.setState({
       openNoMonth: false,
       openNoData: true
     });
     // 判断当前选择月份是否有事件日，如无显示当月无事件
     if (tags.length == 1) {
-      // console.log("当前月份无事件");
       this.setState({
         openNoMonth: true,
         openNoData: false
@@ -172,8 +168,6 @@ export default class MbankSxcAList extends React.Component {
   //当日操作
   selectDay(n) {
     let tags = this.state.tags;
-    // console.log("日期选择");
-    // console.log(tags);
     this.setState({
       openNoMonth: false,
       openNoData: true
@@ -189,7 +183,7 @@ export default class MbankSxcAList extends React.Component {
 
   render() {
     const that = this;
-    const { monthList, selectionDate, tags, inDate } = that.state;
+    const { monthList, selectionDate } = that.state;
     return (
       <div>
         <Schedule

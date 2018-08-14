@@ -27,7 +27,7 @@ export default class MbankQrCodeConfirm extends React.Component {
       hbMoney: "",
       ljMoney: "",
       imgURL: "",
-      ljOpen:false
+      ljOpen: false
     };
     // 性能优化 （当数据重复时不做DOM渲染）
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(
@@ -87,11 +87,11 @@ export default class MbankQrCodeConfirm extends React.Component {
             money: sessionData.money
           });
         } else if (hblist.redpacketType == "01") {
-          console.log(hblist.redpacketCeiling,)
+          console.log(hblist.redpacketCeiling);
           this.setState({
             ljMoney: hblist.redpacketCeiling,
             money: sessionData.money - hblist.redpacketCeiling,
-            ljOpen:true,
+            ljOpen: true
           });
         }
       } else {
@@ -125,9 +125,6 @@ export default class MbankQrCodeConfirm extends React.Component {
     });
   };
   //页面跳转
-  goFirstPage = () => {
-    Common.setUrl("qrcode-home.html");
-  };
   render() {
     // console.log(this.state.shelfGoodsList.redpacketType);
     return (
@@ -149,10 +146,9 @@ export default class MbankQrCodeConfirm extends React.Component {
               <div onClick={this.displayRedPacket.bind()}>
                 <img src={this.state.imgURL} alt="" width="100%" />
               </div>
-              <WhiteSpace size="lg" />
             </div>
           ) : null}
-
+          <WhiteSpace size="lg" />
           <WingBlank size="lg">
             <Button
               type="ghost"

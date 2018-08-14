@@ -29,7 +29,7 @@ const runApp = function () {
 };
 
 if (dependencies.length > 0) {
-    $script.path('./static/polyfill/');
+    $script.path('../static/polyfill/');
     $script(dependencies,function () {
         if (window.Fastclick) {
             window.FastClick.attach(document.body);

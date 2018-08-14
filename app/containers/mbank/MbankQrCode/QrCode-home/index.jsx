@@ -14,7 +14,11 @@ import "../style/index.web.js";
 export default class MbankQrCodeHome extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {};
+    this.state = {
+      name: "天天来重庆老火锅",
+      money: "98.88",
+      card: "唐山银行信用卡(6768)"
+    };
     // 性能优化 （当数据重复时不做DOM渲染）
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(
       this
@@ -42,9 +46,9 @@ export default class MbankQrCodeHome extends React.Component {
       success: this.successCallBack
     });
     let info = {
-      name: "重庆老火锅西二旗店",
-      money: "98.88",
-      card: "唐山银行信用卡(6764)"
+      name: this.state.name,
+      money:this.state.money,
+      card: this.state.card
     };
     Common.addSessionData(API.SESSION_INVEST_SMF_MESSAGE, JSON.stringify(info));
     // Common.setUrl("qrcode-input.html");
@@ -70,7 +74,7 @@ export default class MbankQrCodeHome extends React.Component {
               <div className="ewm">
                 <div />
               </div>
-              <div className="card">唐山银行信用卡(6764)</div>
+              <div className="card">{this.state.card}</div>
             </div>
           </div>
           <div className="mbank-QrCode-tips">
