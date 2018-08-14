@@ -1222,36 +1222,40 @@ export default class MbankTransferBusinessInput extends React.Component {
 
     // fetch 渠道查询云证通是否开通 返回开通    若未开通  根据金额判断
 
-    $Fetch(API.API_QUERY_CST_BANK_SECURITIES, {
-      //默认固定上送报文
-      reqHead: {
-        //场景编码
-        sceneCode: "TF02",
-        //步骤编码(根据相应步骤填写字段（1,2,3,4）)
-        stepCode: "1",
-        //交易类型 1：查询类交易 2：账务类交易 3：管理类交易 4: 授权类交易 原生需映射，HTML异步请求需赋值
-        tradeType: "1",
-        //交易标识 1-主，2-副
-        flag: "2",
-        //服务接口版本号 1.0.0
-        serviceVersion: "1.0.0"
-      },
-      data: {}
-    }).then(res => {
-      if (Common.returnResult(res.rspHead.returnCode)) {
-        //查询渠道云证通开通标志 0 失败   1开通
-        that.setState({
-          approve: res.rspBody.openFlag
-        });
-      } else {
-        let alertDict = {
-          title: "错误提示",
-          msg: res.rspHead.returnMsg,
-          success_text: "确认",
-          cancel_text: "取消"
-        };
-        Common.showAppDialogAlert(alertDict);
-      }
+    // $Fetch(API.API_QUERY_CST_BANK_SECURITIES, {
+    //   //默认固定上送报文
+    //   reqHead: {
+    //     //场景编码
+    //     sceneCode: "TF02",
+    //     //步骤编码(根据相应步骤填写字段（1,2,3,4）)
+    //     stepCode: "1",
+    //     //交易类型 1：查询类交易 2：账务类交易 3：管理类交易 4: 授权类交易 原生需映射，HTML异步请求需赋值
+    //     tradeType: "1",
+    //     //交易标识 1-主，2-副
+    //     flag: "2",
+    //     //服务接口版本号 1.0.0
+    //     serviceVersion: "1.0.0"
+    //   },
+    //   data: {}
+    // }).then(res => {
+    //   if (Common.returnResult(res.rspHead.returnCode)) {
+    //     //查询渠道云证通开通标志 0 失败   1开通
+    //     that.setState({
+    //       approve: res.rspBody.openFlag
+    //     });
+    //   } else {
+    //     let alertDict = {
+    //       title: "错误提示",
+    //       msg: res.rspHead.returnMsg,
+    //       success_text: "确认",
+    //       cancel_text: "取消"
+    //     };
+    //     Common.showAppDialogAlert(alertDict);
+    //   }
+    // });
+
+    that.setState({
+      approve: "1"
     });
 
     //判断金额输入后，转账方式 以及 认证方式
