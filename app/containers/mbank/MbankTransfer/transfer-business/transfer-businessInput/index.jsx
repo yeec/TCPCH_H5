@@ -5,7 +5,6 @@ import PureRenderMixin from "react-addons-pure-render-mixin";
 import API from "../../../../../constants/api";
 ////公共方法
 import Common from "../../../../../util/common.jsx";
-import ContextDecorator from "../../../../../util/decorator/context-decorator";
 import $Fetch from "../../../../../fetch/fetch.js";
 import $native from "../../../../../native/native";
 //基础组件
@@ -24,7 +23,6 @@ import MbankTransferOutItem from "../../../../../components/mbank/mbank-public-a
 import MbankPublicInputMoney from "../../../../../components/mbank/mbank-public-input-money/index.web.jsx";
 import MbankTransferBank from "../../../../../components/mbank/mbank-public-select/mbank-transfer-bank/index.web.jsx";
 
-@ContextDecorator
 export default class MbankTransferBusinessInput extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -1130,7 +1128,7 @@ export default class MbankTransferBusinessInput extends React.Component {
     let transferbranches = that.state.transferBranches; //收款人开户网点
     let phoneinputval = that.state.phoneInputVal2; //通知收款人手机号
     let tipinputval = that.state.tipInputVal2; //附言
-    let approveWay = ""; //安全认证方式
+    let approveWay = "1002"; //安全认证方式
     let daySum = Number(this.state.daySum); //= Number("1900.01"); Number(this.state.daySum)
     let money = Number(moneyinputval);
     let flags = that.state.flags;
@@ -1272,96 +1270,96 @@ export default class MbankTransferBusinessInput extends React.Component {
 
     // 渠道返回开通云证通时
 
-    if (that.state.approve == "1") {
-      //开通后 不大于50w
-      if (money + daySum <= 1000000) {
-        //native 成功时 云证通1003
-        //客户端返回开通云证通错误时 如过金额小于2K 使用交易密码1001  如果大于2k小于5w  使用1002  若果大于5w 报错
-        //剩余限额为 (500000-daySum)
-        $native.callClientForBank(API.NATIVE_CODE_QUICK_OPEN_YZTWITHUSERINFO, {
-          success: res => {
-            //0开通且证书可用    展示结果  //1开通证书不可用或失效 下载可用   2 未开通
-            // approve = res;
-            that.setState({
-              yztSign: res
-            });
-          }
-        });
-        if (that.state.yztSign == "0") {
-          approveWay = "1003";
-        } else {
-          if (money + daySum <= 2000) {
-            approveWay = "1001";
-          } else if (money + daySum > 2000 && money + daySum <= 50000) {
-            approveWay = "1002";
-          } else {
-            let alertDict = {
-              title: "信息提示",
-              msg: "日转账超过5万元,不能进行转账",
-              success_text: "确认"
-            };
-            Common.showAppDialogAlert(alertDict);
-            return;
-          }
-        }
-      } else {
-        let alertDict = {
-          title: "信息提示",
-          msg: "日转账金额超过100万元,不能进行转账",
-          success_text: "确认"
-        };
-        Common.showAppDialogAlert(alertDict);
-        return;
-      }
-    } else {
-      //渠道返回未开通运政通时
-      // 剩余金额为 (50000 - daySum)
-      //单笔限额小于2k 并且 日累计+转账金额小于2k
-      if (money + daySum <= 2000) {
-        approveWay = "1001";
-      } //  单笔在2k与5w之间 并且 日累计+转账金额
-      else if (money + daySum > 2000 && money + daySum <= 50000) {
-        $native.callClientForBank(API.NATIVE_CODE_QUICK_OPEN_YZTWITHUSERINFO, {
-          success: res => {
-            //0开通且证书可用    展示结果  //1开通证书不可用或失效 下载可用   2 未开通
-            // approve = res;
-            that.setState({
-              yztSign: res
-            });
-          }
-        });
-        if (that.state.yztSign === "0") {
-          approveWay = "1003";
-        } else {
-          approveWay = "1002";
-        }
-      } else if (money + daySum > 50000) {
-        $native.callClientForBank(API.NATIVE_CODE_QUICK_OPEN_YZTWITHUSERINFO, {
-          success: res => {
-            //0开通且证书可用    展示结果  //1开通证书不可用或失效 下载可用   2 未开通
-            // approve = res;
-            that.setState({
-              yztSign: res
-            });
-          }
-        });
-        if (that.state.yztSign == "0") {
-          approveWay = "1003";
-        } else {
-          let alertDict = {
-            title: "信息提示",
-            msg: "日转账超过5万元,不能进行转账",
-            // cancel_text: "取消",
-            success_text: "确认"
-            // success: () => {
-            //     Common.setUrl("yunzhengtong/index.html");
-            // }
-          };
-          Common.showAppDialogAlert(alertDict);
-          return;
-        }
-      }
-    }
+    // if (that.state.approve == "1") {
+    //   //开通后 不大于50w
+    //   if (money + daySum <= 1000000) {
+    //     //native 成功时 云证通1003
+    //     //客户端返回开通云证通错误时 如过金额小于2K 使用交易密码1001  如果大于2k小于5w  使用1002  若果大于5w 报错
+    //     //剩余限额为 (500000-daySum)
+    //     $native.callClientForBank(API.NATIVE_CODE_QUICK_OPEN_YZTWITHUSERINFO, {
+    //       success: res => {
+    //         //0开通且证书可用    展示结果  //1开通证书不可用或失效 下载可用   2 未开通
+    //         // approve = res;
+    //         that.setState({
+    //           yztSign: res
+    //         });
+    //       }
+    //     });
+    //     if (that.state.yztSign == "0") {
+    //       approveWay = "1003";
+    //     } else {
+    //       if (money + daySum <= 2000) {
+    //         approveWay = "1001";
+    //       } else if (money + daySum > 2000 && money + daySum <= 50000) {
+    //         approveWay = "1002";
+    //       } else {
+    //         let alertDict = {
+    //           title: "信息提示",
+    //           msg: "日转账超过5万元,不能进行转账",
+    //           success_text: "确认"
+    //         };
+    //         Common.showAppDialogAlert(alertDict);
+    //         return;
+    //       }
+    //     }
+    //   } else {
+    //     let alertDict = {
+    //       title: "信息提示",
+    //       msg: "日转账金额超过100万元,不能进行转账",
+    //       success_text: "确认"
+    //     };
+    //     Common.showAppDialogAlert(alertDict);
+    //     return;
+    //   }
+    // } else {
+    //   //渠道返回未开通运政通时
+    //   // 剩余金额为 (50000 - daySum)
+    //   //单笔限额小于2k 并且 日累计+转账金额小于2k
+    //   if (money + daySum <= 2000) {
+    //     approveWay = "1001";
+    //   } //  单笔在2k与5w之间 并且 日累计+转账金额
+    //   else if (money + daySum > 2000 && money + daySum <= 50000) {
+    //     $native.callClientForBank(API.NATIVE_CODE_QUICK_OPEN_YZTWITHUSERINFO, {
+    //       success: res => {
+    //         //0开通且证书可用    展示结果  //1开通证书不可用或失效 下载可用   2 未开通
+    //         // approve = res;
+    //         that.setState({
+    //           yztSign: res
+    //         });
+    //       }
+    //     });
+    //     if (that.state.yztSign === "0") {
+    //       approveWay = "1003";
+    //     } else {
+    //       approveWay = "1002";
+    //     }
+    //   } else if (money + daySum > 50000) {
+    //     $native.callClientForBank(API.NATIVE_CODE_QUICK_OPEN_YZTWITHUSERINFO, {
+    //       success: res => {
+    //         //0开通且证书可用    展示结果  //1开通证书不可用或失效 下载可用   2 未开通
+    //         // approve = res;
+    //         that.setState({
+    //           yztSign: res
+    //         });
+    //       }
+    //     });
+    //     if (that.state.yztSign == "0") {
+    //       approveWay = "1003";
+    //     } else {
+    //       let alertDict = {
+    //         title: "信息提示",
+    //         msg: "日转账超过5万元,不能进行转账",
+    //         // cancel_text: "取消",
+    //         success_text: "确认"
+    //         // success: () => {
+    //         //     Common.setUrl("yunzhengtong/index.html");
+    //         // }
+    //       };
+    //       Common.showAppDialogAlert(alertDict);
+    //       return;
+    //     }
+    //   }
+    // }
 
     // let daySum = Number(this.state.daySum); //= Number("1900.01"); Number(this.state.daySum)
     // let money = Number(moneyinputval);
@@ -1417,7 +1415,7 @@ export default class MbankTransferBusinessInput extends React.Component {
       transferBranches: transferbranches,
       phone: phoneinputval,
       tip: tipinputval,
-      approveWay: approveWay,
+      approveWay: "1002",
       ueradd: this.state.useAdd
     };
 
@@ -1426,7 +1424,7 @@ export default class MbankTransferBusinessInput extends React.Component {
       JSON.stringify(params)
     );
     // hashHistory.push('/transfer-businessConfirm')
-    Common.setUrl("transfer-businessConfirm/index.html");
+    Common.setUrl("transfer-businessConfirm.html");
   }
   //   getBankID (出参：卡号bank_NUM， 卡名bank_NAME，)
   ocrClick() {
@@ -1608,16 +1606,16 @@ export default class MbankTransferBusinessInput extends React.Component {
           <Button
             type="primary"
             size="default"
-            disabled={
-              !(
-                this.state.moneyInputVal2 &&
-                this.state.cardInputVal2 &&
-                this.state.nameInputVal2 &&
-                this.state.transferBank &&
-                this.state.tipInputVal2 &&
-                this.state.moneyInputVal2 != "0.00"
-              )
-            }
+            // disabled={
+            //   !(
+            //     this.state.moneyInputVal2 &&
+            //     this.state.cardInputVal2 &&
+            //     this.state.nameInputVal2 &&
+            //     this.state.transferBank &&
+            //     this.state.tipInputVal2 &&
+            //     this.state.moneyInputVal2 != "0.00"
+            //   )
+            // }
             onTap={this.jumpquickpage2.bind(this)}
           >
             确认

@@ -5,6 +5,7 @@ import API from "../../../../constants/api";
 //公共方法
 import Common from "../../../../util/common.jsx";
 import $native from "../../../../native/native";
+import $Fetch from "../../../../fetch/fetch.js";
 //基础组件
 import WhiteSpace from "../../../../components/Base/white-space/index.web.jsx";
 import WingBlank from "../../../../components/Base/wing-blank/index.web.jsx";
@@ -14,6 +15,8 @@ import $ from "jquery";
 
 //业务组件
 import "../style/index.web.js";
+import MbankTransferOutItem from "../../../../components/mbank/mbank-public-account-select2/index.web.jsx";
+import Modal from "../../../../components/mbank/mbank-public-select/mbank-public-select-modal/index.web.js";
 
 export default class MbankQrCodeInput extends React.Component {
   constructor(props, context) {
@@ -26,7 +29,10 @@ export default class MbankQrCodeInput extends React.Component {
       loginPasswordmlength2: "",
       loginPassword: "",
       loginPasswordm: "",
-      keyKbHide: ""
+      keyKbHide: "",
+      List2: [], //下挂账户列表使用
+      ListOut: [], //模态框下挂列表选择返回
+      currentAccount2: [], //转出列表下挂账户信息
     };
     // 性能优化 （当数据重复时不做DOM渲染）
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(
@@ -35,6 +41,7 @@ export default class MbankQrCodeInput extends React.Component {
   }
   //初始化生命周期
   componentDidMount() {
+    let that = this;
     $native.callClientForUI(API.NATIVE_CODE_UPDATE_TITLE, {
       title: "确认并付款",
       leftButton: {
@@ -51,7 +58,59 @@ export default class MbankQrCodeInput extends React.Component {
       money: Common.setMoneyFormat(sessionData.money),
       card: sessionData.card
     });
-    console.log(sessionData);
+    //1、获取转出账户列表
+    $Fetch(API.API_GET_OWN_ACCOUNTS, {
+      //默认固定上送报文
+      reqHead: {
+        //场景编码
+        sceneCode: "TF02",
+        //步骤编码(根据相应步骤填写字段（1,2,3,4）)
+        stepCode: "1",
+        //交易类型 1：查询类交易 2：账务类交易 3：管理类交易 4: 授权类交易 原生需映射，HTML异步请求需赋值
+        tradeType: "1",
+        //交易标识 1-主，2-副
+        flag: "2",
+        //服务接口版本号 1.0.0
+        serviceVersion: "1.0.0"
+      },
+      data: {}
+    }).then(res => {
+      if (Common.returnResult(res.rspHead.returnCode)) {
+        //
+        Common.checkUnderAccount(res.rspBody.returnList);
+        that.setState({
+          List2: res.rspBody.returnList,
+          customerName: res.rspBody.customerName
+        });
+
+        if (
+          Common.getSessionData(API.SESSION_TRANSFER_RESULTCALLBACK) ===
+          "accountMain"
+        ) {
+          // 4、账户管理跳转传值问题
+          $native.callClientForUI(API.NATIVE_CODE_STOREDATA, {
+            success: res => {
+              let item = JSON.parse(res);
+              that.setState({
+                currentAccount2: item
+              });
+            }
+          });
+        }
+
+        if (that.state.currentAccount2.length == 0) {
+          res.rspBody.returnList.map(function(item, i) {
+            item.now = "0";
+            if (i === 0) {
+              item.now = "1";
+              that.setState({
+                currentAccount2: item
+              });
+            }
+          });
+        }
+      }
+    });
   }
   // 调用客户端键盘接口
   //  “amount”:金额键盘，“num”:纯数字键盘，“numAndChar”:数字字母组合键盘，“pwd”:密码键盘
@@ -119,6 +178,41 @@ export default class MbankQrCodeInput extends React.Component {
     Common.setUrl("qrcode-confirm/index.html");
     $native.callClientForBank(API.NATIVE_CODE_HIDEKEYBOARD, {});
   };
+  //下挂账户列表显示modal框
+  showAccountListBox2() {
+    let that = this;
+    this.setState({
+      pickerVisible: true
+    });
+    let allaccount = that.state.List2.map(function(item, i) {
+      item.cusName = that.state.customerName;
+      return JSON.stringify(item);
+    });
+    Modal.transferPaymentAccount(
+      {
+        items: allaccount,
+        titleText: "选择账户",
+        close: Common.closeModal
+      },
+      function(key) {
+        let accountListNew2 = that.state.List2.map(function(item, i) {
+          item.now = "0";
+          if (i === key) {
+            item.now = "1";
+            that.setState({
+              currentAccount2: item
+            });
+          }
+          return item;
+        });
+
+        that.setState({
+          ListOut: accountListNew2
+        });
+        Common.closeModal();
+      }
+    );
+  }
   render() {
     let CurrentAccount2 = this.state.currentAccount2;
     return (
@@ -137,11 +231,13 @@ export default class MbankQrCodeInput extends React.Component {
             <div className="mbank-QrCode-input-box">
               <div className="info">
                 <p>支付金额</p>
-                <span>{this.state.money}</span>
-                <div>
-                  <span>{this.state.card}</span>
-                  <span>更换</span>
-                </div>
+                <span><span>￥</span> {this.state.money} <span>元</span></span>
+                <MbankTransferOutItem
+                cardnum={CurrentAccount2.acNo}
+                name={this.state.customerName}
+                money={CurrentAccount2.availBal}
+                showdetail={this.showAccountListBox2.bind(this)}
+              />
               </div>
               <Input.Group>
                 <Input

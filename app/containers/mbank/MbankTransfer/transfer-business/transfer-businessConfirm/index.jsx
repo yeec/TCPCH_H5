@@ -8,18 +8,16 @@ import Common from "../../../../../util/common.jsx";
 import $native from "../../../../../native/native";
 import $Fetch from "../../../../../fetch/fetch.js";
 import $ from "jquery";
-import ContextDecorator from "../../../../../util/decorator/context-decorator";
 //基础组件
 import WhiteSpace from "../../../../../components/Base/white-space/index.web.jsx";
 import WingBlank from "../../../../../components/Base/wing-blank/index.web.jsx";
 import Button from "../../../../../components/Base/button/index.web.jsx";
 import Input from "../../../../../components/Base/input-list/index.web.jsx";
-
+import Modal from "../../../../../components/Base/modal/index.web.js";
 //业务组件
 import MbankPublicResult from "../../../../../components/mbank/mbank-public-result/index.web.jsx";
 import MbankTransferConfirm from "../../../../../components/mbank/mbank-public-confirm-info/index.web.jsx";
-
-@ContextDecorator
+import "./style/index.web";
 export default class MbankTransferBusinessConfirm extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -44,7 +42,12 @@ export default class MbankTransferBusinessConfirm extends React.Component {
       useAdd: "",
       account: "",
       smsFigureSizeNum: "",
-      keyKbHide: ""
+      ukeyFigureSizeNum: "",
+      ukeyCode: "",
+      keyKbHide: "",
+      dxYz: true,
+      uKeyYz: false,
+      yzCode: ""
     };
     // 性能优化 （当数据重复时不做DOM渲染）
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(
@@ -72,33 +75,12 @@ export default class MbankTransferBusinessConfirm extends React.Component {
     let listdata = JSON.parse(
       Common.getSessionData(API.SESSION_TRANSFER_CONFIRMDATA)
     );
-    console.log(listdata.transfertypenow);
-    // console.log(111111)
-
-    // let confirmtypes = listdata.confirmType.map(function (item, i) {
-    //     if (item.currents === "1") {
-    //         that.setState({
-    //             ConfirmTypesNow: item.titles
-    //         })
-    //     }
-    //     if (i === 0) {
-    //         that.setState({
-    //             PhoneNum: Common.setPhoneNumFour(item.phonenum)
-    //         })
-    //         Common.addSessionData(API.SESSION_TRANSFER_PHONENUM, item.phonenum);
-    //     }
-    //     return JSON.stringify(item);
-    // })
     that.setState({
       List: listdata,
       ListPay: listdata.currentAccount,
       transferTypeNow: listdata.transfertypenow,
       useAdd: listdata.ueradd
-      // accountName1:listdata.customerName,
-      // accountName2:listdata.name,
-      // ConfirmTypes: confirmtypes
     });
-
     // 发短信模板
     let data = {
       templateNo: "sms00000002",
@@ -110,8 +92,51 @@ export default class MbankTransferBusinessConfirm extends React.Component {
       API.SESSION_SMS_DATA_AFTER_LOGIN,
       JSON.stringify(data)
     );
+    // that.getKeyTools();
   }
-
+  getKeyTools() {
+    $Fetch(API.API_SAVE_PAYEE_QUERYSAFETOOL, {
+      //默认固定上送报文
+      reqHead: {
+        //场景编码
+        sceneCode: "TF02",
+        //步骤编码(根据相应步骤填写字段（1,2,3,4）)
+        stepCode: "1",
+        //交易类型 1：查询类交易 2：账务类交易 3：管理类交易 4: 授权类交易 原生需映射，HTML异步请求需赋值
+        tradeType: "1",
+        //交易标识 1-主，2-副
+        flag: "2",
+        //服务接口版本号 1.0.0
+        serviceVersion: "1.0.0"
+      },
+      // 交易上送报文
+      data: {
+        //上送验证金额
+        // transAmt: this.state.List.money
+        transAmt: "300"
+      }
+    }).then(res => {
+      if (Common.returnResult(res.rspHead.returnCode)) {
+        // 2002 短信认证
+        let resultMap = res.rspBody.resultMap;
+        if (resultMap == "2002") {
+          this.setState({
+            //返回验证方式
+            dxYz: true,
+            yzCode: resultMap
+            // clickState:"1"
+          });
+        } // 2003 指纹
+        else if (resultMap == "2003") {
+          this.setState({
+            //返回验证方式
+            uKeyYz: true,
+            yzCode: resultMap
+          });
+        }
+      }
+    });
+  }
   //短信验证码输入获取
   setAuthinputval(vals) {
     this.setState({
@@ -133,16 +158,15 @@ export default class MbankTransferBusinessConfirm extends React.Component {
     });
   }
 
-  //**************1111111************check input**************************
+  //**************************check input**************************
   checkInput() {
     let confirmTypes = this.state.List.confirmType;
     let authcode = this.state.AuthCode;
-    let approveWay = this.state.List.approveWay;
-
+    let yzCode = this.state.yzCode;
+    let ukeyCode = this.state.ukeyCode;
     //let randomid = Common.getSessionData(API.SESSION_AUTH_CODE_RANDOM);
-
     // 短信验证码必须发送
-    if (this.state.clickState == "1" && approveWay === "1002") {
+    if (this.state.clickState == "1" && yzCode === "2002") {
       let alertDict = {
         title: "提示信息",
         msg: "请获取短信验证码",
@@ -152,7 +176,7 @@ export default class MbankTransferBusinessConfirm extends React.Component {
       return;
     }
 
-    if (authcode === "" && approveWay === "1002") {
+    if (authcode === "" && yzCode === "2002") {
       // 调取弹出框提示信息
       let alertDict = {
         title: "错误提示",
@@ -163,11 +187,32 @@ export default class MbankTransferBusinessConfirm extends React.Component {
       return;
     }
 
-    if (authcode.length < 6 && approveWay === "1002") {
+    if (authcode.length < 6 && yzCode === "2002") {
       // 调取弹出框提示信息
       let alertDict = {
         title: "错误提示",
         msg: "请输入正确格式短信验证码",
+        success_text: "确认"
+      };
+      Common.showAppDialogAlert(alertDict);
+      return;
+    }
+    if (ukeyCode === "" && yzCode === "2003") {
+      // 调取弹出框提示信息
+      let alertDict = {
+        title: "错误提示",
+        msg: "动态令牌验证码不能为空",
+        success_text: "确认"
+      };
+      Common.showAppDialogAlert(alertDict);
+      return;
+    }
+
+    if (authcode.ukeyCode < 6 && yzCode === "2003") {
+      // 调取弹出框提示信息
+      let alertDict = {
+        title: "错误提示",
+        msg: "请输入正确格式动态令牌验证码",
         success_text: "确认"
       };
       Common.showAppDialogAlert(alertDict);
@@ -196,8 +241,10 @@ export default class MbankTransferBusinessConfirm extends React.Component {
       },
       // 交易上送报文
       data: {
-        payAccNo: this.state.ListPay.acNo, //  付款人卡号,//	付款账号
-        subPayAccount: this.state.List.accountNum, //  收款人卡号,//	收款账号
+        payAccNo: this.state.ListPay.acNo, //  付款人卡号,
+        //	付款账号
+        subPayAccount: this.state.List.accountNum, //  收款人卡号,
+        //	收款账号
         payAmount: this.state.List.money, //  交易金额//	付款金额
         accountName1: this.state.List.customerName,
         accountName2: this.state.List.name
@@ -277,13 +324,11 @@ export default class MbankTransferBusinessConfirm extends React.Component {
           Common.showAppDialogAlert(alertDict);
         }
       } else {
-        // this.genSignature()
         //验证交易密码
         this.showKeyBoard1();
       }
     });
   }
-
   // 调用客户端键盘接口
   //  “amount”:金额键盘，“num”:纯数字键盘，“tradePsw”:交易密码，“pwd”:登录密码
   showKeyBoard1() {
@@ -331,23 +376,6 @@ export default class MbankTransferBusinessConfirm extends React.Component {
     let checkBusiness = ""; //	"云证通参与签名字段"	String			O	"安全工具为1003时必输。中间已|分隔"	例如：payAccNo|payAccName|transAmt
     let businessRunningNo = ""; //	机构交易流水号	String			O	安全工具为1003时必输
     let resiveMoblie = this.state.List.phone; //收款人手机号
-    // payAccNo	付款人卡号
-    // payAccName	付款人名称
-    // transAmt	交易金额
-    // isPosthaste	是否加急
-    // resiveAccNo	收款人卡号
-    // resiveAccName	收款人户名
-    // resiveBankName	收款人银行行名
-    // resiveBankNo	收款人银行联行号
-    // safeTool	安全工具
-    // cloudsCode	云证通签名`````````````````
-    // remitterTel	付款人联系电话
-    // smsCode	短信验证码``````````````
-    // postscript	客户附言
-    // passwd	交易密码
-    // checkBusiness	"云证通参与签名字段"1```````
-    // businessRunningNo	机构交易流水号`````````
-    // resiveMoblie	收款人接收短信通知手机号
     let signContent =
       "payAccNo=" +
       payAccNo +
@@ -372,128 +400,6 @@ export default class MbankTransferBusinessConfirm extends React.Component {
       "&resiveMoblie=" +
       resiveMoblie;
     //机构签名
-
-    // 安全工具为1003时
-    // if (safeTool == "1003") {
-    //   //1、获取转出账户列表
-    //   $Fetch(API.API_GET_GENSIGNATURE, {
-    //     //默认固定上送报文
-    //     reqHead: {
-    //       //场景编码
-    //       sceneCode: "TF02",
-    //       //步骤编码(根据相应步骤填写字段（1,2,3,4）)
-    //       stepCode: "1",
-    //       //交易类型 1：查询类交易 2：账务类交易 3：管理类交易 4: 授权类交易 原生需映射，HTML异步请求需赋值
-    //       tradeType: "1",
-    //       //交易标识 1-主，2-副
-    //       flag: "2",
-    //       //服务接口版本号 1.0.0
-    //       serviceVersion: "1.0.0"
-    //     },
-    //     data: {
-    //       signContent: signContent
-    //     }
-    //   }).then(res => {
-    //     // {
-    //     //     "businessRunningNo": "20160405171342795O0HYPOQ0",
-    //     //     "createDate": "2016-07-04 14:45:23",
-    //     //     "service": " mobile.HKESDK.sign",
-    //     //     "attach": "testtest",
-    //     //     "certSN": "2000065625",
-    //     // "businessText": "fromAccount=1234567890123456&payeeName=吴凡& receivingBank=2 & payeeAccount=6543 ******** 3210 & payeePhoneNo=6543 ******** 3210 & amount=999.9 & remark=OK"}
-    //     // jsonObject.put("businessRunningNo", businessRunningNo);//交易流水号
-    //     // jsonObject.put("createDate", createDate);//创建日期
-    //     // jsonObject.put("service", service);//接口名称
-    //     // jsonObject.put("hashAlg", hashAlg);//签名原文hash类型
-    //     // jsonObject.put("signWithoutHash", signWithoutHash);//签名原文hash类型
-    //     // jsonObject.put("certSN", certSN);//服务器证书序列号
-    //     // jsonObject.put("businessText", signContent);//交易原文
-    //     if (Common.returnResult(res.rspHead.returnCode)) {
-    //       let businessRunningNo = res.rspBody.businessRunningNo;
-    //       let createDate = res.rspBody.createDate;
-    //       let service = res.rspBody.service;
-    //       let hashAlg = res.rspBody.hashAlg;
-    //       let signWithoutHash = res.rspBody.signWithoutHash;
-    //       let certSN = res.rspBody.certSN;
-    //       let businessText = res.rspBody.businessText;
-    //       let decodeBase64 = res.rspBody.decodeBase64;
-    //       let signatureText = res.rspBody.signatureText;
-    //       let sourceOrgSignature = res.rspBody.signature;
-
-    //       let params = {
-    //         businessRunningNo: businessRunningNo,
-    //         createDate: createDate,
-    //         service: service,
-    //         // hashAlg: hashAlg,
-    //         // signWithoutHash: signWithoutHash,
-    //         certSN: certSN,
-    //         signatureText: signatureText,
-    //         // decodeBase64: decodeBase64,
-    //         businessText: businessText
-    //       };
-
-    //       // {"businessRunningNo":"05000201712210100048971010004897","createDate":"2017-12-21 17:22:03","service":"mobile.HKESDK.sign","certSN":"4002864805","businessText":"payAccNo=6231990000002368030&payAccName=郭苏伟&transAmt=123&isPosthaste=1&resiveAccNo=6231990000002368170&resiveAccName=杨明&resiveBankName=凉山州商业银行&resiveBankNo=313684093748&safeTool=1003&remitterTel=&postscript=手机转账&resiveMoblie=13910160980"}
-
-    //       let signatureTextping =
-    //         '{"businessRunningNo":"' +
-    //         businessRunningNo +
-    //         '","createDate":"' +
-    //         createDate +
-    //         '","service":"' +
-    //         service +
-    //         '","certSN":"' +
-    //         certSN +
-    //         '","businessText":"' +
-    //         businessText +
-    //         '"}';
-
-    //       this.setState({
-    //         businessRunningNo: businessRunningNo,
-    //         sourceString1: signatureText,
-    //         sourceOrgSignature1: sourceOrgSignature
-    //       });
-
-    //       //
-    //       //客户端签名 sourceString 签名后字段 JSON.stringify(params)
-    //       // 云证通签名接口：yztMessageSign   入参：（成功回调、签名原文、服务器签名） 出参：
-    //       $native.callClientForBank(API.NATIVE_CODE_YZTMESSAGESIGN, {
-    //         sourceString: signatureTextping, //this.state.sourceString1,
-    //         sourceOrgSignature: this.state.sourceOrgSignature1,
-    //         success: res => {
-    //           if (res == 0) {
-    //             //下载失败
-    //             let alertDict = {
-    //               title: "信息提示",
-    //               msg: "云证通签名客户端失败，请重新进行交易",
-    //               success_text: "确认",
-    //               success: () => {
-    //                 Common.setUrl("transfer-businessInput/index.html");
-    //               }
-    //             };
-    //             Common.showAppDialogAlert(alertDict);
-    //           } else if (res == 1) {
-    //             //下载成功进行转账
-    //             this.showResultPage();
-    //           }
-    //         }
-    //       });
-    //     } else {
-    //       let alertDict = {
-    //         title: "信息提示",
-    //         msg: "云证通签名失败，请重新进行交易",
-    //         success_text: "确认",
-    //         success: () => {
-    //           Common.setUrl("transfer-businessInput/index.html");
-    //         }
-    //       };
-    //       Common.showAppDialogAlert(alertDict);
-    //     }
-    //   });
-    // } else {
-    //   //其他类型安全认证方式 直接进行转账
-    //   this.showResultPage();
-    // }
-
     this.showResultPage();
   }
 
@@ -525,39 +431,12 @@ export default class MbankTransferBusinessConfirm extends React.Component {
     let resiveMoblie = this.state.List.phone; //收款人手机号
 
     if (safeTool == "1003") {
-      // let signContent =
-      // "payAccNo=" + payAccNo
-      // + "&payAccName=" + payAccName
-      // + "&transAmt=" + transAmt
-      // + "&isPosthaste=" + isPosthaste
-      // + "&resiveAccNo=" + resiveAccNo
-      // + "&resiveAccName=" + resiveAccName
-      // + "&resiveBankName=" + resiveBankName
-      // + "&resiveBankNo=" + resiveBankNo
-      // + "&safeTool=" + safeTool
-      // + "&remitterTel=" + remitterTel
-      // + "&postscript=" + postscript
-      // + "&passwd=" + passwd
-      // + "&resiveMoblie=" + resiveMoblie
       checkBusiness =
         "payAccNo|payAccName|transAmt|isPosthaste|resiveAccNo|resiveAccName|resiveBankName|resiveBankNo|safeTool|postscript|resiveMoblie";
-
-      // cloudsCode = this.state.sourceOrgSignature;
       businessRunningNo = this.state.businessRunningNo;
     }
 
     let params = {
-      /*
-             payAccNo	付款人卡号
-             payAccName	付款人名称
-             transAmt	交易金额
-             isPosthaste	是否加急
-             resiveAccNo	收款人卡号
-             resiveAccName	收款人户名
-             resiveBankName	收款人银行行名
-             resiveBankNo	收款人银行联行号
-             */
-
       payAccNo: this.state.ListPay.acNo, //  付款人卡号
       payAccName: this.state.List.customerName, //  付款人名称
       transAmt: this.state.List.money, //  交易金额
@@ -714,20 +593,12 @@ export default class MbankTransferBusinessConfirm extends React.Component {
               returnCode: "error",
               // returnMsg: "您好，您的转账交易失败，有疑问请拨打客户电话：0834-96834。错误码:" + res.rspHead.returnCode
               returnMsg:
-                "您好，您的转账交易失败，有疑问请拨打客户电话：0834-96834。错误码:" +
+                "您好，您的转账交易失败，有疑问请拨打客户电话 9999。错误码:" +
                 res.rspHead.returnCode +
                 ",错误信息:" +
                 res.rspHead.returnMsg
             });
           }
-
-          // let alertDict = {
-          //     title: "信息提示",
-          //     msg: res.rspHead.returnCode + res.rspHead.returnMsg,
-          //     success_text: "确认",
-          //
-          // };
-          // Common.showAppDialogAlert(alertDict);
         }
       }
     });
@@ -832,6 +703,32 @@ export default class MbankTransferBusinessConfirm extends React.Component {
     $("#" + newId).show();
   };
 
+  ukeyitemcheck = newId => {
+    this.setState({
+      ukeyCode: "",
+      ukeyFigureSizeNum: ""
+    });
+    let that = this;
+    //展示光标
+    $("#" + newId).show();
+    $native.callClientForBank(API.NATIVE_CODE_SHOWKEYBOARD, {
+      type: "num",
+      maxLength: "6",
+      //关闭键盘回调函数，并传入关闭的光标的Id
+      cancel: that.cancelKb.bind(this, newId),
+      success: res => {
+        let jsons = JSON.parse(res);
+        this.setState({
+          ukeyCode: jsons.text,
+          ukeyFigureSizeNum: jsons.pswLength
+        });
+
+        ukeyitemcheck();
+      }
+    });
+    $("#" + newId).show();
+  };
+
   cancelKbGb = val => {
     let kbId = this.state.keyKbHide;
     if (kbId) {
@@ -865,7 +762,7 @@ export default class MbankTransferBusinessConfirm extends React.Component {
             money={this.state.List.money + ""}
             message={<div>实时转账</div>}
             tMessage={true}
-            skName={this.state.List.customerName}
+            skName={this.state.List.name}
             skNum={this.state.List.accountNum}
             fkcard={this.state.List.acNo}
           />
@@ -893,12 +790,9 @@ export default class MbankTransferBusinessConfirm extends React.Component {
             />
           </MbankTransferConfirm.Group>
           <WhiteSpace size="sm" />
-          <Input.Group>
-            {/*<Cell title="认证方式" description={this.state.ConfirmTypesNow} onTap={this.showConfirmTypeBox.bind(this)}*/}
-            {/*arrow="right"/> // <div className="mbank-modal-phone-tip">已向您尾号为{this.state.PhoneNum}的手机号发送验证码</div>
-                         editable={true} onClick={this.showKeyBoard.bind(this)}*/}
 
-            {this.state.List.approveWay === "1002" ? (
+          {this.state.dxYz == true ? (
+            <Input.Group>
               <Input.Sms
                 iddatas={"autoinput"}
                 clickState={this.setClickState.bind(this)}
@@ -915,13 +809,33 @@ export default class MbankTransferBusinessConfirm extends React.Component {
                 finalval={this.setAuthinputval.bind(this)}
                 maxLength={"6"}
               />
-            ) : null}
+            </Input.Group>
+          ) : null}
 
-            {/* <Input placeholder="请输入" labelNumber={6} type="password"
-                            maxLength={6} editable={false} value={this.state.passwordInputVal}
-                            onClick={this.showKeyBoard1.bind(this)}
-                            onChange={this.setPassWordinputval.bind(this)}>交易密码</Input> */}
-          </Input.Group>
+          {this.state.uKeyYz == true ? (
+            <div>
+              <div className="dtlp">
+                <p>请在动态令牌中输入以下数字</p>
+                <p>
+                  <span>009812</span>
+                </p>
+              </div>
+              <Input.Group>
+                <Input
+                  type="text"
+                  maxLength={100}
+                  placeholder="请输入动态令牌验证码"
+                  labelNumber={5}
+                  id="uKeyLp"
+                  onClick={this.ukeyitemcheck.bind(this, "uKeyLp")}
+                  cursorSize={this.state.ukeyFigureSizeNum}
+                  value={this.state.ukeyCode}
+                >
+                  动态令牌
+                </Input>
+              </Input.Group>
+            </div>
+          ) : null}
           <WhiteSpace size="lg" />
           <WingBlank size="lg">
             <Button
@@ -935,10 +849,6 @@ export default class MbankTransferBusinessConfirm extends React.Component {
         </div>
         {/***************************** 3、交易结果信息 *************************/}
         <div ref="myResult" style={{ display: "none" }}>
-          {/*<MbankPublicResult type="error" title="转账失败" money={this.state.List.money + ""}*/}
-          {/*message={<div>尊敬的用户，您的转账失败，请重新进行转账交易。</div>}/>*/}
-          {/*<MbankPublicResult type="wait" title="转账申请已提交" money={this.state.List.money + ""}*/}
-          {/*message={<div>尊敬的用户，您的转账申请已经提交，转账将在<b>2小时</b>到账，节假日及非工作时间顺延。</div>}/>*/}
           <MbankPublicResult
             type={this.state.returnCode}
             message={this.state.returnMsg}
@@ -972,12 +882,6 @@ export default class MbankTransferBusinessConfirm extends React.Component {
               content={this.state.List.tip}
             />
           </MbankTransferConfirm.Group>
-          {/*保存收款人*/}
-          {/*<MbankTransferSavePeople banklogo={allData.inBankLogo}*/}
-          {/*name={allData.name}*/}
-          {/*bankname={allData.transferBank}*/}
-          {/*accountnum={allData.accountNum}*/}
-          {/*checkedState={this.saveReceiver.bind(this)}/>*/}
           <WhiteSpace size="lg" />
           <WingBlank size="lg">
             <Button

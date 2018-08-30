@@ -107,7 +107,7 @@ class MbankTransferRecent extends React.Component {
     Common.addSessionData(API.SESSION_TRANSFER_RESULTCALLBACK, "transferMain");
     Common.addSessionData(API.SESSION_TRANSFER_USER_DATA, JSON.stringify(val));
     Common.addSessionData(API.SESSION_TRANSFER_USER_TONGDAO, this.state.fages);
-    Common.setUrl("transfer-businessInput/index.html");
+    Common.setUrl("transfer-businessInput.html");
     // hashHistory.push('/transfer-businessInput')
   };
 

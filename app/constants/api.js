@@ -108,6 +108,8 @@ const transfer = {
 	API_GET_TRANSFER_RESULT: "transfer/transferByMobileBank", //获取转账结果
 	API_SAVE_PAYEE_MESSAGE: "SavePayeeMessage", //保存本次收款账户信息
 	API_SAVE_PAYEE_QUERYREAL: "system/queryRealTransfer", //查询大额通道是否通顺
+	API_SAVE_PAYEE_QUERYSAFETOOL: "transfer/querySafeTool", //安全认证方式
+
 };
 
 

@@ -329,20 +329,18 @@ class Common extends React.Component {
     }
 
     // 卡号  四个星  后四位
-    // static setAccountNum(cardNum, starsMore) {
-    //     let cardnumnew = "";
-    //     if (typeof cardNum !== "string") {
-    //         cardNum = cardNum + "";
-    //     }
-    //     let cardnumstr = cardNum;
-    //     let cardnumarr = cardNum.split("");
-    //     let cardnumstr2 = cardnumarr.reverse().slice(0, 4).reverse().join("");
-        
-    //     cardnumnew = "****" + " " + cardnumstr2 
-    //     console.log(cardnumnew)
-    //     return cardnumnew;
-    // }
-
+    static setAccountNum4(cardNum, starsMore) {
+        let cardnumnew = "";
+        if (typeof cardNum !== "string") {
+            cardNum = cardNum + "";
+        }
+        let cardnumstr = cardNum;
+        let cardnumarr = cardNum.trim().split("");
+        let cardnumstr2 = cardnumarr.slice(-4).join("");
+        console.log(cardnumstr2)
+        cardnumnew = (starsMore ? "**** " : "**** ") + cardnumstr2;
+        return cardnumnew;
+    }
     // 手机号
     static setPhoneNumFour(phoneNum) {
         let phoneNumnew = "";

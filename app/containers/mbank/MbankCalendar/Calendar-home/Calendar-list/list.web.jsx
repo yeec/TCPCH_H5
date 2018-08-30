@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from "react";
 //业务组件
 //API数据接口
-import API from "./../../../../../constants/api";
 //公共方法
-import $native from "./../../../../../native/native";
 import Common from "../../../../../util/common.jsx";
 import formatMoney from "./../../../../../util/common/accounting-js/formatMoney.js";
 
@@ -20,18 +18,12 @@ export default class MbankAccountList extends React.Component {
     this.props.MethodFn(url, info);
   }
 
-  // 跳转至转账
-  goTransfer(url, info) {
-    //转账结果界面跳转传值
-    Common.removeSessionData(API.SESSION_TRANSFER_RESULTCALLBACK);
-    Common.addSessionData(API.SESSION_TRANSFER_RESULTCALLBACK, "accountMain");
-    //跳转至转账录入模块
-    Common.setUrl("transfer-businessInput.html");
-    let params = JSON.stringify(info);
-    //传值
-    $native.callClientForUI(API.NATIVE_CODE_STOREDATA, { params });
+  urlFianceDetail=()=>{
+    Common.setUrl("finance-hold/index.html");
   }
-
+  urlTransfer=()=>{
+    Common.setUrl("transfer-businessInput/index.html");
+  }
   render() {
     const { props } = this;
     let {
@@ -88,7 +80,7 @@ export default class MbankAccountList extends React.Component {
                 <span>{resiveOpenBank}</span>
               </p>
             </div>
-            <div>
+            <div onClick={this.urlTransfer}>
               <span>查看</span>
             </div>
           </div>
@@ -118,7 +110,7 @@ export default class MbankAccountList extends React.Component {
                 <span>{` ${formatMoney(prdInterest, { symbol: "￥" })}`} 元</span>
               </p>
             </div>
-            <div>
+            <div onClick={this.urlFianceDetail}>
               <span>查看</span>
             </div>
           </div>

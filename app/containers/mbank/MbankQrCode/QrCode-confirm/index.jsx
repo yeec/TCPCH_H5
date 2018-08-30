@@ -107,7 +107,7 @@ export default class MbankQrCodeConfirm extends React.Component {
   }
   //页面跳转
   goFirstPage = () => {
-    $native.callClientForUI(API.NATIVE_CODE_SHOW_BACK_BUTTON, {});
+    Common.setUrl("qrcode-home/index.html");
     Common.removeSessionData(API.SESSION_INVEST_SMF_MESSAGE);
   };
   //页面跳转
@@ -155,7 +155,7 @@ export default class MbankQrCodeConfirm extends React.Component {
               size="default"
               onTap={this.goFirstPage.bind(this)}
             >
-              完成
+            返回
             </Button>
           </WingBlank>
 

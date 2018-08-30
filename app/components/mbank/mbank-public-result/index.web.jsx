@@ -79,15 +79,6 @@ class MbankPublicResult extends React.Component {
                 <p>{fkcard}</p>
               </div>
             ) : null}
-            {/* {tMessage ? (
-              <div className="mbank-public-result-tMessage">
-                <div>
-                  转账给 <span>kkkk</span>
-                </div>
-                <b>12312312312312312</b>
-                <p>asdfasdfasdfasdfkjklasdklf</p>
-              </div>
-            ) : null} */}
           </div>
         ) : (
           <div className="mbank-public-result">

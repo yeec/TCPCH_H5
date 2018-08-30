@@ -7,6 +7,7 @@ var CopyWebpackPlugin = require("copy-webpack-plugin");
 
 //入口配置文件引入
 var entrys = require('./app/entrys/index.js');
+// var entrys = require('./app/entrys/config/transfer.js')
 var productionConfig = {
   //入口配置
   entry: entrys,
@@ -114,10 +115,10 @@ var productionConfig = {
       to: __dirname + '/build',
     }]),
     //拷贝menuIcon到打包文件中使用
-    new CopyWebpackPlugin([{
-      from: __dirname + '/static/menuIcon',
-      to: __dirname + '/build/menuIcon',
-    }]),
+    // new CopyWebpackPlugin([{
+    //   from: __dirname + '/static/menuIcon',
+    //   to: __dirname + '/build/menuIcon',
+    // }]),
   ]
 }
 // entry入口*************************

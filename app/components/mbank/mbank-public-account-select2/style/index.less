@@ -1,0 +1,119 @@
+@import "../../../../style/index";
+
+@mbankPublicAccount: mbank-public-account-select2;
+@mbankPublicAccountHeight: 80px;
+.@{mbankPublicAccount} {
+  &-body {
+    position: relative;
+    background-color: @fill-base;
+    // .hairline-top(@border-color-base); // 注意：如果元素的 overflow 有 scroll 出现，其伪元素 绝对定位 显示将出错，例如 bottom: 0
+    &:after {
+      display: block;
+      position: absolute;
+      content: "";
+      width: 100%;
+      // border-bottom: @border-width-sm solid @border-color-base;
+    }
+
+    div:not(:last-child) {
+      .@{mbankPublicAccount}-line {
+        .hairline-bottom(@border-color-base);
+      }
+    }
+  }
+}
+.@{mbankPublicAccount}-data {
+  position: relative;
+  // padding: @v-spacing-lg @h-spacing-lg;
+  border-bottom: @border-width-sm solid @border-color-base;
+  & div {
+    display: flex;
+    & div {
+      flex: 1;
+      color: @color-text-caption;
+      font-size: @font-size-caption-sm;
+      line-height: @line-height-paragraph;
+    }
+    & div:last-child {
+      flex: 4;
+      text-align: left;
+    }
+  }
+}
+.@{mbankPublicAccount}-item {
+  position: relative;
+  display: flex;
+  // padding-left: @h-spacing-lg;
+  min-height: @mbankPublicAccountHeight;
+  background-color: @fill-base;
+  vertical-align: middle;
+  overflow: hidden;
+  transition: background-color 200ms;
+  align-items: center;
+  &.@{mbankPublicAccount}-item-middle {
+    .@{mbankPublicAccount}-line {
+      align-items: center;
+    }
+  }
+  .@{mbankPublicAccount}-line {
+    position: relative;
+    padding: @h-spacing-md 0 0 0;
+    // padding-right: @h-spacing-lg;
+    min-height: @mbankPublicAccountHeight;
+    overflow: hidden;
+    width: 100%;
+    .@{mbankPublicAccount}-title {
+      color: #222;
+      font-size: 36px;
+    }
+    .@{mbankPublicAccount}-content {
+      padding: 0 40px ;
+      // margin: 20px 0;
+      background: #f9f9f9;
+      // background-image: linear-gradient(90deg, #dc4134 0%, #7a2e85 100%);
+      // border-radius: 10px;
+      .ellipsis();
+      display: flex;
+      flex: 1;
+      align-items: center;
+      // padding: @h-spacing-sm 0;
+      // padding-left: @h-spacing-md;
+      &-icon {
+        margin-right: @h-spacing-md;
+      }
+      &-text {
+        flex: 1;
+        color: #34383d;
+        font-size: 40px;
+        > div:first-child {
+          // padding: 20px 0;
+        }
+        & .balance {
+          padding: 20px 0;
+          display: flex;
+          flex: 1;
+          align-items: center;
+          & div:first-child {
+            color: #34383d;
+            font-size: 28px;
+          }
+          & div:last-child {
+            flex: 1;
+            justify-content: flex-end;
+            text-align: right;
+            // padding-right: @h-spacing-lg;
+            color: @color-text-base;
+            font-size: 40px;
+            & span {
+              background:#90458A;
+              padding: 10px 20px;
+              border-radius: 30px;
+              color: #fff;
+              font-size: 28px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
