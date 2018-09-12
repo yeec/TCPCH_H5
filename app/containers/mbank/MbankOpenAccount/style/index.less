@@ -1,0 +1,38 @@
+@import '../../../../style/index';
+@registerBoxPrefixCls:register-box;
+.@{registerBoxPrefixCls} {
+    padding: 0 40px;
+    &-title{
+        padding: 40px 0;
+        font-size: 52px;
+        text-align: center;
+        color:@color-text-base;
+    }
+    .ryt-input-list-body{
+        border: 0;
+        
+        > div{
+            position: relative;
+            .hairline-bottom(@border-color-base, 0);
+            padding-left:0;
+            overflow: hidden;
+            .ryt-icon {
+                margin-left: 0px;
+            }
+            }
+        > div:last-child {
+            .hairline-bottom(@border-color-base, 0);
+            border-bottom: @border-color-base solid 1px;
+        }
+    }
+    .ryt-input-item{
+        padding: 0;
+        min-height: 108px;
+    }
+    .ryt-input-list-header{
+        padding: 0;
+        padding-top: 40px;
+        color: @color-link;
+        font-size: 28px;
+    }
+}

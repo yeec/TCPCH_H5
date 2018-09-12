@@ -40,6 +40,7 @@ class Common extends React.Component {
         //     pageUrl: url
         // });
         if (__DEV__) {
+            url = url.split("/")[0] + ".html"
             window.location.href = url
         }
         else {

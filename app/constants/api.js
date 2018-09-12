@@ -79,7 +79,9 @@ const account = {
 	// 一键锁定/解锁
 	API_SET_ACCOUNT_LOCKING: 'account/lockCardOneKey',
 	//查询云证通开通标识
-	API_QUERY_CST_BANK_SECURITIES: 'transfer/queryCstBankSecurities'
+	API_QUERY_CST_BANK_SECURITIES: 'transfer/queryCstBankSecurities',
+	// 预约开户
+	API_ADD_PRE_OPENACCINFO:"account/addPreOpenAccInfo"
 };
 
 //转账模块接口
