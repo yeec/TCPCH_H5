@@ -45,7 +45,7 @@ class Common extends React.Component {
         }
         else {
             $native.callClientForUI(API.NATIVE_CODE_LOADNEWPAGE, {
-                pageUrl: url
+                pageUrl: "mobileBank/"+url
             });
        }
     }

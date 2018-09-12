@@ -25,15 +25,15 @@ export default class PasswordResetHome extends React.Component {
         super(props, context);
         this.state = {
             //客户名称
-            nameInputVal: "李伟",
+            nameInputVal: "",
             //证件类型
             documentTypeNow: [],
             /*证件类型value*/
-            documentTypeNowval: '10010',
+            documentTypeNowval: '10100',
             //证件号码
-            documentInputVal: "360730198911141432",
+            documentInputVal: "",
             //手机号
-            mobileNo: "17601618181",
+            mobileNo: "",
             Prompt: "",
             zjhSizeNum: "",
             phoneSizeNum: "",
