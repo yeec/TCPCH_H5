@@ -80,7 +80,8 @@ const account = {
 	//查询云证通开通标识
 	API_QUERY_CST_BANK_SECURITIES: 'transfer/queryCstBankSecurities',
 	// 预约开户
-	API_ADD_PRE_OPENACCINFO:"account/addPreOpenAccInfo"
+	API_ADD_PRE_OPENACCINFO:"account/addPreOpenAccInfo",
+	
 };
 
 //转账模块接口
@@ -253,6 +254,8 @@ const native = {
 // 红包接口
 const redPacket = {
 	NATIVE_CODE_RED_PACKET: 'prd/queryShelfAllInfo', // 
+	// 查询服务是否上架
+	API_QUERY_IS_SHELF_GOODS:'prd/queryIsShelfGoods'
 }
 
 //session命名存放

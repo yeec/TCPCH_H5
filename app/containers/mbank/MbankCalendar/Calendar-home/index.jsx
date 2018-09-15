@@ -76,8 +76,8 @@ export default class MbankSxcAList extends React.Component {
         // 交易上送报文
         data: {
           yearMonth: n,
-          certType:'1',
-          certNum:'123'
+          certType:'1', // 写死
+          certNum:'130183199302011730' // 写死
         }
       },
       true,

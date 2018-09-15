@@ -25,15 +25,15 @@ export default class PasswordResetHome extends React.Component {
         super(props, context);
         this.state = {
             //客户名称
-            nameInputVal: "",
+            nameInputVal: "ads",
             //证件类型
             documentTypeNow: [],
             /*证件类型value*/
             documentTypeNowval: '10100',
             //证件号码
-            documentInputVal: "",
+            documentInputVal: "asd",
             //手机号
-            mobileNo: "",
+            mobileNo: "asd",
             Prompt: "",
             zjhSizeNum: "",
             phoneSizeNum: "",
@@ -189,7 +189,7 @@ export default class PasswordResetHome extends React.Component {
 
 
     // 预约开户提交
-    sunmitInfo(){
+    sunmitInfo=()=>{
         let that = this;
         //客户名称
         let name = that.state.nameInputVal;
@@ -242,6 +242,44 @@ export default class PasswordResetHome extends React.Component {
         });
     }
 
+    queryIsShelfGoods(){
+        debugger;
+        let that = this;
+         // 查询服务是否上架
+         $Fetch(API.API_QUERY_IS_SHELF_GOODS, {
+            //默认固定上送报文
+            reqHead: {
+                //场景编码
+                sceneCode: "IN01",
+                //步骤编码(根据相应步骤填写字段（1,2,3,4）)
+                stepCode: "1",
+                //交易类型 1：查询类交易 2：账务类交易 3：管理类交易 4: 授权类交易 原生需映射，HTML异步请求需赋值
+                tradeType: "1",
+                //交易标识 1-主，2-副
+                flag: "1",
+                //服务接口版本号 1.0.0
+                serviceVersion: "1.0.0"
+            },
+            // 交易上送报文
+            data: {
+                goodsCode:API.API_ADD_PRE_OPENACCINFO.split("/")[1],
+                mallId:"05bcbb75-26f4-416e-b5fa-7eb95325742b"
+            }
+        } ,true,false).then((res) => {
+            if (Common.returnResult(res.rspHead.returnCode)) {
+                that.sunmitInfo();
+            } else{
+                let alertDict = {
+                    title: "错误提示",
+                    msg: res.rspHead.returnMsg,
+                    success_text: "确认",
+                    cancel_text: "取消"
+                  };
+                  Common.showAppDialogAlert(alertDict);
+            }
+        });
+    }
+
     render() {
         return (
             <div className="register-box">
@@ -269,7 +307,7 @@ export default class PasswordResetHome extends React.Component {
 
                 </Input.Group>
                 <WhiteSpace size="lg" />
-                <Button type="primary" size="default" onTap={this.sunmitInfo.bind(this)} disabled={!(this.state.nameInputVal && this.state.documentTypeNowval && this.state.documentInputVal && this.state.mobileNo)} >提交</Button>
+                <Button type="primary" size="default" onTap={this.queryIsShelfGoods.bind(this)} disabled={!(this.state.nameInputVal && this.state.documentTypeNowval && this.state.documentInputVal && this.state.mobileNo)} >提交</Button>
             </div>
         )
     }
