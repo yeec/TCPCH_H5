@@ -42,7 +42,7 @@ export default class MbankSxcAList extends React.Component {
   // 初始化设置
   componentDidMount() {
     $native.callClientForUI(API.NATIVE_CODE_UPDATE_TITLE, {
-      title: "转账",
+      title: "金融日历",
       leftButton: {
         exist: "true",
         closeFlag: "false"
@@ -75,7 +75,9 @@ export default class MbankSxcAList extends React.Component {
         },
         // 交易上送报文
         data: {
-          yearMonth: n
+          yearMonth: n,
+          certType:'1',
+          certNum:'123'
         }
       },
       true,
@@ -209,14 +211,10 @@ export default class MbankSxcAList extends React.Component {
                 return (
                   <MbankCalendarList
                     flag={item.flag}
-                    prdAmt={item.prdAmt}
                     prdName={item.prdName}
-                    prdEndDate={item.prdEndDate}
-                    prdInterest={item.prdInterest}
-                    transferAmt={item.transferAmt}
-                    transferDate={item.transferDate}
-                    resiveOpenBank={item.resiveOpenBank}
-                    resiveName={item.resiveName}
+                    prdAmt={item.prdAmt}
+                    dateTime={item.dateTime}
+                    time={item.time}
                     key={index}
                   />
                 );

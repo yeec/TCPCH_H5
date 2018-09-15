@@ -34,7 +34,6 @@ const withoutLoginAndEncipher = {
 		"financial/queryProductList", //获取理财列表
 		"financial/queryProductsdetailinfo", //获取理财产品详情
 		'system/queryBankNotice', //获取新闻资讯列表
-
 	]
 };
 

@@ -205,24 +205,28 @@ export default class PasswordResetHome extends React.Component {
             //默认固定上送报文
             reqHead: {
                 //场景编码
-                sceneCode: "AC07",
+                sceneCode: "IN01",
                 //步骤编码(根据相应步骤填写字段（1,2,3,4）)
                 stepCode: "1",
                 //交易类型 1：查询类交易 2：账务类交易 3：管理类交易 4: 授权类交易 原生需映射，HTML异步请求需赋值
                 tradeType: "1",
                 //交易标识 1-主，2-副
-                flag: "2",
+                flag: "1",
                 //服务接口版本号 1.0.0
-                serviceVersion: "1.0.0"
+                serviceVersion: "1.0.0",
+                mobileNo:phone,
+                custName:name,
+                certType:documenttype,
+                certNo:documentnum
             },
             // 交易上送报文
             data: {
-                "mobileNo":phone,
-                "custName":name,
-                "certType":documenttype,
-                "certNo":documentnum
+                mobileNo:phone,
+                custName:name,
+                certType:documenttype,
+                certNo:documentnum
             }
-        }).then((res) => {
+        } ,true,false).then((res) => {
             if (Common.returnResult(res.rspHead.returnCode)) {
                 // 跳转到结果页面
                 Common.setUrl("openAcdount-success/index.html");

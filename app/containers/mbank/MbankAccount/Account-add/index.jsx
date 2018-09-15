@@ -439,18 +439,18 @@ export default class AccountAdd extends React.Component {
 
         // 账户添加接口
         $Fetch(API.API_SET_ACCOUNT_ADD, {
-            // 固定上送报文
+            //默认固定上送报文
             reqHead: {
                 //场景编码
-                sceneCode: "AC07",
+                sceneCode: "RE01",
                 //步骤编码(根据相应步骤填写字段（1,2,3,4）)
-                stepCode: "2",
+                stepCode: "1",
                 //交易类型 1：查询类交易 2：账务类交易 3：管理类交易 4: 授权类交易 原生需映射，HTML异步请求需赋值
                 tradeType: "1",
                 //交易标识 1-主，2-副
-                flag: "1",
+                flag: "2",
                 //服务接口版本号 1.0.0
-                serviceVersion: "1.0.0",
+                serviceVersion: "1.0.0"
             },
             // 交易上送报文
             data: {

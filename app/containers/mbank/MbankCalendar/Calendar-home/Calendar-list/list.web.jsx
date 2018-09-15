@@ -19,7 +19,7 @@ export default class MbankAccountList extends React.Component {
   }
 
   urlFianceDetail=()=>{
-    Common.setUrl("finance-hold/index.html");
+    Common.setUrl("finance/index.html");
   }
   urlTransfer=()=>{
     Common.setUrl("transfer-businessInput/index.html");
@@ -28,68 +28,26 @@ export default class MbankAccountList extends React.Component {
     const { props } = this;
     let {
       flag,
-      prdInterest,
-      prdAmt,
-      prdEndDate,
       prdName,
-      resiveName,
-      resiveOpenBank,
-      transferDate,
-      transferAmt,
+      prdAmt,
+      dateTime,
+      time
     } = props;
 
     // 识别账户类型,并设置颜色
     /**** 接口字段说明
         flag	提醒类型	String					"1-理财类 2-转账预约"
-        dateTime	提醒时间	String				年月日：yyyymmdd	
-        prdAmt	产品金额	String					
         prdName	产品名称	String					
-        prdEndDate	产品到期日	String				年月日：yyyymmdd	
-        prdInterest	产品利息金额	String					
-        transferAmt	转账金额	String					
-        transferDate	转账时间	String				年月日：yyyymmdd	
-        resiveOpenBank	收款人开户行	String					
-        resiveName	收款人名称	String					
+        prdAmt	交易金额	String					
+        dateTime	产品到期日	String				年月日：yyyymmdd	
+        time 到期时间
     */
     return (
       <div className="mbank-jrrl-list">
-        {flag === "2" ?
         <div className="list">
           <div>
             <i />
-            <span>预约转账</span>
-          </div>
-          <div>
-            <div>
-              <p>
-                <span>转账金额</span>
-                <span>
-                  {` ${formatMoney(transferAmt, { symbol: "￥" })}`} 元
-                </span>
-              </p>
-              <p>
-                <span>转账日期</span>
-                <span>{transferDate}</span>
-              </p>
-              <p>
-                <span>收款人姓名</span>
-                <span>{resiveName}</span>
-              </p>
-              <p>
-                <span>收款人开户行</span>
-                <span>{resiveOpenBank}</span>
-              </p>
-            </div>
-            <div onClick={this.urlTransfer}>
-              <span>查看</span>
-            </div>
-          </div>
-        </div>
-        :
-        <div className="list">
-          <div>
-            <i />
-            <span>理财产品</span>
+            <span>{flag}</span>
           </div>
           <div>
             <div>
@@ -98,23 +56,23 @@ export default class MbankAccountList extends React.Component {
                 <span>{prdName}</span>
               </p>
               <p>
-                <span>投资金额</span>
+                <span>交易金额</span>
                 <span>{` ${formatMoney(prdAmt, { symbol: "￥" })}`} 元</span>
               </p>
               <p>
                 <span>到期日期</span>
-                <span>{prdEndDate}</span>
+                <span>{dateTime}</span>
               </p>
               <p>
-                <span>累计收益</span>
-                <span>{` ${formatMoney(prdInterest, { symbol: "￥" })}`} 元</span>
+                <span>到期时间</span>
+                <span>{time}</span>
               </p>
             </div>
             <div onClick={this.urlFianceDetail}>
-              <span>查看</span>
+              <span>再次购买</span>
             </div>
           </div>
-        </div>}
+        </div>
       </div>
     );
   }
