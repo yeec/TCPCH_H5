@@ -79,7 +79,7 @@ export default class Transfer extends React.Component {
       API.SESSION_TRANSFER_USER_DATA,
       JSON.stringify(val.info)
     );
-    Common.setUrl("transfer-businessInput.html");
+    Common.setUrl("transfer-businessInput/index.html");
     // hashHistory.push('/transfer-businessInput')
   };
 
