@@ -53,6 +53,7 @@
     "postcss-px2rem": "^0.3.0",
     "react-mobile-datepicker": "^3.0.8",
     "react-pdf": "^2.5.2",
+    "react-pdf-js": "^4.0.0-alpha.6",
     "react-transform-hmr": "^1.0.4",
     "style-loader": "^0.13.1",
     "swiper": "^3.2.7",

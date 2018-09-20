@@ -52,7 +52,7 @@ var devConfig = {
 
         // 打开浏览器
         new OpenBrowserPlugin({
-            url: 'http://192.168.1.112:9999'
+            url: 'http://192.168.1.119:9999'
         }),
 
         // 可在业务 js 代码中使用 __DEV__ 判断是否是dev模式（dev模式下可以提示错误、测试报告等, production模式不提示）
@@ -66,7 +66,7 @@ var devConfig = {
     ],
     // 配置代理服务器
     devServer: {
-        host: '192.168.1.112',
+        host: '192.168.1.119',
         port: 9999,
         proxy: {
             // 凡是 `/api` 开头的 http 请求，都会被代理到 localhost:3000 上，由 koa 提供 mock 数据。
@@ -86,7 +86,7 @@ var devConfig = {
 let entryName = [];
 for (var item in entrys) {
     serverList = [
-        'webpack-dev-server/client?http://192.168.1.112:9999',
+        'webpack-dev-server/client?http://192.168.1.119:9999',
         'webpack/hot/dev-server',
         entrys[item][0]
     ]
